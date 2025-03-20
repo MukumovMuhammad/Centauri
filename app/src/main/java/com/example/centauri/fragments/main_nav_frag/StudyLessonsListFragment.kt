@@ -36,17 +36,17 @@ class StudyLessonsListFragment : Fragment() {
 
         Log.i("StudyLessonsListFragment_TAG", "assigning values to the list")
         lessonList = arrayOf<rvItemsData>(
-            rvItemsData(false, false, 1, "The Nature of Astronomy and Science", R.drawable.ic_universe),
-            rvItemsData(false, false, 2, "The Universe: Large and Small Scales", R.drawable.ic_universe),
-            rvItemsData(false, false, 3, "Observing the Sky: History of Astronomy", R.drawable.ic_universe),
-            rvItemsData(false, false, 4, "Tools of Astronomy: Telescopes & Instruments", R.drawable.ic_universe),
-            rvItemsData(true, false, 1, "Test of Part 1", R.drawable.ic_test),
+            rvItemsData(false, false, 1, "The Nature of Astronomy and Science", R.drawable.ic_universe,4),
+            rvItemsData(false, false, 2, "The Universe: Large and Small Scales", R.drawable.ic_universe,4),
+            rvItemsData(false, false, 3, "Observing the Sky: History of Astronomy", R.drawable.ic_universe,4),
+            rvItemsData(false, false, 4, "Tools of Astronomy: Telescopes & Instruments", R.drawable.ic_universe,4),
+            rvItemsData(true, false, 1, "Test of Part 1", R.drawable.ic_test,4),
 
-            rvItemsData(false, true, 1, "Orbits & Gravity: The Foundation", R.drawable.ic_universe),
-            rvItemsData(false, true, 2, "The Earth-Moon System", R.drawable.ic_universe),
-            rvItemsData(false, true, 3, "The Inner Planets (Mercury, Venus, Earth, Mars)", R.drawable.ic_universe),
-            rvItemsData(false, true, 4, "The Outer Planets & Beyond", R.drawable.ic_universe),
-            rvItemsData(true, true, 1, "Test of Part 2", R.drawable.ic_test)
+            rvItemsData(false, true, 1, "Orbits & Gravity: The Foundation", R.drawable.ic_universe,4),
+            rvItemsData(false, true, 2, "The Earth-Moon System", R.drawable.ic_universe,4),
+            rvItemsData(false, true, 3, "The Inner Planets (Mercury, Venus, Earth, Mars)", R.drawable.ic_universe,4),
+            rvItemsData(false, true, 4, "The Outer Planets & Beyond", R.drawable.ic_universe,4),
+            rvItemsData(true, true, 1, "Test of Part 2", R.drawable.ic_test,4)
         )
 
 

@@ -5,5 +5,6 @@ data class rvItemsData(
     val isClosed: Boolean,
     val number: Int,
     val title: String,
-    val icon: Int
+    val icon: Int,
+    val numberOfParts: Int,
 )

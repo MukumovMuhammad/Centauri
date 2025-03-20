@@ -39,59 +39,100 @@
     <string name="lesson16">The Big Bang &amp; The Fate of the Universe</string>
 
 
+
+
+
+        <!--===============   LESSONS STARTS HERE  =============== -->
+
+
+    <!--    lesson 1    -->
+    <drawable name="lesson1_img_preview">@drawable/img_laser_tower</drawable>
     <string name="lesson1_title_1">What is Astronomy?</string>
-    <string name="lesson1_text_1">Astronomy is the scientific study of celestial objects, space, and the universe as a whole. It seeks to understand how planets, stars, galaxies, and the cosmos evolve over time. Unlike astrology, which is based on superstition, astronomy relies on observations, mathematics, and physics to explain natural phenomena.
-
-        \n\🔹 Astronomy Helps Us Answer Big Questions:\n\
-
-        How did the universe begin?\n\
-        What are stars made of?\n\
-        Are there other planets with life?\n\
-        What will happen to the universe in the future?\n\
+    <string name="lesson1_text_1">Astronomy is the study of everything beyond Earth—planets, stars,
+        galaxies, and the vast universe itself. It is one of the oldest sciences,
+        dating back thousands of years when ancient civilizations first gazed at the night sky,
+        tracking the movements of celestial objects. Early astronomers used the Sun, Moon, and stars to measure time,
+        predict seasons, and navigate across oceans. The Babylonians created some of the earliest star maps over 5,000 years ago,
+        the Egyptians aligned their pyramids with certain stars, and the Greeks developed early models of the solar system.
+        The Mayans were able to predict solar and lunar eclipses,
+        while scholars during the Islamic Golden Age made major contributions to astronomical calculations.
+        Over time, as technology advanced, our understanding of the universe expanded.
+        Today, powerful telescopes allow us to see distant galaxies billions of light-years away,
+        while space probes explore planets and moons in our solar system.
+        But even with all this progress, astronomy remains a science of endless discovery,
+        helping us understand not only where we are in the universe but also how everything came to be.
     </string>
+    <drawable name="lesson1_img1">@drawable/img_lesson1_hubble</drawable>
 
-    <string name="lesson1_title_2">Branches of Astronomy</string>
-    <string name="lesson1_text_2">Astronomy is divided into different fields, each focusing on specific aspects of the universe:
-        \n\
-        Observational Astronomy – Uses telescopes to collect data from celestial objects.\n\
-        Theoretical Astronomy – Uses math and physics to model and predict cosmic events.\n\
-        Planetary Science – Studies planets, moons, and exoplanets.\n\
-        Stellar Astronomy – Focuses on stars, their life cycles, and black holes.\n\
-        Galactic &amp; Extragalactic Astronomy – Studies the Milky Way and distant galaxies.\n\
-        Cosmology – Explores the origin, structure, and fate of the universe.\n\
+    <string name="lesson1_title_2">Our Solar System</string>
+    <string name="lesson1_text_2">
+        Our home, Earth, is just one small part of a much larger cosmic neighborhood called the solar system.
+        At its center is the Sun, a massive ball of hot gas that provides the energy needed for life on our planet.
+        Surrounding it are eight planets—Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune—each unique in size,
+        composition, and atmosphere. Some planets, like Earth and Mars, have solid surfaces,
+        while others, like Jupiter and Saturn, are made mostly of gas. Beyond the planets, there are moons, asteroids,
+        comets, and dwarf planets like Pluto, all of which play an important role in our cosmic system. </string>
+    <drawable name="lesson1_img2">@drawable/img_solar_system</drawable>
+
+    <string name="lesson1_title_3">The Nearest Star: Proxima Centauri</string>
+    <string name="lesson1_text_3">
+        Our solar system is just a tiny part of the Milky Way Galaxy,
+        which contains billions of stars. The closest star beyond our Sun is Proxima Centauri, part of the Alpha Centauri system
+        , located 4.3 light-years away. Though this is the nearest star,
+        traveling there with current technology would take thousands of years.
+        Scientists are especially interested in Proxima Centauri because it has a planet, Proxima b, which might have conditions
+        suitable for life. This makes it an important target for future space exploration,
+        and its name has become a symbol of humanity’s curiosity about the universe.
     </string>
-
-    <string name="lesson1_title_3">The Scientific Method in Astronomy</string>
-
-    <string name="lesson1_text_3">Astronomy follows the scientific method, which ensures that conclusions are based on evidence. The steps include:
-        Observation: Noticing a pattern (e.g., planets move in the sky).\n\
-        Hypothesis: Making an educated guess (e.g., planets orbit the Sun).\n\
-        Experiment: Testing ideas through calculations or observations.\n\
-        Data Analysis: Comparing results with predictions.\n\
-        Conclusion: Accepting, modifying, or rejecting the hypothesis.\n\
-        🔎 Example in Astronomy:\n\
-        🔹 Ancient astronomers believed Earth was the center of the universe. But observations of planetary motion helped prove the Sun-centered model (heliocentrism).\n\
-    </string>
-
+    <drawable name="lesson1_img3">@drawable/img_proxima_centauri_real_photo</drawable>
 
     <string name="lesson1_title_4">Why Astronomy is Important</string>
 
     <string name="lesson1_text_4">
         Astronomy is more than just stargazing—it impacts many areas of life:\n\
 
-        🔹 Technology: Many innovations, like GPS and cameras in smartphones, were developed from astronomical research.\n\
-        🔹 Climate Science: Studying planets like Venus helps us understand global warming.\n\
-        🔹 Space Exploration: Helps us prepare for future space travel and asteroid defense.\n\
+        Technology: Many innovations, like GPS and cameras in smartphones, were developed from astronomical research.\n\
+        Climate Science: Studying planets like Venus helps us understand global warming.\n\
+        Space Exploration: Helps us prepare for future space travel and asteroid defense.\n\
     </string>
 
-    <string name="lesson1_title_5">Astronomy in Everyday Life</string>
 
-    <string name="lesson1_text_5">
-        Even if you’re not an astronomer, astronomy affects you daily:\n\
 
-        ✅ Timekeeping: Our days, months, and years are based on the movement of celestial bodies.\n\
-        ✅ Tides &amp; Weather: The Moon’s gravity affects Earth’s oceans.\n\
-        ✅ Communication: Satellites rely on physics principles from astronomy.\n\
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
 
 </resources>

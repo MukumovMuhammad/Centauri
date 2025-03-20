@@ -6,9 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    tools:context=".MainActivity"
-    android:background="@drawable/stars_pattern">
+    tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/img_star_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_cartoon_planets1"
+        android:scaleType="centerCrop" />
 
     <androidx.fragment.app.FragmentContainerView
         android:layout_marginTop="0dp"

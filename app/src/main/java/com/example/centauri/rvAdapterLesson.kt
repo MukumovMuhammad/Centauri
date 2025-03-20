@@ -66,6 +66,8 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
         holder.itemView.setOnClickListener {
             var intent = Intent(holder.itemView.context, LessonTemplateActivity::class.java)
+            intent.putExtra("lesson_number", item.number)
+            intent.putExtra("partsNumber", item.numberOfParts)
             startActivity(holder.itemView.context, intent, null)
         }
 
