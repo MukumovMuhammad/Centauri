@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "296137688839",
+    "project_id": "centauri-681e0",
+    "storage_bucket": "centauri-681e0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296137688839:android:ad818742e726cfa42527a2",
+        "android_client_info": {
+          "package_name": "com.example.centauri"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8K_7KmpTcFZ9HL_YV0xmkrVxcv2mKBuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

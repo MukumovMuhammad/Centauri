@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/test_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="#1E293B"
+    app:layout_constraintWidth_percent="0.75"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@drawable/cosmos_background">
+
+        <!-- Test Number -->
+        <TextView
+            android:id="@+id/test_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/test_icon"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Test 1"
+            android:textColor="#FFD700"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <!-- Test Title -->
+
+        <!-- Test Icon (Smaller than Lesson Icon) -->
+        <ImageView
+            android:id="@+id/test_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_test"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="4dp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

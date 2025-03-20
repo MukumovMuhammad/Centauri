@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#000428"
+                android:endColor="#004e92"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Stars overlay -->
+    <item>
+        <bitmap
+            android:src="@drawable/stars_pattern"
+            android:tileMode="repeat"
+            android:scaleType="centerCrop"
+            android:gravity="center" />
+    </item>
+
+</layer-list>

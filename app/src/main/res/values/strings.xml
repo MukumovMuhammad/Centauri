@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Centauri</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="learn">Learn</string>
+    <string name="news">News</string>
+    <string name="profile">Profile</string>
+
+
+    <!--    The lesson structure -->
+    <string name="part_1">Introduction to Astronomy &amp; Observing the Universe</string>
+    <string name="lesson1">The Nature of Astronomy and Science</string>
+    <string name="lesson2">The Universe: Large and Small Scales</string>
+    <string name="lesson3">Observing the Sky: History of Astronomy</string>
+    <string name="lesson4">Tools of Astronomy: Telescopes &amp; Instruments</string>
+
+    <string name="part_2">The Solar System &amp; Its Components</string>
+    <string name="lesson5">Orbits &amp; Gravity: The Foundation</string>
+    <string name="lesson6">The Earth-Moon System</string>
+    <string name="lesson7">The Inner Planets (Mercury, Venus, Earth, Mars)</string>
+    <string name="lesson8">The Outer Planets &amp; Beyond</string>
+
+
+    <string name="part_3"> The Sun &amp; Stars</string>
+    <string name="lesson9">The Sun as a Star</string>
+    <string name="lesson10">Stellar Classification &amp; Spectroscopy</string>
+    <string name="lesson11"> Life Cycles of Stars</string>
+    <string name="lesson12">Supernovae, Neutron Stars &amp; Black Holes</string>
+
+    <string name="part_4">  Galaxies &amp; Cosmology</string>
+    <string name="lesson13">The Milky Way Galaxy</string>"
+    <string name="lesson14">Types of Galaxies &amp; Their Evolution</string>
+    <string name="lesson15"> Dark Matter &amp; The Expanding Universe</string>
+    <string name="lesson16">The Big Bang &amp; The Fate of the Universe</string>
+
+
+    <string name="lesson1_title_1">What is Astronomy?</string>
+    <string name="lesson1_text_1">Astronomy is the scientific study of celestial objects, space, and the universe as a whole. It seeks to understand how planets, stars, galaxies, and the cosmos evolve over time. Unlike astrology, which is based on superstition, astronomy relies on observations, mathematics, and physics to explain natural phenomena.
+
+        \n\🔹 Astronomy Helps Us Answer Big Questions:\n\
+
+        How did the universe begin?\n\
+        What are stars made of?\n\
+        Are there other planets with life?\n\
+        What will happen to the universe in the future?\n\
+    </string>
+
+    <string name="lesson1_title_2">Branches of Astronomy</string>
+    <string name="lesson1_text_2">Astronomy is divided into different fields, each focusing on specific aspects of the universe:
+        \n\
+        Observational Astronomy – Uses telescopes to collect data from celestial objects.\n\
+        Theoretical Astronomy – Uses math and physics to model and predict cosmic events.\n\
+        Planetary Science – Studies planets, moons, and exoplanets.\n\
+        Stellar Astronomy – Focuses on stars, their life cycles, and black holes.\n\
+        Galactic &amp; Extragalactic Astronomy – Studies the Milky Way and distant galaxies.\n\
+        Cosmology – Explores the origin, structure, and fate of the universe.\n\
+    </string>
+
+    <string name="lesson1_title_3">The Scientific Method in Astronomy</string>
+
+    <string name="lesson1_text_3">Astronomy follows the scientific method, which ensures that conclusions are based on evidence. The steps include:
+        Observation: Noticing a pattern (e.g., planets move in the sky).\n\
+        Hypothesis: Making an educated guess (e.g., planets orbit the Sun).\n\
+        Experiment: Testing ideas through calculations or observations.\n\
+        Data Analysis: Comparing results with predictions.\n\
+        Conclusion: Accepting, modifying, or rejecting the hypothesis.\n\
+        🔎 Example in Astronomy:\n\
+        🔹 Ancient astronomers believed Earth was the center of the universe. But observations of planetary motion helped prove the Sun-centered model (heliocentrism).\n\
+    </string>
+
+
+    <string name="lesson1_title_4">Why Astronomy is Important</string>
+
+    <string name="lesson1_text_4">
+        Astronomy is more than just stargazing—it impacts many areas of life:\n\
+
+        🔹 Technology: Many innovations, like GPS and cameras in smartphones, were developed from astronomical research.\n\
+        🔹 Climate Science: Studying planets like Venus helps us understand global warming.\n\
+        🔹 Space Exploration: Helps us prepare for future space travel and asteroid defense.\n\
+    </string>
+
+    <string name="lesson1_title_5">Astronomy in Everyday Life</string>
+
+    <string name="lesson1_text_5">
+        Even if you’re not an astronomer, astronomy affects you daily:\n\
+
+        ✅ Timekeeping: Our days, months, and years are based on the movement of celestial bodies.\n\
+        ✅ Tides &amp; Weather: The Moon’s gravity affects Earth’s oceans.\n\
+        ✅ Communication: Satellites rely on physics principles from astronomy.\n\
+    </string>
+
+</resources>

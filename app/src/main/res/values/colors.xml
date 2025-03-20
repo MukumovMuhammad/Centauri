@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="text_title">#FFFFFFFF</color>
+    <color name="text_par">#FFFFFFFF</color>
+
+
+
+    <color name="deep_space_black">#08041C</color>
+    <color name="nebula_blue">#3B4994</color>
+    <color name="starry_white">#E0E0E0</color>
+    <color name="dusty_red">#7A3030</color>
+    <color name="dusty_blue">#304D6D</color>
+    <color name="metallic_gray">#999999</color>
+    <color name="dark_matter_blue">#1A237E</color>
+    <color name="dark_matter_white">#FFFFFF</color>
+
+</resources>

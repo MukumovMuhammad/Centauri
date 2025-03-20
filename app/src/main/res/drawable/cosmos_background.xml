@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#10172A"/> <!-- Dark cosmic background -->
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+    <!-- Glowing effect -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="45"
+                android:startColor="#223355"
+                android:endColor="#112244"/>
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+</layer-list>
