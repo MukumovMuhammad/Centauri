@@ -22,7 +22,8 @@
     <string name="part_2">The Solar System &amp; Its Components</string>
     <string name="lesson5">Orbits &amp; Gravity: The Foundation</string>
     <string name="lesson6">The Earth-Moon System</string>
-    <string name="lesson7">The Inner Planets (Mercury, Venus, Earth, Mars)</string>
+<!--    <string name="lesson7">The Inner Planets (Mercury, Venus, Earth, Mars)</string>-->
+    <string name="lesson7">The Planets (inner, outer, exo)</string>
     <string name="lesson8">The Outer Planets &amp; Beyond</string>
 
 

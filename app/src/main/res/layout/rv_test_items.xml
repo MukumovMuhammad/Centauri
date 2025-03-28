@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/test_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -14,6 +15,7 @@
     app:layout_constraintEnd_toEndOf="parent">
 
     <RelativeLayout
+        android:id="@+id/rl_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
@@ -29,9 +31,9 @@
             android:layout_toStartOf="@+id/test_icon"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Test 1"
+            android:text="TEST 1"
             android:textColor="#FFD700"
-            android:textSize="48sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <!-- Test Title -->
@@ -46,5 +48,23 @@
             android:layout_centerVertical="true"
             android:padding="4dp"/>
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/dark_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_transparent_black"
+        android:visibility="invisible" />
+
+    <!-- Lock Icon (Hidden by Default) -->
+    <ImageView
+        android:id="@+id/lock_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_lock"
+        android:visibility="invisible"
+        app:tint="#FFFFFF" />
+
 
 </androidx.cardview.widget.CardView>

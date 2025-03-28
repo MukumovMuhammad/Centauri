@@ -4,19 +4,19 @@
     <item
         android:id="@+id/learn"
         android:title="@string/learn"
-        android:icon="@drawable/ic_quiz"
+        android:icon="@drawable/ic_book"
         android:enabled="true"
         />
     <item
         android:id="@+id/news"
         android:title="@string/news"
-        android:icon="@drawable/ic_planet"
+        android:icon="@drawable/ic_research"
         android:enabled="true"
         />
     <item
         android:id="@+id/profile"
         android:title="@string/profile"
-        android:icon="@drawable/ic_person"
+        android:icon="@drawable/ic_astronaut"
         android:enabled="true"
         />
 </menu>

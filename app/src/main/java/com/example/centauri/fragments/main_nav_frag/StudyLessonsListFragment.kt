@@ -11,7 +11,6 @@ import com.example.centauri.R
 import com.example.centauri.databinding.FragmentStudyLessonsListBinding
 import com.example.centauri.rvAdapterLesson
 import com.example.centauri.rvItemsData
-import java.util.ArrayList
 
 class StudyLessonsListFragment : Fragment() {
 
@@ -36,17 +35,29 @@ class StudyLessonsListFragment : Fragment() {
 
         Log.i("StudyLessonsListFragment_TAG", "assigning values to the list")
         lessonList = arrayOf<rvItemsData>(
-            rvItemsData(false, false, 1, "The Nature of Astronomy and Science", R.drawable.ic_universe,4),
-            rvItemsData(false, false, 2, "The Universe: Large and Small Scales", R.drawable.ic_universe,4),
-            rvItemsData(false, false, 3, "Observing the Sky: History of Astronomy", R.drawable.ic_universe,4),
-            rvItemsData(false, false, 4, "Tools of Astronomy: Telescopes & Instruments", R.drawable.ic_universe,4),
+            rvItemsData(false, false, 1, getString(R.string.lesson1), R.drawable.ic_astronomy,4),
+            rvItemsData(false, false, 2, getString(R.string.lesson2), R.drawable.ic_universe,4),
+            rvItemsData(false, false, 3, getString(R.string.lesson3), R.drawable.ic_explore,4),
+            rvItemsData(false, false, 4, getString(R.string.lesson4), R.drawable.ic_telescope,4),
             rvItemsData(true, false, 1, "Test of Part 1", R.drawable.ic_test,4),
 
-            rvItemsData(false, true, 1, "Orbits & Gravity: The Foundation", R.drawable.ic_universe,4),
-            rvItemsData(false, true, 2, "The Earth-Moon System", R.drawable.ic_universe,4),
-            rvItemsData(false, true, 3, "The Inner Planets (Mercury, Venus, Earth, Mars)", R.drawable.ic_universe,4),
-            rvItemsData(false, true, 4, "The Outer Planets & Beyond", R.drawable.ic_universe,4),
-            rvItemsData(true, true, 1, "Test of Part 2", R.drawable.ic_test,4)
+            rvItemsData(false, true, 1, getString(R.string.lesson5), R.drawable.ic_astronaut3,4),
+            rvItemsData(false, true, 2,getString(R.string.lesson6), R.drawable.ic_earth2,4),
+            rvItemsData(false, true, 3, getString(R.string.lesson7), R.drawable.ic_some_planets,4),
+//            rvItemsData(false, true, 4, getString(R.string.lesson8), R.drawable.ic_some_planets,4),
+            rvItemsData(true, true, 2, "Test of Part 2", R.drawable.ic_test,4),
+
+            rvItemsData(false, true, 1, getString(R.string.lesson9), R.drawable.ic_sun2,4),
+            rvItemsData(false, true, 2, getString(R.string.lesson10), R.drawable.ic_astrophysics,4),
+            rvItemsData(false, true, 3, getString(R.string.lesson11), R.drawable.ic_falling_star,4),
+            rvItemsData(false, true, 4, getString(R.string.lesson12), R.drawable.ic_black_hole,4),
+            rvItemsData(true, true, 3, "Test of Part 3", R.drawable.ic_test,4),
+
+            rvItemsData(false, true, 1, getString(R.string.lesson13), R.drawable.ic_milky_way,4),
+            rvItemsData(false, true, 2,getString(R.string.lesson14), R.drawable.ic_galaxy2,4),
+            rvItemsData(false, true, 3, getString(R.string.lesson15), R.drawable.ic_galaxy,4),
+            rvItemsData(false, true, 4, getString(R.string.lesson16), R.drawable.ic_space,4),
+            rvItemsData(true, true, 4, "Test of Part 4", R.drawable.ic_test,4)
         )
 
 
