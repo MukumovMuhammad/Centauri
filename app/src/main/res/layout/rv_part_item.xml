@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Part 1"
         android:textColor="@color/rv_text_color"
-        android:textSize="18sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-medium"/>
 
@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:text="@string/part_1"
         android:textColor="@color/rv_text_color"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-medium"/>
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-medium" />
 </LinearLayout>

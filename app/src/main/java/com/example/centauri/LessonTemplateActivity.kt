@@ -63,7 +63,7 @@ class LessonTemplateActivity : AppCompatActivity() {
         )
         lesson_img_preview.layoutParams = imageLayoutParams
 
-        binding.collapsingToolbar.title = resources.getString(resources.getIdentifier("lesson${lesson_number}", "string", packageName))
+        binding.customTitle.text = resources.getString(resources.getIdentifier("lesson${lesson_number}", "string", packageName))
 
 //        binding.imgPreview.setImageResource(resources.getIdentifier("lesson1_img_preview", "drawable", packageName))
 

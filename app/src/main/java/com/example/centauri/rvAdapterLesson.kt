@@ -17,22 +17,19 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.setMargins
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centauri.models.rvItemType
 
 class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
 
-    enum class ItemType{
-        PART,
-        LESSON,
-        TEST
 
-    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val layoutId = when (viewType) {
-            ItemType.LESSON.ordinal -> R.layout.rv_lessons_items
-            ItemType.TEST.ordinal -> R.layout.rv_test_items
+            rvItemType.LESSON.ordinal -> R.layout.rv_lessons_items
+            rvItemType.TEST.ordinal -> R.layout.rv_test_items
+            rvItemType.PART.ordinal -> R.layout.rv_part_item
             else -> throw IllegalArgumentException("Invalid view type")
         }
         val view = layoutInflater.inflate(layoutId, parent, false)
@@ -41,11 +38,10 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when(lessonList[position].isTest){
-            true -> ItemType.TEST.ordinal
-            false -> ItemType.LESSON.ordinal
-        }
+        return lessonList[position].itemType.ordinal
     }
+
+
 
     override fun getItemCount(): Int = lessonList.size
 
@@ -58,32 +54,45 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
         Log.i("rvAdapterLesson_TAG", "onBindViewHolder() called with: holder = $holder, position = $position")
         Log.i("rvAdapterLesson_TAG", "onBindViewHolder() called with: item = $item")
 
-        val itemType = getItemViewType(position)
+        val itemType: rvItemType = lessonList[position].itemType
+        Log.i("rvAdapterLesson_TAG", "onBindViewHolder() called with: itemType = $itemType")
 
         when (itemType){
-            ItemType.LESSON.ordinal -> {
+            rvItemType.LESSON -> {
+                Log.i("rvAdapterLesson_TAG", "onBindViewHolder() this Item is LESSON")
                 holder.icon!!.setImageResource(item.icon)
                 holder.number!!.text = "Lesson ${item.number}"
                 holder.title!!.text = item.title
             }
-            ItemType.TEST.ordinal -> {
+            rvItemType.TEST -> {
+                Log.i("rvAdapterLesson_TAG", "onBindViewHolder() this Item is TEST")
                 holder.icon!!.setImageResource(item.icon)
                 holder.number!!.text =  "Test ${item.number}"
+            }
+            else -> {
+                Log.i("rvAdapterLesson_TAG", "onBindViewHolder() this Item is PART")
+                holder.number!!.text = "Part ${item.number}"
+                holder.title!!.text = item.title
+            }
+        }
+
+        if (item.itemType != rvItemType.PART){
+            if (item.isClosed){
+                holder.dark_overlay!!.visibility = View.VISIBLE
+                holder.lockIcon!!.visibility = View.VISIBLE
+            }else {
+                holder.dark_overlay!!.visibility = View.GONE
+                holder.lockIcon!!.visibility = View.GONE
             }
         }
 
 
-        if (item.isClosed){
-            holder.dark_overlay!!.visibility = View.VISIBLE
-            holder.lockIcon!!.visibility = View.VISIBLE
-        }else{
-            holder.dark_overlay!!.visibility = View.GONE
-            holder.lockIcon!!.visibility = View.GONE
-        }
-
 
         holder.itemView.setOnClickListener {
-            if(item.isClosed){
+            if(item.itemType.ordinal == rvItemType.PART.ordinal){
+                Toast.makeText(holder.itemView.context, "Yup. This is a part ${item.number}", Toast.LENGTH_SHORT).show()
+            }
+            else if(item.isClosed){
                 Toast.makeText(holder.itemView.context, "This lesson is closed", Toast.LENGTH_SHORT).show()
             }
             else{
@@ -110,18 +119,26 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
         init {
             when (itemType){
-                ItemType.LESSON.ordinal -> {
+                rvItemType.LESSON.ordinal -> {
+                    Log.i("rvAdapterLesson_TAG", "ViewHolder called itemType LESSON")
                     number = itemView.findViewById(R.id.lesson_number)
                     icon = itemView.findViewById(R.id.lesson_icon)
                     title = itemView.findViewById(R.id.lesson_title)
                     lockIcon = itemView.findViewById(R.id.lock_icon)
                     dark_overlay = itemView.findViewById(R.id.dark_overlay)
                 }
-                ItemType.TEST.ordinal -> {
+                rvItemType.TEST.ordinal -> {
+                    Log.i("rvAdapterLesson_TAG", "ViewHolder called itemType TEST")
                     number = itemView.findViewById(R.id.test_number)
                     icon = itemView.findViewById(R.id.test_icon)
                     lockIcon = itemView.findViewById(R.id.lock_icon)
                     dark_overlay = itemView.findViewById(R.id.dark_overlay)
+                }
+
+                rvItemType.PART.ordinal -> {
+                    Log.i("rvAdapterLesson_TAG", "ViewHolder called itemType PART")
+                    number = itemView.findViewById(R.id.part_num)
+                    title = itemView.findViewById(R.id.part_text)
                 }
 
                 else -> {

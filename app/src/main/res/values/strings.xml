@@ -13,7 +13,7 @@
 
 
     <!--    The lesson structure -->
-    <string name="part_1">Introduction to Astronomy &amp; Observing the Universe</string>
+    <string name="part_1">Introduction to Astronomy</string>
     <string name="lesson1">The Nature of Astronomy and Science</string>
     <string name="lesson2">The Universe: Large and Small Scales</string>
     <string name="lesson3">Observing the Sky: History of Astronomy</string>

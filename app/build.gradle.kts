@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -16,15 +18,20 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 
+        var properties: Properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+        buildConfigField("String","API_KEY", "\"${properties.getProperty("GEMINI_API_KEY")}\"")
+
+    }
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
     compileOptions {
@@ -36,6 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
 
@@ -80,5 +88,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.1")
 //    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
+    // Gemeni
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
 
 }
