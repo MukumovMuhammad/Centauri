@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Lesson 1"
             android:textSize="18sp"
-            android:textColor="#FFD700"
+            android:textColor="@color/rv_text_color"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
             android:layout_alignParentStart="true"/>

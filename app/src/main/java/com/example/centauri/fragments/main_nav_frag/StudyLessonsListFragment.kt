@@ -11,12 +11,16 @@ import com.example.centauri.R
 import com.example.centauri.databinding.FragmentStudyLessonsListBinding
 import com.example.centauri.rvAdapterLesson
 import com.example.centauri.rvItemsData
+import com.example.firebasetodoapp.DbViewModel
 
 class StudyLessonsListFragment : Fragment() {
 
     private lateinit var binding: FragmentStudyLessonsListBinding
     private lateinit var lessonAdapter: rvAdapterLesson
     private lateinit var lessonList: Array<rvItemsData>
+
+    private val dbViewModel = DbViewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,9 +40,9 @@ class StudyLessonsListFragment : Fragment() {
         Log.i("StudyLessonsListFragment_TAG", "assigning values to the list")
         lessonList = arrayOf<rvItemsData>(
             rvItemsData(false, false, 1, getString(R.string.lesson1), R.drawable.ic_astronomy,4),
-            rvItemsData(false, false, 2, getString(R.string.lesson2), R.drawable.ic_universe,4),
-            rvItemsData(false, false, 3, getString(R.string.lesson3), R.drawable.ic_explore,4),
-            rvItemsData(false, false, 4, getString(R.string.lesson4), R.drawable.ic_telescope,4),
+            rvItemsData(false, false, 2, getString(R.string.lesson2), R.drawable.ic_universe,3),
+            rvItemsData(false, false, 3, getString(R.string.lesson3), R.drawable.ic_explore,3),
+            rvItemsData(false, false, 4, getString(R.string.lesson4), R.drawable.ic_telescope,3),
             rvItemsData(true, false, 1, "Test of Part 1", R.drawable.ic_test,4),
 
             rvItemsData(false, true, 1, getString(R.string.lesson5), R.drawable.ic_astronaut3,4),

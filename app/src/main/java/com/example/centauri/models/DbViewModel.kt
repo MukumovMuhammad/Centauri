@@ -46,7 +46,9 @@ class DbViewModel: ViewModel() {
         var user: UserData = UserData("null", "null", 0, "null")
         db.collection("users").document(email).get()
             .addOnSuccessListener { document ->
+                Log.i("dbTAG", "getUserData fun is Succeed")
                 if(document.exists()){
+                    Log.i("dbTAG", "document ${document.data} is exist")
                     val username = document.getString("username")
                     val email = document.getString("email")
                     val rating = document.getString("rating")
@@ -59,6 +61,25 @@ class DbViewModel: ViewModel() {
 
         return user;
     }
+
+    fun getLessonImgs(lessonNumber: Int, onResult: (ArrayList<String>) -> Unit) {
+        db.collection("images").document("lessons_imgs").get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val images = document.get("lesson$lessonNumber") as? ArrayList<String> ?: arrayListOf()
+                    onResult(images)
+                } else {
+                    onResult(arrayListOf()) // empty list if doc doesn't exist
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("dbTAG", "Error getting lesson images: $exception")
+                onResult(arrayListOf()) // return empty list on failure
+            }
+    }
+
+
+
 
     fun changeCurentUser(newUser: UserData){
         _user.value = newUser

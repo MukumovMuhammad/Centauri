@@ -52,8 +52,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
 
-    // Use the latest Glide version
-    implementation("com.github.bumptech.glide:glide:4.15.0") // Update to a newer version
 
     implementation("com.google.android.material:material:1.12.0")
 
@@ -71,4 +69,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+//    toolbar  animation scrolling
+    implementation(libs.androidx.appcompat.v110)
+    implementation(libs.material.v100)
+//    implementation("com.android.support:design:26.1.0")
+
+//    Glide
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+//    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+
 }

@@ -47,7 +47,6 @@
 
 
     <!--    lesson 1    -->
-    <drawable name="lesson1_img_preview">@drawable/img_laser_tower</drawable>
     <string name="lesson1_title_1">What is Astronomy?</string>
     <string name="lesson1_text_1">Astronomy is the study of everything beyond Earth—planets, stars,
         galaxies, and the vast universe itself. It is one of the oldest sciences,
@@ -63,7 +62,6 @@
         But even with all this progress, astronomy remains a science of endless discovery,
         helping us understand not only where we are in the universe but also how everything came to be.
     </string>
-    <drawable name="lesson1_img1">@drawable/img_lesson1_hubble</drawable>
 
     <string name="lesson1_title_2">Our Solar System</string>
     <string name="lesson1_text_2">
@@ -73,7 +71,6 @@
         composition, and atmosphere. Some planets, like Earth and Mars, have solid surfaces,
         while others, like Jupiter and Saturn, are made mostly of gas. Beyond the planets, there are moons, asteroids,
         comets, and dwarf planets like Pluto, all of which play an important role in our cosmic system. </string>
-    <drawable name="lesson1_img2">@drawable/img_solar_system</drawable>
 
     <string name="lesson1_title_3">The Nearest Star: Proxima Centauri</string>
     <string name="lesson1_text_3">
@@ -85,7 +82,6 @@
         suitable for life. This makes it an important target for future space exploration,
         and its name has become a symbol of humanity’s curiosity about the universe.
     </string>
-    <drawable name="lesson1_img3">@drawable/img_proxima_centauri_real_photo</drawable>
 
     <string name="lesson1_title_4">Why Astronomy is Important</string>
 
@@ -98,42 +94,119 @@
     </string>
 
 
-
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    <!--    lesson 2    -->
+    <string name="lesson2_title">The Universe – Large and Small Scales</string>
+    <string name="lesson2_title_1">The Universe – Large and Small Scales</string>
+    <string name="lesson2_text_1">Astronomy helps us understand not only Earth and our solar system but also the vastness of the universe itself.
+        The universe is everything that exists—space, time, matter, and energy. It is so immense that even the fastest thing we know, light,
+        takes billions of years to travel across it. The universe contains hundreds of billions of galaxies, each filled with billions of stars and planets.
+        Our own galaxy, the Milky Way, is just one of these countless cosmic structures.
+        But despite its enormous size, the universe is also made up of the tiniest things imaginable,
+        such as atoms, subatomic particles, and even mysterious forces like dark matter and dark energy.
+        Scientists believe that the universe began with the Big Bang about 13.8 billion years ago,
+        a moment when everything we see today was once packed into an incredibly small, hot, and dense state before expanding outward.
+        This expansion is still happening, meaning the universe is growing every second.
+        Even though our planet may seem big to us, in the grand scale of the cosmos, Earth is just a tiny speck.
     </string>
+
+    <string name="lesson2_title_2">Galaxies, Stars, and Planets</string>
+    <string name="lesson2_text_2">
+        Galaxies are vast collections of stars, planets, gas, and dust held together by gravity.
+        The Milky Way, our home galaxy, is a spiral-shaped system stretching 100,000 light-years across.
+        Besides spiral galaxies, there are also elliptical and irregular-shaped galaxies scattered throughout the universe.
+        Each galaxy contains billions of stars, and many of these stars have their own planetary systems. Some of these planets, called exoplanets,
+        orbit stars beyond our solar system and might even have the right conditions for life.
+        The nearest major galaxy to us is Andromeda, which is about 2.5 million light-years away and is on a slow collision course with the Milky Way.
+        Stars themselves come in different sizes and temperatures—some, like the Sun, are medium-sized and yellow,
+        while others are much larger, smaller, hotter, or cooler. Some stars end their lives in spectacular explosions called supernovae,
+        while others shrink into dense objects like neutron stars or black holes,
+        regions of space where gravity is so strong that nothing can escape. </string>
+
+    <string name="lesson2_title_3">The Smallest Structures in the Universe</string>
+    <string name="lesson2_text_3">
+        While the universe is unimaginably vast, it is also made up of incredibly tiny building blocks.
+        Everything we see, from planets to people, is made up of atoms, which are themselves made of protons, neutrons, and electrons.
+        But scientists have discovered even smaller particles, such as quarks and neutrinos, that help explain the fundamental nature of matter.
+        Even more mysterious are dark matter and dark energy—two invisible forces that make up most of the universe but are still not fully understood.
+        Dark matter is thought to provide the unseen mass that holds galaxies together, while dark energy is believed
+        to be responsible for the accelerating expansion of the universe. These discoveries show that there is still
+        so much left to learn about the universe, both on the largest scales and the smallest.
+        Studying these extremes helps scientists unlock the mysteries of space and understand our place in the cosmos.
+    </string>
+
+
+    <!--    lesson 3    -->
+    <string name="lesson3_title">Observing the Sky: History of Astronomy</string>
+
+    <string name="lesson3_title_1">The Origins of Astronomy</string>
+    <string name="lesson3_text_1">
+Since the beginning of civilization, humans have looked up at the sky, fascinated by the Sun, Moon, and stars.
+Astronomy is one of the oldest sciences, dating back thousands of years to ancient cultures that used the sky for navigation, timekeeping, and religious practices.
+Early civilizations such as the Babylonians, Egyptians, and Chinese carefully observed the movements of celestial bodies to create calendars and predict natural events.
+The Babylonians, over 5,000 years ago, recorded the positions of planets and stars, while the Egyptians aligned their pyramids with certain stars, demonstrating their knowledge of astronomy.
+The Mayans developed a highly accurate calendar based on their detailed observations of the Sun, Moon, and Venus.
+As societies advanced, so did their understanding of the cosmos. The Greeks introduced early scientific models,
+such as Ptolemy’s geocentric theory, which placed Earth at the center of the universe.
+Although later proven incorrect, this idea dominated for centuries until astronomers like Copernicus and Galileo challenged it.
+</string>
+
+    <string name="lesson3_title_2">The Scientific Revolution</string>
+    <string name="lesson3_text_2">
+The 16th and 17th centuries marked a turning point in astronomy. Nicolaus Copernicus proposed the heliocentric model,
+suggesting that the Sun, not Earth, was at the center of the solar system. This idea was controversial at the time,
+but it laid the foundation for modern astronomy. Later, Galileo Galilei used a telescope to make groundbreaking discoveries,
+including the moons of Jupiter, sunspots, and the phases of Venus—all of which provided evidence that Earth was not the center of the universe.
+Johannes Kepler introduced the laws of planetary motion, showing that planets move in elliptical orbits around the Sun.
+Then, Isaac Newton’s law of gravity explained the forces governing planetary motion, further solidifying the heliocentric model.
+This period, known as the Scientific Revolution, transformed astronomy from an observational practice into a precise science based on mathematics and physics.
+</string>
+
+    <string name="lesson3_title_3">Modern Astronomy and Space Exploration</string>
+    <string name="lesson3_text_3">
+With the development of powerful telescopes and space technology, our understanding of the universe has expanded dramatically.
+The 20th century saw the rise of astrophysics, allowing scientists to study celestial objects in detail,
+from distant galaxies to black holes. In 1929, Edwin Hubble discovered that the universe is expanding,
+leading to the Big Bang theory. The invention of radio telescopes and space probes enabled us to explore space beyond Earth’s atmosphere.
+The launch of the Hubble Space Telescope in 1990 provided breathtaking images of the cosmos, revealing the structure of galaxies and deep space phenomena.
+Space agencies like NASA, ESA, and private companies continue to push the boundaries of space exploration,
+searching for exoplanets, studying the origins of the universe, and even planning for human missions to Mars.
+The journey of discovery, which began thousands of years ago with ancient astronomers gazing at the sky,
+continues today as we unlock the secrets of the cosmos.
+</string>
+
+
+    <!--    lesson 4    -->
+    <string name="lesson4_title">Tools of Astronomy: Telescopes &amp; Instruments</string>
+    <string name="lesson4_title_1">The Power of Telescopes</string>
+    <string name="lesson4_text_1">
+        Telescopes are among the most important tools in astronomy.They allow scientists and sky watchers
+        to observe distant objects in the universe by collecting and magnifying light.
+        The first optical telescope was created in the early 1600s, and it revolutionized our view of the sky.
+        Galileo Galilei was one of the first to use a telescope for astronomy,
+        discovering the moons of Jupiter and the craters of the Moon. Today, telescopes come in many types and sizes,
+        from small backyard telescopes to massive observatories.
+        Optical telescopes use lenses or mirrors to collect visible light, while radio telescopes detect radio waves
+        from space, allowing us to study things that can’t be seen with the eye.
+        There are also telescopes designed for X-rays, infrared, ultraviolet, and gamma rays—each one revealing
+        different features of stars, galaxies, and other cosmic phenomena.
+    </string>
+
+    <string name="lesson4_title_2">Ground-Based and Space Telescopes</string>
+    <string name="lesson4_text_2">
+        Most telescopes are located on Earth, often placed on mountain tops where the air is clearer
+        and there’s less light pollution. However, the Earth\'s atmosphere can block or distort some types of light,
+        which is why some telescopes are launched into space. Space telescopes, like the famous Hubble Space Telescope, give us a much clearer view of the universe by avoiding the interference of the atmosphere.
+        Other space-based observatories, like the James Webb Space Telescope, look in infrared light and can peer through clouds of gas and dust to study the earliest galaxies.
+        Together, ground-based and space telescopes work as powerful partners, helping astronomers learn more about the structure, age, and evolution of the universe.
+</string>
+
+    <string name="lesson4_title_3">Instruments That Expand Our Vision</string>
+    <string name="lesson4_text_3">
+        Besides telescopes, astronomers use many instruments to gather data and make discoveries. Spectrometers break light into its colors, or spectrum, revealing the composition and motion of stars and galaxies.
+        Photometers measure the brightness of celestial objects, and CCD cameras (similar to those in smartphones) are used to capture digital images from telescopes. Computers and software now play a huge role in processing
+        the vast amounts of data collected from observatories. Robotic telescopes and automated systems allow scientists to monitor the sky continuously and detect sudden events, like supernovae or asteroids.
+        Thanks to these advanced tools and instruments, we can observe objects billions of light-years away, study planets orbiting other stars, and even search for signs of life beyond Earth.
+    </string>
+
 
 </resources>

@@ -18,7 +18,6 @@ import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -49,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        hide_statusbar()
 
 
 
@@ -56,6 +56,19 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    private fun replaceFragment(frag: Fragment) {
+        Log.i("MainActivityTAG", "replaceFragment() called with: frag = $frag")
+        val FragManager = supportFragmentManager;
+        val FragTransition = FragManager.beginTransaction()
+        FragTransition.replace(R.id.fr_Container, frag)
+        FragTransition.commit()
+    }
+
+    @SuppressLint("ResourceAsColor")
+    fun hide_statusbar(){
         // Obtain the WindowInsetsController from the window
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
         // Hide both the status bar and the navigation bar
@@ -77,15 +90,6 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
         }
-    }
-
-
-    private fun replaceFragment(frag: Fragment) {
-        Log.i("MainActivityTAG", "replaceFragment() called with: frag = $frag")
-        val FragManager = supportFragmentManager;
-        val FragTransition = FragManager.beginTransaction()
-        FragTransition.replace(R.id.fr_Container, frag)
-        FragTransition.commit()
     }
 
 }

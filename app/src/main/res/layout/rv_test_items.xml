@@ -32,7 +32,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:text="TEST 1"
-            android:textColor="#FFD700"
+            android:textColor="@color/rv_text_color"
             android:textSize="24sp"
             android:textStyle="bold" />
 

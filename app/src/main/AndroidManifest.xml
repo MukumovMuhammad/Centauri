@@ -15,10 +15,6 @@
         android:theme="@style/Theme.Centauri"
         tools:targetApi="31" >
         <activity
-            android:name=".MainActivity2"
-            android:exported="false"
-            android:theme="@style/Theme.Centauri" />
-        <activity
             android:name=".LessonTemplateActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

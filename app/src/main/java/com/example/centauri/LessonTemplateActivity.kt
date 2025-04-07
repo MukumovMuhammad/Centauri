@@ -1,20 +1,34 @@
 package com.example.centauri
 
-import android.graphics.drawable.Drawable
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.example.centauri.databinding.ActivityLessonTemplateBinding
+import com.example.firebasetodoapp.AuthViewModel
+import com.example.firebasetodoapp.DbViewModel
 
 class LessonTemplateActivity : AppCompatActivity() {
     private lateinit  var binding : ActivityLessonTemplateBinding
+
+    private lateinit var dbViewModel: DbViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,14 +40,19 @@ class LessonTemplateActivity : AppCompatActivity() {
             insets
         }
 
-
+        hide_statusbar()
 
 
         val lesson_number = intent.getIntExtra("lesson_number", 1)
         val partsNumber = intent.getIntExtra("partsNumber", 1)
 
+
+        dbViewModel = DbViewModel()
+
+        var imgs = ArrayList<String>()
+
+
         var lesson_img_preview = ImageView(this, null, 0, R.style.CircleImageView)
-        lesson_img_preview.setImageResource(resources.getIdentifier("lesson1_img_preview", "drawable", packageName))
 
         //                The Solutation to the heights problem
         val imageLayoutParams = ViewGroup.LayoutParams(
@@ -44,8 +63,13 @@ class LessonTemplateActivity : AppCompatActivity() {
         )
         lesson_img_preview.layoutParams = imageLayoutParams
 
-        binding.llmain.addView(lesson_img_preview)
+        binding.collapsingToolbar.title = resources.getString(resources.getIdentifier("lesson${lesson_number}", "string", packageName))
 
+//        binding.imgPreview.setImageResource(resources.getIdentifier("lesson1_img_preview", "drawable", packageName))
+
+
+//        binding.llmain.addView(lesson_img_preview)б
+//
         for (i in 1..partsNumber){
             var lesson_title = TextView(this)
             var lesson_text = TextView(this)
@@ -55,20 +79,80 @@ class LessonTemplateActivity : AppCompatActivity() {
             lesson_title.setTextAppearance(R.style.LessonTitleStyle)
             lesson_text.setTextAppearance(R.style.LessonTextStyle)
 
-            binding.llmain.addView(lesson_title)
-            if(i < partsNumber){
+            binding.textHold.addView(lesson_title)
+
+//    ----------------          IMAGES GLIDING ---------------- //
                 var lesson_img = ImageView(this, null, 0, R.style.CircleImageView)
-                lesson_img.setImageResource(resources.getIdentifier("lesson${lesson_number}_img$i", "drawable", packageName))
+
+
+//                lesson_img.setImageResource(resources.getIdentifier("lesson${lesson_number}_img$i", "drawable", packageName))
 
                 lesson_img.layoutParams = imageLayoutParams
 
-                binding.llmain.addView(lesson_img)
-            }
 
-            binding.llmain.addView(lesson_text)
+
+
+                dbViewModel.getLessonImgs(lesson_number) { images ->
+                    if (i == 1){
+                        Glide.with(this)
+                            .load(images[0])
+                            .placeholder(R.drawable.ic_img_default)
+                            .error(R.drawable.ic_disconected)
+                            .into(binding.imgPreview)
+                    }
+                        Glide.with(this)
+                            .load(images[i])
+                            .placeholder(R.drawable.ic_img_default)
+                            .error(R.drawable.ic_disconected)
+                            .into(lesson_img)
+                }
+
+
+            binding.textHold.addView(lesson_img)
+            binding.textHold.addView(lesson_text)
 
 
         }
 
+
+
+       var arrowBack: ImageView =  findViewById<ImageView>(R.id.arrow_back)
+
+
+
+
+//        Arrow back
+        arrowBack.setOnClickListener{
+            finish()
+        }
+
     }
+
+    @SuppressLint("ResourceAsColor")
+    fun hide_statusbar(){
+        // Obtain the WindowInsetsController from the window
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        // Hide both the status bar and the navigation bar
+        windowInsetsController?.hide(WindowInsetsCompat.Type.systemBars())
+        // Set the behavior to allow the bars to reappear with a swipe
+        windowInsetsController?.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+
+        // Set the status bar and navigation bar colors to transparent
+        window.statusBarColor = android.R.color.transparent
+        window.navigationBarColor = android.R.color.transparent
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(false)
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
+        }
+    }
+
+
+
 }

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ic_arrow_back"
+        android:icon="@drawable/ic_arrow_back"
+        android:title="bacl"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ic_logo"
+        android:icon="@drawable/ic_logo_centauri"
+        android:title="@string/app_name"
+        app:showAsAction="always" />
+</menu>
