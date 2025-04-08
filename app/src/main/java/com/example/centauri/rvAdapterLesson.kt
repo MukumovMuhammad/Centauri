@@ -2,22 +2,18 @@ package com.example.centauri
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.setMargins
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centauri.models.rvItemType
+import com.example.centauri.templates.LessonTemplateActivity
+import com.example.centauri.templates.TestActivity
 
 class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
 
@@ -89,17 +85,27 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
 
         holder.itemView.setOnClickListener {
-            if(item.itemType.ordinal == rvItemType.PART.ordinal){
-                Toast.makeText(holder.itemView.context, "Yup. This is a part ${item.number}", Toast.LENGTH_SHORT).show()
-            }
-            else if(item.isClosed){
+            if (item.isClosed){
                 Toast.makeText(holder.itemView.context, "This lesson is closed", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-            else{
-                var intent = Intent(holder.itemView.context, LessonTemplateActivity::class.java)
-                intent.putExtra("lesson_number", item.number)
-                intent.putExtra("partsNumber", item.numberOfParts)
-                startActivity(holder.itemView.context, intent, null)
+            when (itemType){
+                rvItemType.LESSON ->{
+                    var intent = Intent(holder.itemView.context, LessonTemplateActivity::class.java)
+                    intent.putExtra("lesson_number", item.number)
+                    intent.putExtra("partsNumber", item.numberOfParts)
+                    startActivity(holder.itemView.context, intent, null)
+                }
+
+                rvItemType.TEST ->{
+                    var intent = Intent(holder.itemView.context, TestActivity::class.java)
+                    intent.putExtra("lesson_number", item.number)
+                    intent.putExtra("partsNumber", item.numberOfParts)
+                    startActivity(holder.itemView.context, intent, null)
+                }
+                else ->{
+
+                }
             }
         }
 

@@ -1,0 +1,171 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    tools:context=".templates.TestActivity"
+    android:background="@drawable/dark_gradient"
+
+    >
+
+    <!-- Question -->
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="What is the closest planet to the Sun?"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/rv_text_color"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Option List -->
+    <LinearLayout
+        android:id="@+id/optionsLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/questionText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Option A -->
+        <LinearLayout
+            android:id="@+id/optionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/shape_unselected_circle"
+                android:layout_marginEnd="12dp"/>
+
+            <TextView
+                android:id="@+id/text_option_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A: Mercury"
+                android:textSize="18sp"
+                android:textColor="@color/starry_white"/>
+        </LinearLayout>
+
+        <!-- Option B -->
+        <LinearLayout
+            android:id="@+id/optionB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/shape_unselected_circle"
+                android:layout_marginEnd="12dp"/>
+
+            <TextView
+                android:id="@+id/text_option_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B: Venus"
+                android:textSize="18sp"
+                android:textColor="@color/starry_white"/>
+        </LinearLayout>
+
+        <!-- Option C -->
+        <LinearLayout
+            android:id="@+id/optionC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/shape_unselected_circle"
+                android:layout_marginEnd="12dp"/>
+
+            <TextView
+                android:id="@+id/text_option_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C: Earth"
+                android:textSize="18sp"
+                android:textColor="@color/starry_white"/>
+        </LinearLayout>
+
+        <!-- Option D-->
+        <LinearLayout
+            android:id="@+id/optionD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/shape_unselected_circle"
+                android:layout_marginEnd="12dp"/>
+
+            <TextView
+                android:id="@+id/text_option_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D: Mars"
+                android:textSize="18sp"
+                android:textColor="@color/starry_white"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- Explanation -->
+    <TextView
+        android:id="@+id/explanationText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Choose wisely. Only one is correct!"
+        android:textSize="16sp"
+        android:textColor="@color/starry_white"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/optionsLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Next Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next →"
+        android:textColor="@color/rv_text_color"
+        android:background="@drawable/cosmos_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

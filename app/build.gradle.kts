@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -90,5 +91,15 @@ dependencies {
 
     // Gemeni
     implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+
+    // Ktor Client and JSON Parsing
+    implementation("io.ktor:ktor-client-android:2.3.12") {
+        exclude(group = "ch.qos.logback", module = "logback-classic") // Exclude Logback from Ktor
+    }
+    implementation("io.ktor:ktor-client-core:2.3.12")
+    implementation("io.ktor:ktor-client-cio:2.3.12") // For making HTTP requests
+    implementation("io.ktor:ktor-client-serialization:2.3.12") // For JSON parsing
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12") // For kotlinx.serialization
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
 
 }

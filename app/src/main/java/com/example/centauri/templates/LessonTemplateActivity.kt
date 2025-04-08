@@ -1,27 +1,22 @@
-package com.example.centauri
+package com.example.centauri.templates
 
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
-import android.view.Menu
-import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.example.centauri.R
 import com.example.centauri.databinding.ActivityLessonTemplateBinding
-import com.example.firebasetodoapp.AuthViewModel
 import com.example.firebasetodoapp.DbViewModel
 
 class LessonTemplateActivity : AppCompatActivity() {
