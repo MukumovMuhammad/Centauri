@@ -75,6 +75,7 @@ Your response must be in valid JSON format only — do NOT include any explanati
 
 Follow this exact structure for the response:
 {
+  "feedback": "Give your feedback for the last question here (this wil be asked later in the chat).",
   "question": "Which planet is the third from the Sun?",
   "A": "Mercury",
   "B": "Venus",
@@ -116,9 +117,56 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion("Something wen wrong","","","","",1)
+            TestQuestion("Something went wrong","Something went wrong","","","","",1)
         }
     }
+
+
+    suspend fun nextTest(context: Context, userAnswer: Int): TestQuestion {
+        val prompt = "the student chosed $userAnswer! Give a concise feedback on that and next question in the same Json format!"
+
+        return try {
+            val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)
+            Log.i(TAG, "next test response : ${response.text}")
+            val json = Json{ignoreUnknownKeys = true}
+            val jsonRegex = "\\{[\\s\\S]*\\}".toRegex()
+            val match = jsonRegex.find(response.text.toString())
+            val jsonString = match?.value ?: ""
+
+            Log.i(TAG, "next test  jsonString : $jsonString")
+            json.decodeFromString<TestQuestion>(jsonString)
+        } catch (e: Exception){
+            Log.e(TAG,"Chat error:  ${e.message}")
+
+            TestQuestion("Something went wrong","Something went wrong","","","","",1)
+        }
+    }
+
+    suspend fun testResult(context: Context, correctAnswers: Int): String{
+        var past: String = "past"
+        if (correctAnswers > 8){
+            past = "past the test and now can continue studying other lessons"
+        }
+        else{
+            past = "did not past the test and need to review the lessons"
+        }
+        val prompt = """Great now as you see the student answered corectly only $correctAnswers out of 10 questions.
+            |This means that he $past
+            |Now just give your small feedbacks on how he did?""".trimMargin()
+
+        return try {
+            val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)
+            Log.i(TAG, "next test response : ${response.text}")
+            response.text.toString()
+
+        } catch (e: Exception){
+            Log.e(TAG,"Chat error:  ${e.message}")
+
+            "Sorry the AI assistence is not working Try later"
+
+        }
+    }
+
 
     suspend fun sendChatMessage(context: Context, message: String){
         try {
@@ -128,7 +176,9 @@ Return only the JSON object — no extra text, no formatting, no explanations.
             Log.e(TAG,"Chat error:  ${e.message}")
         }
     }
-    suspend fun clearChatHistory(){
+
+
+    fun clearChatHistory(){
         chat.history.clear()
     }
 
