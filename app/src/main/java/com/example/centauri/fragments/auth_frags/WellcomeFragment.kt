@@ -41,7 +41,7 @@ class WellcomeFragment : Fragment() {
 
         if (authViewModel.authState.value == AuthState.Authenticated){
             Log.i("WellcomeFragment_TAG", "onViewCreated: ${authViewModel.authState.value}")
-            findNavController().navigate(R.id.action_wellcomeFragment_to_mainActivity)
+//            findNavController().navigate(R.id.action_wellcomeFragment_to_mainActivity)
             findNavController().popBackStack();
         }
         else{
@@ -49,7 +49,7 @@ class WellcomeFragment : Fragment() {
         }
 
         binding.start.setOnClickListener {
-            findNavController().navigate(R.id.action_wellcomeFragment_to_signUpFrag)
+//            findNavController().navigate(R.id.action_wellcomeFragment_to_signUpFrag)
         }
     }
 

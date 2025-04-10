@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 class  AuthViewModel: ViewModel() {
     companion object {
-        val TAG: String = "AuthViewModel"
+        val TAG: String = "AuthViewModel_TAG"
     }
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -26,8 +26,11 @@ class  AuthViewModel: ViewModel() {
 
     fun checkAuthStatus(){
         if (auth.currentUser != null){
+            Log.i(TAG, "Status checked Status is Authenticated!")
             _authState.value = AuthState.Authenticated
+
         }else{
+            Log.e(TAG, "Status checked Status is Unauthenticated!")
             _authState.value = AuthState.Unauthenticated
         }
     }

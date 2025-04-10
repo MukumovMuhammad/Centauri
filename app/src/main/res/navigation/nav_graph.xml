@@ -3,20 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_nav_graph"
-    app:startDestination="@id/wellcomeFragment">
+    app:startDestination="@id/signInFrag">
 
-    <fragment
-        android:id="@+id/wellcomeFragment"
-        android:name="com.example.centauri.fragments.auth_frags.WellcomeFragment"
-        android:label="fragment_wellcome"
-        tools:layout="@layout/fragment_wellcome" >
-        <action
-            android:id="@+id/action_wellcomeFragment_to_signUpFrag"
-            app:destination="@id/signUpFrag" />
-        <action
-            android:id="@+id/action_wellcomeFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
-    </fragment>
     <fragment
         android:id="@+id/signInFrag"
         android:name="com.example.centauri.fragments.auth_frags.SignInFrag"

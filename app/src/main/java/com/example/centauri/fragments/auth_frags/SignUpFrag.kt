@@ -80,7 +80,7 @@ class SignUpFrag : Fragment() {
             }
 
             Log.i(TAG, "passwords match")
-            val user = UserData(binding.etUsername.text.toString(), binding.etEmail.text.toString(), 0, binding.etPassword.text.toString())
+            val user = UserData(binding.etUsername.text.toString(), binding.etEmail.text.toString(), 0, binding.etPassword.text.toString(), 0)
             authViewModel.signUp(user)
 
         }

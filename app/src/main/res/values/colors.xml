@@ -12,10 +12,14 @@
     <color name="nebula_blue">#3B4994</color>
     <color name="starry_white">#E0E0E0</color>
     <color name="dusty_red">#7A3030</color>
+    <color name="bright_red">#E53030</color>
     <color name="dusty_green">#306D30</color>
+    <color name="bright_green">#2CD32C</color>
     <color name="dusty_blue">#304D6D</color>
     <color name="metallic_gray">#999999</color>
     <color name="dark_matter_blue">#1A237E</color>
+
+    <color name="Teal200">#03DAC5</color>
     <color name="dark_matter_white">#FFFFFF</color>
     <color name="dark_transparent">#B31C1A1A</color>
     <color name="tool_bar_dark_blue">#0f0f1a</color>

@@ -11,17 +11,47 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.centauri.models.GeminiViewModel
 import com.example.centauri.models.rvItemType
 import com.example.centauri.templates.LessonTemplateActivity
 import com.example.centauri.templates.TestActivity
+import com.example.firebasetodoapp.AuthState
+import com.example.firebasetodoapp.AuthViewModel
+import com.example.firebasetodoapp.DbViewModel
 
 class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
 
+    private lateinit var dialogWindows: DialogWindows
 
+    private val authViewModel = AuthViewModel()
+    private val dbViewModel = DbViewModel()
+
+    private val isAuthenticated = authViewModel.authState.value == AuthState.Authenticated
+    private var testCompleted: Int = 0
+    
+    companion object{
+        const val TAG = "rvAdapterLesson_TAG"
+    }
+    
+    init {
+        Log.i(TAG, "rvAdapterLesson() called")
+
+        dbViewModel.getUserData(authViewModel.getCurrentUser()?.email.toString()) { userData ->
+
+            if (userData.username != null) {
+                Log.i(TAG, "rvAdapterLesson() currentUser of db is not nul -> currentUser value: ${userData}")
+                testCompleted = userData.testCompleted
+            } else {
+                Log.i(TAG, "rvAdapterLesson() currentUser of db is nul -> currentUser value: ${userData}")
+                testCompleted = 0
+            }
+        }
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+        dialogWindows = DialogWindows(parent.context)
         val layoutId = when (viewType) {
             rvItemType.LESSON.ordinal -> R.layout.rv_lessons_items
             rvItemType.TEST.ordinal -> R.layout.rv_test_items
@@ -38,42 +68,49 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
     }
 
 
-
     override fun getItemCount(): Int = lessonList.size
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-
-
+        var isClosed : Boolean = (
+                when (testCompleted){
+                    0 -> position > 5
+                    1 -> position > 10
+                    2 -> position > 16
+                    else -> false
+                }
+                )
         val item = lessonList[position]
-        Log.i("rvAdapterLesson_TAG", "onBindViewHolder() called with: holder = $holder, position = $position")
-        Log.i("rvAdapterLesson_TAG", "onBindViewHolder() called with: item = $item")
+        Log.i(TAG, "onBindViewHolder() called with: holder = $holder, position = $position")
+        Log.i(TAG, "onBindViewHolder() called with: position = $position")
+        Log.i(TAG, "onBindViewHolder() called with: item = $item")
+        Log.i(TAG, "onBindViewHolder() called with: item is close ?  = $isClosed")
 
         val itemType: rvItemType = lessonList[position].itemType
-        Log.i("rvAdapterLesson_TAG", "onBindViewHolder() called with: itemType = $itemType")
+        Log.i(TAG, "onBindViewHolder() called with: itemType = $itemType")
 
         when (itemType){
             rvItemType.LESSON -> {
-                Log.i("rvAdapterLesson_TAG", "onBindViewHolder() this Item is LESSON")
+                Log.i(TAG, "onBindViewHolder() this Item is LESSON")
                 holder.icon!!.setImageResource(item.icon)
                 holder.number!!.text = "Lesson ${item.number}"
                 holder.title!!.text = item.title
             }
             rvItemType.TEST -> {
-                Log.i("rvAdapterLesson_TAG", "onBindViewHolder() this Item is TEST")
+                Log.i(TAG, "onBindViewHolder() this Item is TEST")
                 holder.icon!!.setImageResource(item.icon)
                 holder.number!!.text =  "Test ${item.number}"
             }
             else -> {
-                Log.i("rvAdapterLesson_TAG", "onBindViewHolder() this Item is PART")
+                Log.i(TAG, "onBindViewHolder() this Item is PART")
                 holder.number!!.text = "Part ${item.number}"
                 holder.title!!.text = item.title
             }
         }
 
         if (item.itemType != rvItemType.PART){
-            if (item.isClosed){
+            if (isClosed){
                 holder.dark_overlay!!.visibility = View.VISIBLE
                 holder.lockIcon!!.visibility = View.VISIBLE
             }else {
@@ -85,7 +122,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
 
         holder.itemView.setOnClickListener {
-            if (item.isClosed){
+            if (isClosed){
                 Toast.makeText(holder.itemView.context, "This lesson is closed", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -98,10 +135,46 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
 
                 rvItemType.TEST ->{
-                    var intent = Intent(holder.itemView.context, TestActivity::class.java)
-                    intent.putExtra("lesson_number", item.number)
-                    intent.putExtra("partsNumber", item.numberOfParts)
-                    startActivity(holder.itemView.context, intent, null)
+                    dialogWindows.showSpaceDialog("Start a test? \uD83D\uDE80", "Take a test based on what you’ve learned and check your understanding of the material.\n" +
+                            "If you pass, the next section will be unlocked for you to study.",object : DialogWindows.DialogCallback{
+                        override fun onOkCLicked() {
+                            var intent: Intent
+                            if (isAuthenticated){
+
+                                dbViewModel.getUserData(authViewModel.getCurrentUser()?.email.toString()) { userData ->
+                                    if (userData.username != null) {
+                                        intent = Intent(holder.itemView.context, TestActivity::class.java)
+                                        intent.putExtra("lesson_number", item.number)
+                                        intent.putExtra("partsNumber", item.numberOfParts)
+                                        intent.putExtra("userEmail", AuthViewModel().getCurrentUser()!!.email.toString())
+                                        startActivity(holder.itemView.context, intent, null)
+                                    } else {
+                                        Log.i(
+                                            TAG,
+                                            "onBindViewHolder() currentUser of db is nul -> currentUser value: ${dbViewModel.curentUser.value}"
+                                        )
+                                        dialogWindows.testResult(
+                                            false,
+                                            "Sorry but it seems the app failed to get your data from Database Please try later",
+                                            object : DialogWindows.DialogCallback {
+                                                override fun onOkCLicked() {
+                                                    return
+                                                }
+
+                                            },
+                                            "ERROR!"
+                                        )
+                                    }
+                                }
+
+                            }
+                            else{
+                                intent = Intent(holder.itemView.context, AuthActivity::class.java)
+                                startActivity(holder.itemView.context, intent, null)
+                            }
+                        }
+                    })
+
                 }
                 else ->{
 
@@ -126,7 +199,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
         init {
             when (itemType){
                 rvItemType.LESSON.ordinal -> {
-                    Log.i("rvAdapterLesson_TAG", "ViewHolder called itemType LESSON")
+                    Log.i(TAG, "ViewHolder called itemType LESSON")
                     number = itemView.findViewById(R.id.lesson_number)
                     icon = itemView.findViewById(R.id.lesson_icon)
                     title = itemView.findViewById(R.id.lesson_title)
@@ -134,7 +207,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                     dark_overlay = itemView.findViewById(R.id.dark_overlay)
                 }
                 rvItemType.TEST.ordinal -> {
-                    Log.i("rvAdapterLesson_TAG", "ViewHolder called itemType TEST")
+                    Log.i(TAG, "ViewHolder called itemType TEST")
                     number = itemView.findViewById(R.id.test_number)
                     icon = itemView.findViewById(R.id.test_icon)
                     lockIcon = itemView.findViewById(R.id.lock_icon)
@@ -142,7 +215,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
 
                 rvItemType.PART.ordinal -> {
-                    Log.i("rvAdapterLesson_TAG", "ViewHolder called itemType PART")
+                    Log.i(TAG, "ViewHolder called itemType PART")
                     number = itemView.findViewById(R.id.part_num)
                     title = itemView.findViewById(R.id.part_text)
                 }

@@ -12,54 +12,85 @@ class DbViewModel: ViewModel() {
 
     val db = FirebaseFirestore.getInstance()
 
+    companion object{
+        const val TAG = "dbTAG"
+    }
 
     private val _user = MutableLiveData<UserData>()
-    val curentUser: LiveData<UserData> = _user
+    var curentUser: LiveData<UserData> = _user
 
 
 
     fun addUserData(user: UserData, callback: (Boolean) -> Unit){
-        Log.i("dbTAG", "addUserData fun is on work")
+        Log.i(TAG, "addUserData fun is on work")
         val userHash = hashMapOf(
             "username" to user.username,
             "email" to user.email,
             "rating" to user.rating,
-            "password" to user.password
+            "password" to user.password,
+            "testCompleted" to user.testCompleted
         )
 
-        Log.i("dbTAG", "the user data ${user.email} , ${user.username}, will be added in collection named users")
+        Log.i(TAG, "the user data ${user.email} , ${user.username}, will be added in collection named users")
         db.collection("users").document(user.email).set(userHash)
             .addOnSuccessListener {
-                Log.i("dbTAG", "User added successfully to Firestore!")
-                changeCurentUser(user)
-                callback(true)
+                Log.i(TAG, "User added successfully to Firestore!")
+
             }
             .addOnFailureListener { e ->
-                Log.e("dbTAG", "Error adding user to Firestore", e)
+                Log.e(TAG, "Error adding user to Firestore", e)
                 callback(false)
             }
 
     }
 
-    fun getUserData(email: String) : UserData{
-        Log.i("dbTAG", "getUserData fun is on work")
-        var user: UserData = UserData("null", "null", 0, "null")
+    fun getUserData(email: String, onResult: (UserData) -> Unit){
+        Log.i(TAG, "getUserData fun is on work")
+        var user: UserData = UserData("null", "null", 0, "null", 0)
         db.collection("users").document(email).get()
             .addOnSuccessListener { document ->
-                Log.i("dbTAG", "getUserData fun is Succeed")
+                Log.i(TAG, "getUserData fun is Succeed")
                 if(document.exists()){
-                    Log.i("dbTAG", "document ${document.data} is exist")
-                    val username = document.getString("username")
-                    val email = document.getString("email")
-                    val rating = document.getString("rating")
-                    val password = document.getString("password")
+                    Log.i(TAG, "document ${document.data} is exist")
+                    val testCompleted = document.get("testCompleted").toString().toInt()
+                    val username = document.getString("username").toString()
+                    val email = document.getString("email").toString()
+                    val rating = document.get("rating").toString().toInt()
+                    val password = document.getString("password").toString()
 
-                    user = UserData(username!!, email!!, rating!!.toInt(),password!!)
+                    user = UserData(username, email, rating, password, testCompleted)
+                    onResult(user)
                 }
             }
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Error getting user data from Firestore", exception)
+                user = UserData("null", "null", 0, "null", 0)
+                onResult(user)
+                }
+    }
+
+    fun testPastUser(userEmail: String,testNumber: Int, callback: (Boolean) -> Unit){
+        Log.i(TAG, "testPastUser fun is on work testNumber $testNumber")
+
+        getUserData(userEmail) { userData ->
+            if (userData.testCompleted >= testNumber) {
+                callback(true)
+                return@getUserData
+            }
+            Log.i(TAG, "testPastUser fun is Succeed")
+            db.collection("users").document(userData.email).update("testCompleted", testNumber)
+                .addOnSuccessListener {
+                    Log.i(TAG, "testPastUser fun is Succeed")
+                    callback(true)
+                    return@addOnSuccessListener
+                }
+                .addOnFailureListener { e ->
+                    Log.e(TAG, "Error adding user to Firestore", e)
+                    callback(false)
+                }
+        }
 
 
-        return user;
     }
 
     fun getLessonImgs(lessonNumber: Int, onResult: (ArrayList<String>) -> Unit) {
@@ -73,7 +104,7 @@ class DbViewModel: ViewModel() {
                 }
             }
             .addOnFailureListener { exception ->
-                Log.e("dbTAG", "Error getting lesson images: $exception")
+                Log.e(TAG, "Error getting lesson images: $exception")
                 onResult(arrayListOf()) // return empty list on failure
             }
     }
@@ -81,9 +112,31 @@ class DbViewModel: ViewModel() {
 
 
 
-    fun changeCurentUser(newUser: UserData){
-        _user.value = newUser
-    }
+//    fun changeCurentUser(email: String, onComplete: (Boolean) -> Unit) {
+//        Log.i(TAG, "changeCurrentUser is on work!")
+//        db.collection("users").document(email).get()
+//            .addOnSuccessListener { document ->
+//                if (document.exists()) {
+//                    val testCompleted = document.get("testCompleted").toString().toInt()
+//                    val username = document.getString("username").toString()
+//                    val email = document.getString("email").toString()
+//                    val rating = document.get("rating").toString().toInt()
+//                    val password = document.getString("password").toString()
+//
+//                    _user.value = UserData(username, email, rating, password, testCompleted)
+//                    Log.i(TAG, "the user new value is ${curentUser.value}")
+//                    onComplete(true)
+//                } else {
+//                    onComplete(false)
+//                }
+//            }
+//            .addOnFailureListener {
+//                Log.e(TAG, "Error getting user data from Firestore", it)
+//                _user.value = UserData("null", "null", 0, "null", 0)
+//                onComplete(false)
+//            }
+//    }
+
 
 
     fun isUserExist(email: String): Boolean{

@@ -17,12 +17,14 @@ import kotlin.coroutines.coroutineContext
 class GeminiViewModel: ViewModel() {
     companion object {
         const val API_KEY = ""
-        const val TAG = "GEMENI_VIEW_MODEL_TAG"
+        const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
     val generativeModel = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = API_KEY)
 
 
     val chat = generativeModel.startChat()
+
+
 
 
 
@@ -117,13 +119,15 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion("Something went wrong","Something went wrong","","","","",1)
+            TestQuestion("ERROR","Something went wrong","","","","",1)
         }
     }
 
 
-    suspend fun nextTest(context: Context, userAnswer: Int): TestQuestion {
-        val prompt = "the student chosed $userAnswer! Give a concise feedback on that and next question in the same Json format!"
+    suspend fun nextTest(context: Context, userAnswer: Int, isCorrect: Boolean): TestQuestion {
+        var correct: String = "is not correct"
+        if (isCorrect) correct = "is a correct"
+        val prompt = "the student chosed $userAnswer! which is $correct answer! Give a concise feedback on that and next question in the same Json format!"
 
         return try {
             val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)
@@ -138,13 +142,13 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion("Something went wrong","Something went wrong","","","","",1)
+            TestQuestion("ERROR","Something went wrong","","","","",1)
         }
     }
 
     suspend fun testResult(context: Context, correctAnswers: Int): String{
         var past: String = "past"
-        if (correctAnswers > 8){
+        if (correctAnswers >= 8){
             past = "past the test and now can continue studying other lessons"
         }
         else{
@@ -152,7 +156,8 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         }
         val prompt = """Great now as you see the student answered corectly only $correctAnswers out of 10 questions.
             |This means that he $past
-            |Now just give your small feedbacks on how he did?""".trimMargin()
+            |Now just give your small feedbacks to him directly on how he did it
+            |Talk in Second person Style!""".trimMargin()
 
         return try {
             val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)

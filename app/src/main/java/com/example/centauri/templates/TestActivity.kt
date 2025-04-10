@@ -1,12 +1,10 @@
 package com.example.centauri.templates
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -17,32 +15,40 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.centauri.DialogWindows
 import com.example.centauri.R
-import com.example.centauri.databinding.ActivityLessonTemplateBinding
 import com.example.centauri.databinding.ActivityTestBinding
 import com.example.centauri.models.GeminiViewModel
-import com.google.firebase.database.core.Tag
+import com.example.firebasetodoapp.DbViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class TestActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityTestBinding
-    private lateinit var geminiModel: GeminiViewModel
-    private lateinit var the_test : TestQuestion
+    private lateinit var binding: ActivityTestBinding;
+    private lateinit var geminiModel: GeminiViewModel;
+    private lateinit var theTest : TestQuestion;
+    private lateinit var userEmail: String
+    private  var  test_number: Int = 1;
+
     private var userAnswer: Int = 0
+    private var wasLastAnswerCorrect: Boolean = true
     private var currentTest: Int = 1;
     private var correctAnswered: Int = 0
     private var dialog: DialogWindows = DialogWindows(this)
+    private var dbViewModel: DbViewModel = DbViewModel()
+
 
     companion object {
         const val TAG = "TestActivity_TAG"
+        const val TEST_NUMBER = 10
     }
     enum class testState{
         LOADING,
+        CHECKING,
         READY,
+        ANSWERED,
         ERROR,
-        ANSWERED
+        FINISHED
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,17 +63,35 @@ class TestActivity : AppCompatActivity() {
             insets
         }
 
+        test_number = intent.getIntExtra("lesson_number", 1)
+        userEmail = intent.getStringExtra("userEmail").toString()
+
+
         hide_statusbar()
 
         resetBtns()
 
-
         lifecycleScope.launch {
-            setUpTest(testState.LOADING)
-            the_test = geminiModel.startNewTest(this@TestActivity)
+            setUpTest(testState.CHECKING)
+            var isWorking = geminiModel.isGemeniWorking()
             withContext(Dispatchers.Main){
-                setUpTest(testState.READY)
+                if (!isWorking){
+                   setUpTest(testState.ERROR)
+                }else{
+                    setUpTest(testState.LOADING)
+                    delay(500,)
+                    theTest = geminiModel.startNewTest(this@TestActivity)
+                    withContext(Dispatchers.Main){
+                        if (theTest.feedback == "ERROR"){
+                            setUpTest(testState.ERROR)
+                        }
+                        else{
+                            setUpTest(testState.READY)
+                        }
+                    }
+                }
             }
+
          }
 
 
@@ -81,21 +105,20 @@ class TestActivity : AppCompatActivity() {
 
 
 
-
-
-
-
-
     }
+
+
+
+
 
     private fun setUpTest(state: testState){
         when (state){
             testState.READY -> {
-                binding.questionText.text = the_test.question
-                binding.textOptionA.text = the_test.A
-                binding.textOptionB.text = the_test.B
-                binding.textOptionC.text = the_test.C
-                binding.textOptionD.text = the_test.D
+                binding.questionText.text = theTest.question
+                binding.textOptionA.text = theTest.A
+                binding.textOptionB.text = theTest.B
+                binding.textOptionC.text = theTest.C
+                binding.textOptionD.text = theTest.D
             }
             testState.LOADING ->{
                 resetBtns()
@@ -106,14 +129,66 @@ class TestActivity : AppCompatActivity() {
                 binding.textOptionD.text = "D"
 
             }
+            testState.CHECKING ->{
+                binding.questionText.text = "Checking is AI working..."
+            }
             testState.ANSWERED ->{
-                dialog.SimpleAlertDialog("Answer",the_test.feedback, object : DialogWindows.DialogCallback{
+
+                dialog.testResult(wasLastAnswerCorrect,theTest.feedback, object : DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
-                        setUpTest(testState.READY)
+
+                        if (currentTest != TEST_NUMBER){
+                            setUpTest(testState.READY)
+                        }
+                        else{
+                            setUpTest(testState.LOADING)
+                            setUpTest(testState.FINISHED)
+                        }
                         resetBtns()
                     }
                 })
             }
+
+            testState.ERROR -> {
+                dialog.testResult(false,"Sorry the AI is not working try again later", object: DialogWindows.DialogCallback{
+                    override fun onOkCLicked() {
+                        finish()
+                    }
+                }, "ERROR!")
+            }
+
+            testState.FINISHED -> {
+                lifecycleScope.launch {
+
+                    var result: String = geminiModel.testResult(this@TestActivity,correctAnswered )
+                    withContext(Dispatchers.Main){
+                        dialog.testResult(correctAnswered >= 8, result, object : DialogWindows.DialogCallback{
+                            override fun onOkCLicked() {
+                                Log.i(TAG, "testResult AlertDialog the onClicked fun is on work")
+                                if (correctAnswered >= 8){
+                                    Log.i(TAG, "User past Test and now the result will be stored to db")
+                                    dbViewModel.testPastUser(userEmail,test_number, callback = {success ->
+                                        if (success){
+                                            Log.i(TAG, "testPastUser is success")
+                                            finish()
+                                        }
+                                        else{
+                                            dialog.testResult(false,"Sorry but the result hasn't been stored in the DataBase for some  unknown reasons, Could you please check your internet connection!", object: DialogWindows.DialogCallback{
+                                                override fun onOkCLicked() {
+                                                    finish()
+                                                }
+                                            }, "ERROR!")
+                                        }
+                                    })
+                                }
+
+
+                            }
+                        }, "Results")
+                    }
+                }
+            }
+
             else ->{
 
             }
@@ -121,7 +196,37 @@ class TestActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("ResourceAsColor")
+    private fun checkTest(selected: Int){
+
+
+        Log.i(TAG, "User selected the option $selected")
+
+        userAnswer = selected
+        wasLastAnswerCorrect = userAnswer == theTest.answer
+        currentTest++;
+        lifecycleScope.launch {
+//            setUpTest(testState.LOADING)
+            theTest = geminiModel.nextTest(this@TestActivity, userAnswer, wasLastAnswerCorrect)
+            withContext(Dispatchers.Main){
+                if (theTest.feedback == "ERROR"){
+                    setUpTest(testState.ERROR)
+                }
+                else{
+                    setUpTest(testState.ANSWERED)
+                }
+            }
+
+        }
+        circleImg()
+        if (wasLastAnswerCorrect){
+            correctAnswer()
+        }
+        else{
+            wrongAnswer()
+        }
+
+    }
+
     private fun resetBtns(){
         binding.optionAImage.setBackgroundResource(R.drawable.shape_unselected_circle)
         binding.optionBImage.setBackgroundResource(R.drawable.shape_unselected_circle)
@@ -136,14 +241,14 @@ class TestActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("ResourceAsColor")
+
     private fun correctAnswer(){
         correctAnswered++;
         when (userAnswer){
-            0 -> binding.textOptionA.setTextColor(ContextCompat.getColor(this, R.color.dusty_green))
-            1 -> binding.textOptionB.setTextColor(ContextCompat.getColor(this, R.color.dusty_green))
-            2 -> binding.textOptionC.setTextColor(ContextCompat.getColor(this, R.color.dusty_green))
-            3 -> binding.textOptionD.setTextColor(ContextCompat.getColor(this, R.color.dusty_green))
+            0 -> binding.textOptionA.setTextColor(ContextCompat.getColor(this, R.color.bright_green))
+            1 -> binding.textOptionB.setTextColor(ContextCompat.getColor(this, R.color.bright_green))
+            2 -> binding.textOptionC.setTextColor(ContextCompat.getColor(this, R.color.bright_green))
+            3 -> binding.textOptionD.setTextColor(ContextCompat.getColor(this, R.color.bright_green))
         }
     }
     private fun circleImg(){
@@ -155,52 +260,17 @@ class TestActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("ResourceAsColor")
     private fun wrongAnswer(){
         when (userAnswer){
-            0 -> binding.textOptionA.setTextColor(ContextCompat.getColor(this, R.color.dusty_red))
-            1 -> binding.textOptionB.setTextColor(ContextCompat.getColor(this, R.color.dusty_red))
-            2 -> binding.textOptionC.setTextColor(ContextCompat.getColor(this, R.color.dusty_red))
-            3 -> binding.textOptionD.setTextColor(ContextCompat.getColor(this, R.color.dusty_red))
+            0 -> binding.textOptionA.setTextColor(ContextCompat.getColor(this, R.color.bright_red))
+            1 -> binding.textOptionB.setTextColor(ContextCompat.getColor(this, R.color.bright_red))
+            2 -> binding.textOptionC.setTextColor(ContextCompat.getColor(this, R.color.bright_red))
+            3 -> binding.textOptionD.setTextColor(ContextCompat.getColor(this, R.color.bright_red))
         }
     }
 
 
-    private fun checkTest(selected: Int){
 
-
-        Log.i(TAG, "User selected the option $selected")
-
-        userAnswer = selected
-        lifecycleScope.launch {
-            if (currentTest <= 9)
-            {
-                the_test = geminiModel.nextTest(this@TestActivity,userAnswer )
-                withContext(Dispatchers.Main){
-                    setUpTest(testState.ANSWERED)
-                    currentTest++;
-                }
-            }
-            else{
-                var result = geminiModel.testResult(this@TestActivity, correctAnswered)
-                withContext(Dispatchers.Main){
-                    dialog.SimpleAlertDialog("The result", result, object : DialogWindows.DialogCallback{
-                        override fun onOkCLicked() {
-                            finish()
-                        }
-                    })
-                }
-            }
-        }
-        circleImg()
-        if (userAnswer == the_test.answer){
-            correctAnswer()
-        }
-        else{
-            wrongAnswer()
-        }
-
-    }
 
 
 
