@@ -109,6 +109,43 @@ class DbViewModel: ViewModel() {
             }
     }
 
+    fun getLessonContext(lessonNumber: Int, onResult: (ArrayList<String>) -> Unit){
+        db.collection("images").document("lessons_contexts").get()
+            .addOnSuccessListener { document ->
+                if (document.exists()){
+                    val contexts = document.get("lesson$lessonNumber") as? ArrayList<String> ?: arrayListOf()
+                    onResult(contexts)
+                }
+                else{
+                    onResult(arrayListOf())
+                }
+
+            }
+            .addOnFailureListener{e ->
+                Log.e(TAG, "Error getting lesson contexts: $e")
+                onResult(arrayListOf("Sorry something went wrong", "Sorry something went wrong Check Internet Connection"))
+            }
+    }
+
+
+    fun getLessonTitles(lessonNumber: Int, onResult: (ArrayList<String>) -> Unit){
+        db.collection("images").document("lessons_titles").get()
+            .addOnSuccessListener { document ->
+                if (document.exists()){
+                    val titles = document.get("lesson$lessonNumber") as? ArrayList<String> ?: arrayListOf()
+                    onResult(titles)
+                }
+                else{
+                    onResult(arrayListOf())
+                }
+
+            }
+            .addOnFailureListener{e ->
+                Log.e(TAG, "Error getting lesson titles: $e")
+                onResult(arrayListOf("Sorry something went wrong", "Sorry something went wrong Check Internet Connection"))
+            }
+    }
+
 
 
 

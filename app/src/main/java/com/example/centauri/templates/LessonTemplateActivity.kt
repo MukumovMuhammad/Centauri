@@ -68,8 +68,23 @@ class LessonTemplateActivity : AppCompatActivity() {
         for (i in 1..partsNumber){
             var lesson_title = TextView(this)
             var lesson_text = TextView(this)
-            lesson_title.text = resources.getString(resources.getIdentifier("lesson${lesson_number}_title_$i", "string", packageName))
-            lesson_text.text = resources.getString(resources.getIdentifier("lesson${lesson_number}_text_$i", "string", packageName))
+
+            if (lesson_number > 4){
+
+                dbViewModel.getLessonTitles(lesson_number){titles ->
+                    lesson_title.text = titles[i-1]
+                }
+
+                dbViewModel.getLessonContext(lesson_number){contexts ->
+                    lesson_text.text = contexts[i-1]
+                }
+
+            }else{
+
+                lesson_title.text = resources.getString(resources.getIdentifier("lesson${lesson_number}_title_$i", "string", packageName))
+                lesson_text.text = resources.getString(resources.getIdentifier("lesson${lesson_number}_text_$i", "string", packageName))
+            }
+
 
             lesson_title.setTextAppearance(R.style.LessonTitleStyle)
             lesson_text.setTextAppearance(R.style.LessonTextStyle)
