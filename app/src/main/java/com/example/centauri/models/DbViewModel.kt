@@ -146,6 +146,64 @@ class DbViewModel: ViewModel() {
             }
     }
 
+    fun getLessonTitlesAndContext(LessonsToGet: ArrayList<Int>, onResult: (ArrayList<String>) -> Unit) {
+        var titles: ArrayList<String> = arrayListOf()
+        var isTitlesAdded: Boolean = false
+
+        var text: ArrayList<String> = arrayListOf()
+        var isTextAdded: Boolean = false
+
+                        ///////////// TITLES /////////////
+        db.collection("images").document("lessons_titles").get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    for (i in LessonsToGet) {
+                        val the_titles =
+                            document.get("lesson$i") as? ArrayList<String> ?: arrayListOf()
+                        for (t in the_titles) {
+                            titles.add(t)
+                        }
+                    }
+                    isTitlesAdded = true
+                }
+                if (isTextAdded){
+                    onResult(putLessonsTogether(titles, text))
+                }
+
+            }
+                        ///////////// TEXT /////////////
+        db.collection("images").document("lessons_contexts").get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    for (i in LessonsToGet) {
+                        val the_titles =
+                            document.get("lesson$i") as? ArrayList<String> ?: arrayListOf()
+                        for (t in the_titles) {
+                            text.add(t)
+                        }
+                    }
+                    isTextAdded = true
+                }
+
+                if (isTitlesAdded){
+                    onResult(putLessonsTogether(titles, text))
+                }
+
+            }
+
+    }
+
+    private fun putLessonsTogether(the_titles: ArrayList<String>, the_contexts: ArrayList<String>): ArrayList<String>{
+        val newArrayList: ArrayList<String> = arrayListOf()
+        for (i in 0..the_titles.size-1){
+            newArrayList.add(the_titles[i])
+            newArrayList.add(the_contexts[i])
+        }
+
+
+        return newArrayList
+    }
+
 
 
 

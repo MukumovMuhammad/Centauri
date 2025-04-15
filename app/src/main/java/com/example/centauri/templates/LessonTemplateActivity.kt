@@ -1,6 +1,7 @@
 package com.example.centauri.templates
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -80,7 +81,6 @@ class LessonTemplateActivity : AppCompatActivity() {
                 }
 
             }else{
-
                 lesson_title.text = resources.getString(resources.getIdentifier("lesson${lesson_number}_title_$i", "string", packageName))
                 lesson_text.text = resources.getString(resources.getIdentifier("lesson${lesson_number}_text_$i", "string", packageName))
             }
@@ -164,5 +164,9 @@ class LessonTemplateActivity : AppCompatActivity() {
     }
 
 
+    fun getSavedLanguage(context: Context): String {
+        val prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        return prefs.getString("My_Lang", "en") ?: "en"
+    }
 
 }

@@ -124,7 +124,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
         holder.itemView.setOnClickListener {
             if (isClosed){
-                Toast.makeText(holder.itemView.context, "This lesson is closed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context, R.string.lesson_closed.toString(), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             when (itemType){
@@ -136,8 +136,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
 
                 rvItemType.TEST ->{
-                    dialogWindows.showSpaceDialog("Start a test? \uD83D\uDE80", "Take a test based on what you’ve learned and check your understanding of the material.\n" +
-                            "If you pass, the next section will be unlocked for you to study.",object : DialogWindows.DialogCallback{
+                    dialogWindows.showSpaceDialog(R.string.start_test.toString(), R.string.take_test_description.toString(),object : DialogWindows.DialogCallback{
                         override fun onOkCLicked() {
                             var intent: Intent
                             if (isAuthenticated){
@@ -156,14 +155,14 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                                         )
                                         dialogWindows.testResult(
                                             false,
-                                            "Sorry but it seems the app failed to get your data from Database Please try later",
+                                            R.string.fail_to_get_data.toString(),
                                             object : DialogWindows.DialogCallback {
                                                 override fun onOkCLicked() {
                                                     return
                                                 }
 
                                             },
-                                            "ERROR!"
+                                            R.string.error.toString()
                                         )
                                     }
                                 }

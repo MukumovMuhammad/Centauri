@@ -29,10 +29,11 @@ class GeminiViewModel: ViewModel() {
 
 
 
-    suspend fun startNewTest(context: Context): TestQuestion {
+    suspend fun startNewTest(context: Context, Lessons: ArrayList<String> = arrayListOf()): TestQuestion {
         clearChatHistory()
 
-        val Lesson: String = """
+
+        var Lesson: String = """
             Lesson 1
             ${context.getString(R.string.lesson1_title_1)} 
             ${context.getString(R.string.lesson1_text_1)} 
@@ -68,7 +69,17 @@ class GeminiViewModel: ViewModel() {
             ${context.getString(R.string.lesson4_text_3)}
         """.trimIndent()
 
-
+        if (Lessons.isNotEmpty()){
+            var lessonNumber: Int = 1;
+            Lesson = ""
+            for (i in 0..Lessons.size - 1){
+                if (i % 2 == 0){
+                    Lesson += "Lesson $lessonNumber \n"
+                    lessonNumber++;
+                }
+                Lesson += Lessons[i]
+            }
+        }
         val startPromptExplonation = """
 You are an expert in Astronomy and Astrophysics, and your role is to test your student’s understanding of the following lessons:
 ${Lesson}
@@ -142,7 +153,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion("ERROR","Something went wrong","","","","",1)
+            TestQuestion(R.string.error.toString(),R.string.sth_went_wrong.toString(),"","","","",1)
         }
     }
 
@@ -167,7 +178,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            "Sorry the AI assistence is not working Try later"
+            R.string.ai_not_working.toString()
 
         }
     }

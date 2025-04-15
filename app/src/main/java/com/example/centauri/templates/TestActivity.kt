@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.ArrayList
 
 class TestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTestBinding;
@@ -76,23 +77,38 @@ class TestActivity : AppCompatActivity() {
             var isWorking = geminiModel.isGemeniWorking()
             withContext(Dispatchers.Main){
                 if (!isWorking){
-                   setUpTest(testState.ERROR)
+                    setUpTest(testState.ERROR)
                 }else{
                     setUpTest(testState.LOADING)
-                    delay(500,)
-                    theTest = geminiModel.startNewTest(this@TestActivity)
-                    withContext(Dispatchers.Main){
-                        if (theTest.feedback == "ERROR"){
-                            setUpTest(testState.ERROR)
-                        }
-                        else{
-                            setUpTest(testState.READY)
-                        }
+                    delay(500)
+                    var lessonsRange: ArrayList<Int> = arrayListOf()
+                    when (test_number){
+                        2 -> lessonsRange = arrayListOf(5,6,7)
+                        3 -> lessonsRange = arrayListOf(8,9,10,11)
+                        4 -> lessonsRange = arrayListOf(12,13,14,15)
                     }
+                    dbViewModel.getLessonTitlesAndContext(lessonsRange){text ->
+                       lifecycleScope.launch {
+                           theTest = geminiModel.startNewTest(this@TestActivity, text)
+
+                           Log.i(TAG, "theTest is $theTest")
+
+                           if (theTest.feedback == "ERROR"){
+                               setUpTest(testState.ERROR)
+                           }
+                           else{
+                               setUpTest(testState.READY)
+                           }
+
+                       }
+                    }
+
+
                 }
             }
+            }
 
-         }
+
 
 
 //////// Btn option on CLick listeners! ////////
@@ -122,7 +138,7 @@ class TestActivity : AppCompatActivity() {
             }
             testState.LOADING ->{
                 resetBtns()
-                binding.questionText.text = "Loading question..."
+                binding.questionText.text = R.string.loading_question.toString()
                 binding.textOptionA.text = "A"
                 binding.textOptionB.text = "B"
                 binding.textOptionC.text = "C"
@@ -130,7 +146,7 @@ class TestActivity : AppCompatActivity() {
 
             }
             testState.CHECKING ->{
-                binding.questionText.text = "Checking is AI working..."
+                binding.questionText.text = R.string.checking_ai.toString()
             }
             testState.ANSWERED ->{
 

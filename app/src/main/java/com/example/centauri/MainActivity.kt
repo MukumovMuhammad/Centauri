@@ -1,12 +1,17 @@
 package com.example.centauri
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,11 +19,24 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.example.centauri.databinding.ActivityMainBinding
 import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
+import com.example.firebasetodoapp.AuthState
+import com.example.firebasetodoapp.AuthViewModel
+import com.example.firebasetodoapp.DbViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+//    private val authViewModel: AuthViewModel by activityViewModels()
+
+    private lateinit var  authViewModel: AuthViewModel
+    private lateinit var  db: DbViewModel
+    private lateinit var  dialogWindows: DialogWindows
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        authViewModel = AuthViewModel()
+        db = DbViewModel()
+        dialogWindows = DialogWindows(this)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,14 +47,41 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        setSupportActionBar(binding.toolbar)
+        val toggle = ActionBarDrawerToggle(
+            this, binding.main, binding.toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+
+        binding.main.addDrawerListener(toggle)
+//        toggle.syncState() // I comment this because it appears on the left side
+
         if (savedInstanceState == null) {
             replaceFragment(StudyLessonsListFragment())
         }
 
 
-        binding.bottomNavigationView.itemIconTintList = null
-        binding.bottomNavigationView.selectedItemId = R.id.learn
+        binding.hamburgerButton.setOnClickListener{
+            if (binding.main.isDrawerOpen(GravityCompat.END)) {
+             binding.main.closeDrawer(GravityCompat.END)
+            } else {
+                binding.main.openDrawer(GravityCompat.END)
+            }
+        }
 
+        if (authViewModel.authState.value == AuthState.Authenticated){
+            db.getUserData(authViewModel.getCurrentUser()?.email.toString()){ user->
+                binding.navView.getHeaderView(0).findViewById<TextView>(R.id.username_text).text = user.username
+            }
+        }
+
+
+//        These are for making icons colored
+        binding.bottomNavigationView.itemIconTintList = null
+        binding.navView.itemIconTintList = null
+
+
+        binding.bottomNavigationView.selectedItemId = R.id.learn
 
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
@@ -44,6 +89,41 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                 }
             }
+            true
+        }
+
+
+        binding.navView.setNavigationItemSelectedListener {menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_language -> {
+                    dialogWindows.langChoosing(){lang ->
+                        setLanguage(lang)
+                    }
+                    true
+                }
+
+                R.id.nav_logout -> {
+                    if (authViewModel.authState.value == AuthState.Authenticated){
+                        authViewModel.signOut()
+
+                        val intent = intent
+                        finish()
+                        startActivity(intent)
+                    }
+                    else{
+                        dialogWindows.showSpaceDialog(R.string.you_are_not_authenticated.toString(), R.string.have_to_create_account.toString(), object : DialogWindows.DialogCallback{
+                            override fun onOkCLicked() {
+                                var intent = Intent(this@MainActivity, AuthActivity::class.java)
+                                startActivity(intent)
+                            }
+                        })
+
+                    }
+                    true
+                }
+            }
+
+            binding.main.closeDrawer(GravityCompat.END)
             true
         }
 
@@ -90,6 +170,28 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
         }
+    }
+
+
+
+    fun getSavedLanguage(context: Context): String {
+        val prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        return prefs.getString("My_Lang", "en") ?: "en"
+    }
+
+    fun setLanguage(langCode: String) {
+        val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putString("My_Lang", langCode)
+        editor.apply()
+
+        val intent = intent
+        finish()
+        startActivity(intent)
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleHelper.setLocale(newBase!!, getSavedLanguage(newBase)))
     }
 
 }

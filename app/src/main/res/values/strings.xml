@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Centauri</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -11,8 +10,43 @@
     <string name="news">News</string>
     <string name="profile">Profile</string>
 
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
 
-    <!--    The lesson structure -->
+        <!--    BASIC SETTING STRINGS    -->
+
+    <string name="unauthenticated">Guest</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="language_settings">Language Settings</string>
+    <string name="you_are_not_authenticated">You are not authenticated</string>
+    <string name="have_to_create_account">You have to create an account for this!</string>
+
+
+    <!--//////////   MESSAGES     //////////-->
+
+    <string name="start_test">Start a test? 🚀</string>
+    <string name="take_test_description">Take a test based on what you’ve learned and check your understanding of the material.
+    If you pass, the next section will be unlocked for you to study.</string>
+
+    <string name="lesson_closed">This lesson is closed</string>
+    <string name="fail_to_get_data">Sorry but it seems the app failed to get your data from Database Please try later</string>
+    <string name="error">ERROR</string>
+
+    <string name="correct">Correct!</string>
+    <string name="incorrect">Incorrect!</string>
+
+    <string name="sth_went_wrong">Something went wrong</string>
+
+    <!-- Lesson Messages   -->
+    <string name="loading_question">Loading question...</string>
+    <string name="checking_ai">Checking is AI working...</string>
+    <string name="ai_not_working">Sorry the AI assistence is not working Try later</string>
+
+
+
+
+    <!--//////////    The lesson structure ////////// -->
     <string name="part_1">Introduction to Astronomy</string>
     <string name="lesson1">The Nature of Astronomy and Science</string>
     <string name="lesson2">The Universe: Large and Small Scales</string>
@@ -41,7 +75,6 @@
 
 
     <!--===============   LESSONS STARTS HERE  =============== -->
-
 
     <!--    lesson 1    -->
     <string name="lesson1_title_1">What is Astronomy?</string>
@@ -200,42 +233,6 @@ continues today as we unlock the secrets of the cosmos.
         Thanks to these advanced tools and instruments, we can observe objects billions of light-years away, study planets orbiting other stars, and even search for signs of life beyond Earth.
     </string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
 
 
 </resources>

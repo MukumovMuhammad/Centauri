@@ -86,26 +86,26 @@ class StudyLessonsListFragment : Fragment() {
             rvItemsData(rvItemType.TEST, 1, "Test of Part 1", R.drawable.ic_test,4),
 
 
-            rvItemsData(rvItemType.PART, 2, getString(R.string.part_2), R.drawable.ic_test,4),
+            rvItemsData(rvItemType.PART, 2, getString(R.string.part_2), R.drawable.ic_test,2),
             rvItemsData(rvItemType.LESSON, 5, getString(R.string.lesson5), R.drawable.ic_astronaut3,2),
-            rvItemsData(rvItemType.LESSON, 6,getString(R.string.lesson6), R.drawable.ic_earth2,4),
-            rvItemsData(rvItemType.LESSON, 7, getString(R.string.lesson7), R.drawable.ic_some_planets,4),
+            rvItemsData(rvItemType.LESSON, 6,getString(R.string.lesson6), R.drawable.ic_earth2,2),
+            rvItemsData(rvItemType.LESSON, 7, getString(R.string.lesson7), R.drawable.ic_some_planets,2),
 //            rvItemsData(false, true, 4, getString(R.string.lesson8), R.drawable.ic_some_planets,4),
-            rvItemsData(rvItemType.TEST, 2, "Test of Part 2", R.drawable.ic_test,4),
+            rvItemsData(rvItemType.TEST, 2, "Test of Part 2", R.drawable.ic_test,2),
 
-            rvItemsData(rvItemType.PART, 3, getString(R.string.part_3), R.drawable.ic_test,4),
-            rvItemsData(rvItemType.LESSON, 8, getString(R.string.lesson9), R.drawable.ic_sun2,4),
-            rvItemsData(rvItemType.LESSON, 9, getString(R.string.lesson10), R.drawable.ic_astrophysics,4),
-            rvItemsData(rvItemType.LESSON, 10, getString(R.string.lesson11), R.drawable.ic_falling_star,4),
-            rvItemsData(rvItemType.LESSON, 11, getString(R.string.lesson12), R.drawable.ic_black_hole,4),
-            rvItemsData(rvItemType.TEST,  3, "Test of Part 3", R.drawable.ic_test,4),
+            rvItemsData(rvItemType.PART, 3, getString(R.string.part_3), R.drawable.ic_test,2),
+            rvItemsData(rvItemType.LESSON, 8, getString(R.string.lesson9), R.drawable.ic_sun2,2),
+            rvItemsData(rvItemType.LESSON, 9, getString(R.string.lesson10), R.drawable.ic_astrophysics,2),
+            rvItemsData(rvItemType.LESSON, 10, getString(R.string.lesson11), R.drawable.ic_falling_star,2),
+            rvItemsData(rvItemType.LESSON, 11, getString(R.string.lesson12), R.drawable.ic_black_hole,2),
+            rvItemsData(rvItemType.TEST,  3, "Test of Part 3", R.drawable.ic_test,2),
 
-            rvItemsData(rvItemType.PART, 4, getString(R.string.part_4), R.drawable.ic_test,4),
-            rvItemsData(rvItemType.LESSON, 12, getString(R.string.lesson13), R.drawable.ic_milky_way,4),
-            rvItemsData(rvItemType.LESSON, 13,getString(R.string.lesson14), R.drawable.ic_galaxy2,4),
-            rvItemsData(rvItemType.LESSON, 14, getString(R.string.lesson15), R.drawable.ic_galaxy,4),
-            rvItemsData(rvItemType.LESSON, 15, getString(R.string.lesson16), R.drawable.ic_space,4),
-            rvItemsData(rvItemType.TEST, 4, "Test of Part 4", R.drawable.ic_space,4)
+            rvItemsData(rvItemType.PART, 4, getString(R.string.part_4), R.drawable.ic_test,2),
+            rvItemsData(rvItemType.LESSON, 12, getString(R.string.lesson13), R.drawable.ic_milky_way,2),
+            rvItemsData(rvItemType.LESSON, 13,getString(R.string.lesson14), R.drawable.ic_galaxy2,2),
+            rvItemsData(rvItemType.LESSON, 14, getString(R.string.lesson15), R.drawable.ic_galaxy,2),
+            rvItemsData(rvItemType.LESSON, 15, getString(R.string.lesson16), R.drawable.ic_space,2),
+            rvItemsData(rvItemType.TEST, 4, "Test of Part 4", R.drawable.ic_space,2)
         )
 
         if (doUpdate){
