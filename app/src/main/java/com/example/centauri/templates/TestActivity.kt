@@ -1,6 +1,7 @@
 package com.example.centauri.templates
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -138,7 +139,7 @@ class TestActivity : AppCompatActivity() {
             }
             testState.LOADING ->{
                 resetBtns()
-                binding.questionText.text = R.string.loading_question.toString()
+                binding.questionText.text = getString(R.string.loading_question)
                 binding.textOptionA.text = "A"
                 binding.textOptionB.text = "B"
                 binding.textOptionC.text = "C"
@@ -146,7 +147,7 @@ class TestActivity : AppCompatActivity() {
 
             }
             testState.CHECKING ->{
-                binding.questionText.text = R.string.checking_ai.toString()
+                binding.questionText.text = getString(R.string.checking_ai)
             }
             testState.ANSWERED ->{
 
@@ -166,11 +167,11 @@ class TestActivity : AppCompatActivity() {
             }
 
             testState.ERROR -> {
-                dialog.testResult(false,"Sorry the AI is not working try again later", object: DialogWindows.DialogCallback{
+                dialog.testResult(false,getString(R.string.ai_not_working), object: DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
                         finish()
                     }
-                }, "ERROR!")
+                }, getString(R.string.error))
             }
 
             testState.FINISHED -> {
@@ -315,5 +316,9 @@ class TestActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleHelper.setLocale(newBase!!, LocaleHelper.getSavedLanguage(newBase)))
     }
 }

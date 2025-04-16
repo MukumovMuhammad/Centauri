@@ -59,11 +59,11 @@ class DialogWindows(var context: Context) {
         var title : String
         if (wasCorrect){
             dialogView.findViewById<TextView>(R.id.titleTextView).setTextColor(ContextCompat.getColor(context, R.color.bright_green))
-            title = R.string.correct.toString()
+            title = context.getString(R.string.correct)
         }
         else{
             dialogView.findViewById<TextView>(R.id.titleTextView).setTextColor(ContextCompat.getColor(context, R.color.bright_red))
-            title = R.string.incorrect.toString()
+            title = context.getString(R.string.incorrect)
         }
 
         if (the_title.isNotBlank()) title = the_title

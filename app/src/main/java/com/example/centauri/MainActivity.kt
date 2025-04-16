@@ -97,7 +97,9 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.nav_language -> {
                     dialogWindows.langChoosing(){lang ->
-                        setLanguage(lang)
+                        val intent = intent
+                        finish()
+                        LocaleHelper.setLanguage(this,lang, intent)
                     }
                     true
                 }
@@ -174,24 +176,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun getSavedLanguage(context: Context): String {
-        val prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        return prefs.getString("My_Lang", "en") ?: "en"
-    }
 
-    fun setLanguage(langCode: String) {
-        val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString("My_Lang", langCode)
-        editor.apply()
-
-        val intent = intent
-        finish()
-        startActivity(intent)
-    }
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(LocaleHelper.setLocale(newBase!!, getSavedLanguage(newBase)))
+        super.attachBaseContext(LocaleHelper.setLocale(newBase!!, LocaleHelper.getSavedLanguage(newBase)))
     }
 
 }

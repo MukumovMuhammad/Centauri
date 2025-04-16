@@ -2,16 +2,13 @@ package com.example.centauri.models
 
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.centauri.R
 import com.example.centauri.templates.TestQuestion
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.GenerateContentResponse
-import io.ktor.http.ContentType.Application.Json
 import kotlinx.serialization.json.Json
-import kotlin.coroutines.coroutineContext
 
 
 class GeminiViewModel: ViewModel() {
@@ -130,7 +127,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion("ERROR","Something went wrong","","","","",1)
+            TestQuestion(context.getString(R.string.error),context.getString(R.string.sth_went_wrong),"","","","",1)
         }
     }
 
@@ -153,7 +150,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion(R.string.error.toString(),R.string.sth_went_wrong.toString(),"","","","",1)
+            TestQuestion(context.getString(R.string.error), context.getString(R.string.sth_went_wrong),"","","","",1)
         }
     }
 
@@ -178,7 +175,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            R.string.ai_not_working.toString()
+            context.getString(R.string.ai_not_working)
 
         }
     }

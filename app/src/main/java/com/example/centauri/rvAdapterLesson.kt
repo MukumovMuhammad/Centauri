@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getContextForLanguage
+import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centauri.models.GeminiViewModel
@@ -124,7 +126,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
         holder.itemView.setOnClickListener {
             if (isClosed){
-                Toast.makeText(holder.itemView.context, R.string.lesson_closed.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context, getString(holder.itemView.context,R.string.lesson_closed), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             when (itemType){
@@ -136,7 +138,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
 
                 rvItemType.TEST ->{
-                    dialogWindows.showSpaceDialog(R.string.start_test.toString(), R.string.take_test_description.toString(),object : DialogWindows.DialogCallback{
+                    dialogWindows.showSpaceDialog(getString(holder.itemView.context,R.string.start_test) , getString(holder.itemView.context,R.string.take_test_description),object : DialogWindows.DialogCallback{
                         override fun onOkCLicked() {
                             var intent: Intent
                             if (isAuthenticated){
@@ -155,14 +157,14 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                                         )
                                         dialogWindows.testResult(
                                             false,
-                                            R.string.fail_to_get_data.toString(),
+                                            getString(holder.itemView.context,R.string.fail_to_get_data),
                                             object : DialogWindows.DialogCallback {
                                                 override fun onOkCLicked() {
                                                     return
                                                 }
 
                                             },
-                                            R.string.error.toString()
+                                            getString(holder.itemView.context,R.string.error)
                                         )
                                     }
                                 }
