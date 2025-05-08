@@ -73,11 +73,11 @@ class LessonTemplateActivity : AppCompatActivity() {
 
             if (lesson_number > 4){
 
-                dbViewModel.getLessonTitles(lesson_number){titles ->
+                dbViewModel.getLessonTitles(lesson_number, this){titles ->
                     lesson_title.text = titles[i-1]
                 }
 
-                dbViewModel.getLessonContext(lesson_number){contexts ->
+                dbViewModel.getLessonContext(lesson_number, this){contexts ->
                     lesson_text.text = contexts[i-1]
                 }
 

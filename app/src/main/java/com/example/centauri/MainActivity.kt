@@ -1,5 +1,6 @@
 package com.example.centauri
 
+import LocaleHelper
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -18,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.example.centauri.databinding.ActivityMainBinding
+import com.example.centauri.fragments.main_nav_frag.NasaNewsFragment
 import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
 import com.example.firebasetodoapp.AuthState
 import com.example.firebasetodoapp.AuthViewModel
@@ -74,6 +76,11 @@ class MainActivity : AppCompatActivity() {
                 binding.navView.getHeaderView(0).findViewById<TextView>(R.id.username_text).text = user.username
             }
         }
+        else{
+
+//            binding.navView.(0).findViewById<TextView>(R.id.nav_logout).text = getString(R.string.test)
+            binding.navView.menu.findItem(R.id.nav_logout).title = getString(R.string.sign_out)
+        }
 
 
 //        These are for making icons colored
@@ -83,9 +90,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.selectedItemId = R.id.learn
 
+
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.learn -> replaceFragment(StudyLessonsListFragment())
+                R.id.news -> replaceFragment(NasaNewsFragment())
                 else -> {
                 }
             }
@@ -113,7 +123,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else{
-                        dialogWindows.showSpaceDialog(R.string.you_are_not_authenticated.toString(), R.string.have_to_create_account.toString(), object : DialogWindows.DialogCallback{
+                        dialogWindows.showSpaceDialog(getString(R.string.you_are_not_authenticated), getString(R.string.have_to_create_account), object : DialogWindows.DialogCallback{
                             override fun onOkCLicked() {
                                 var intent = Intent(this@MainActivity, AuthActivity::class.java)
                                 startActivity(intent)
@@ -180,6 +190,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(LocaleHelper.setLocale(newBase!!, LocaleHelper.getSavedLanguage(newBase)))
+        Log.v("MainActivity_TAG", "language that is used is ${LocaleHelper.getSavedLanguage(newBase)}")
     }
 
 }

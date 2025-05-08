@@ -26,8 +26,8 @@ class DialogWindows(var context: Context) {
             .create()
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialogView.findViewById<TextView>(R.id.titleTextView).text = "Languages"
-        dialogView.findViewById<TextView>(R.id.messageTextView).text = "Change the language of the app"
+        dialogView.findViewById<TextView>(R.id.titleTextView).text = context.getString(R.string.language_settings)
+        dialogView.findViewById<TextView>(R.id.messageTextView).text = context.getString(R.string.lang_change_expl)
 
         dialogView.findViewById<RadioButton>(R.id.radio_en).setOnClickListener {
             onItemClicked("en")
@@ -36,6 +36,11 @@ class DialogWindows(var context: Context) {
 
         dialogView.findViewById<RadioButton>(R.id.radio_ru).setOnClickListener {
             onItemClicked("ru")
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<RadioButton>(R.id.radio_tj).setOnClickListener {
+            onItemClicked("tj")
             dialog.dismiss()
         }
 

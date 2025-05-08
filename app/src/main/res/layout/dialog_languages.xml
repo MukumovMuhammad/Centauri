@@ -39,6 +39,7 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
+            <!--       EN    -->
             <RadioButton
                 android:id="@+id/radio_en"
                 android:layout_width="wrap_content"
@@ -50,11 +51,23 @@
                 android:background="@drawable/shape_radio_button_style"
                 android:layout_marginEnd="16dp"/>
 
+            <!--      RU     -->
             <RadioButton
                 android:id="@+id/radio_ru"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RU"
+                android:textColor="@color/black"
+                android:buttonTint="@color/nebula_blue"
+                android:padding="10dp"
+                android:background="@drawable/shape_radio_button_style"/>
+
+            <!--       TJ     -->
+            <RadioButton
+                android:id="@+id/radio_tj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TJ"
                 android:textColor="@color/black"
                 android:buttonTint="@color/nebula_blue"
                 android:padding="10dp"

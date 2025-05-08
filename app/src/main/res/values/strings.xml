@@ -9,16 +9,20 @@
     <string name="learn">Learn</string>
     <string name="news">News</string>
     <string name="profile">Profile</string>
+    <string name="part">Part</string>
+    <string name="lesson">Lesson</string>
+    <string name="test">TEST</string>
 
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 
-        <!--    BASIC SETTING STRINGS    -->
+    <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Guest</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_out">Sign out</string>
     <string name="language_settings">Language Settings</string>
+    <string name="lang_change_expl">Change the language of the app</string>
     <string name="you_are_not_authenticated">You are not authenticated</string>
     <string name="have_to_create_account">You have to create an account for this!</string>
 
@@ -42,8 +46,6 @@
     <string name="loading_question">Loading question...</string>
     <string name="checking_ai">Checking is AI working...</string>
     <string name="ai_not_working">Sorry the AI assistence is not working Try later</string>
-
-
 
 
     <!--//////////    The lesson structure ////////// -->
@@ -232,7 +234,8 @@ continues today as we unlock the secrets of the cosmos.
         the vast amounts of data collected from observatories. Robotic telescopes and automated systems allow scientists to monitor the sky continuously and detect sudden events, like supernovae or asteroids.
         Thanks to these advanced tools and instruments, we can observe objects billions of light-years away, study planets orbiting other stars, and even search for signs of life beyond Earth.
     </string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

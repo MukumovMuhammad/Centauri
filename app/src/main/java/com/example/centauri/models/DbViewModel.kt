@@ -1,12 +1,27 @@
 package com.example.firebasetodoapp
 
+import LocaleHelper
+import android.content.Context
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.centauri.MainActivity
+import com.example.centauri.models.ApodNewsData
 import com.example.centauri.models.UserData
 
 import com.google.firebase.firestore.FirebaseFirestore
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.ContentType.Application.Json
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
+import java.io.IOException
 
 class DbViewModel: ViewModel() {
 
@@ -109,8 +124,10 @@ class DbViewModel: ViewModel() {
             }
     }
 
-    fun getLessonContext(lessonNumber: Int, onResult: (ArrayList<String>) -> Unit){
-        db.collection("images").document("lessons_contexts").get()
+    fun getLessonContext(lessonNumber: Int, context: Context, onResult: (ArrayList<String>) -> Unit){
+        var lang = LocaleHelper.getSavedLanguage(context)
+        if (lang == "en") lang = ""
+        db.collection("images").document("lessons_contexts$lang").get()
             .addOnSuccessListener { document ->
                 if (document.exists()){
                     val contexts = document.get("lesson$lessonNumber") as? ArrayList<String> ?: arrayListOf()
@@ -128,8 +145,10 @@ class DbViewModel: ViewModel() {
     }
 
 
-    fun getLessonTitles(lessonNumber: Int, onResult: (ArrayList<String>) -> Unit){
-        db.collection("images").document("lessons_titles").get()
+    fun getLessonTitles(lessonNumber: Int, context: Context, onResult: (ArrayList<String>) -> Unit){
+        var lang = LocaleHelper.getSavedLanguage(context)
+        if (lang == "en") lang = ""
+        db.collection("images").document("lessons_titles$lang").get()
             .addOnSuccessListener { document ->
                 if (document.exists()){
                     val titles = document.get("lesson$lessonNumber") as? ArrayList<String> ?: arrayListOf()
@@ -246,5 +265,25 @@ class DbViewModel: ViewModel() {
             }
 
         return isExist;
+    }
+
+    suspend fun getNasaApod(): ApodNewsData {
+       var client = HttpClient(Android){
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+        try {
+            val response = client.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
+            val json = Json { ignoreUnknownKeys = true }
+            return json.decodeFromString<ApodNewsData>(response.bodyAsText())
+        } catch (e: IOException) {
+            return ApodNewsData("Network Error", "Please check your internet connection", "","")
+        } catch (e: SerializationException) {
+
+            return ApodNewsData("Data Error", "Failed to parse data", "","")
+        } catch (e: Exception) {
+            return ApodNewsData("Unknown Error", "Something went wrong", "","")
+        }
     }
 }

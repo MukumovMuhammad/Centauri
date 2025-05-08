@@ -1,6 +1,7 @@
 package com.example.centauri.models
 
 
+import LocaleHelper
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import kotlinx.serialization.json.Json
 
 class GeminiViewModel: ViewModel() {
     companion object {
-        const val API_KEY = ""
+        const val API_KEY = "AIzaSyAkNt2DITi1T3Ofurp7yWNjwFVF1I4k58o"
         const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
     val generativeModel = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = API_KEY)
@@ -77,6 +78,8 @@ class GeminiViewModel: ViewModel() {
                 Lesson += Lessons[i]
             }
         }
+
+        var langToUse = LocaleHelper.getSavedLanguage(context)
         val startPromptExplonation = """
 You are an expert in Astronomy and Astrophysics, and your role is to test your student’s understanding of the following lessons:
 ${Lesson}
@@ -96,6 +99,8 @@ Follow this exact structure for the response:
 Guidelines:
 
 Provide only one question per response.
+
+The language of the test must be strictly in $langToUse
 
 Ensure the question is directly related to the given lesson content.
 
@@ -156,6 +161,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
 
     suspend fun testResult(context: Context, correctAnswers: Int): String{
         var past: String = "past"
+        var langToUse = LocaleHelper.getSavedLanguage(context)
         if (correctAnswers >= 8){
             past = "past the test and now can continue studying other lessons"
         }
@@ -165,7 +171,8 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         val prompt = """Great now as you see the student answered corectly only $correctAnswers out of 10 questions.
             |This means that he $past
             |Now just give your small feedbacks to him directly on how he did it
-            |Talk in Second person Style!""".trimMargin()
+            |Talk in Second person Style!
+            |and response in $langToUse""".trimMargin()
 
         return try {
             val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)

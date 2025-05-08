@@ -11,6 +11,12 @@
     <string name="news">Новости</string>
     <string name="profile">Профиль</string>
 
+    <string name="part">Часть</string>
+    <string name="lesson">Урок</string>
+    <string name="test">ТЕСТ</string>
+
+
+
     <string name="navigation_drawer_open">открыть</string>
     <string name="navigation_drawer_close">закрыть</string>
 
@@ -20,6 +26,7 @@
     <string name="sign_in">Войти</string>
     <string name="sign_out">Выйти</string>
     <string name="language_settings">Настройки языка</string>
+    <string name="lang_change_expl">Изменить язык приложения</string>
     <string name="you_are_not_authenticated">Вы не авторизованы</string>
     <string name="have_to_create_account">Вам нужно создать аккаунт для этого!</string>
 
