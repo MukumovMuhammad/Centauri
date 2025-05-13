@@ -14,7 +14,7 @@ import kotlinx.serialization.json.Json
 
 class GeminiViewModel: ViewModel() {
     companion object {
-        const val API_KEY = "AIzaSyAkNt2DITi1T3Ofurp7yWNjwFVF1I4k58o"
+        const val API_KEY = ""
         const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
     val generativeModel = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = API_KEY)

@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/img_star_background"
+    <VideoView
+        android:id="@+id/video_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/stars_pattern"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:background="@raw/video_bg_ai_generated"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"

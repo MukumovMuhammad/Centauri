@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.VideoView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,6 +27,7 @@ class SignUpFrag : Fragment() {
     }
     private lateinit var binding : FragmentSignUpBinding
     private val authViewModel: AuthViewModel by activityViewModels()
+    private lateinit var  video : VideoView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,9 +41,16 @@ class SignUpFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Glide.with(view.context)
-            .load(R.drawable.stars_pattern)
-            .into(binding.imgStarBackground)
+//        Glide.with(view.context)
+//            .load(R.drawable.stars_pattern)
+//            .into(binding.imgStarBackground)
+
+        video = binding.videoBg
+        video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
+        video.start()
+        binding.videoBg.setOnCompletionListener {
+            video.start()
+        }
 
         authViewModel.authState.observe(viewLifecycleOwner){
             when(it){
@@ -85,4 +94,10 @@ class SignUpFrag : Fragment() {
 
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        video.start()
+    }
 }
+

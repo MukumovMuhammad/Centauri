@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.VideoView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -32,9 +33,16 @@ class WellcomeFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Glide.with(view.context)
-            .load(R.drawable.stars_pattern)
-            .into(binding.imgStarBackground)
+//        Glide.with(view.context)
+//            .load(R.drawable.stars_pattern)
+//            .into(binding.imgStarBackground)
+
+        val video : VideoView = binding.videoBg
+        video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
+        video.start()
+        binding.videoBg.setOnCompletionListener {
+            video.start()
+        }
 
         super.onViewCreated(view, savedInstanceState)
 
