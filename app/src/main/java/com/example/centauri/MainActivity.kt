@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         else{
 
 //            binding.navView.(0).findViewById<TextView>(R.id.nav_logout).text = getString(R.string.test)
-            binding.navView.menu.findItem(R.id.nav_logout).title = getString(R.string.sign_out)
+            binding.navView.menu.findItem(R.id.nav_logout).title = getString(R.string.sign_up)
         }
 
 
@@ -90,8 +90,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.selectedItemId = R.id.learn
 
-
-
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.learn -> replaceFragment(StudyLessonsListFragment())
@@ -101,7 +99,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
 
         binding.navView.setNavigationItemSelectedListener {menuItem ->
             when (menuItem.itemId) {
@@ -123,12 +120,8 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else{
-                        dialogWindows.showSpaceDialog(getString(R.string.you_are_not_authenticated), getString(R.string.have_to_create_account), object : DialogWindows.DialogCallback{
-                            override fun onOkCLicked() {
-                                var intent = Intent(this@MainActivity, AuthActivity::class.java)
-                                startActivity(intent)
-                            }
-                        })
+                        var intent = Intent(this@MainActivity, AuthActivity::class.java)
+                        startActivity(intent)
 
                     }
                     true

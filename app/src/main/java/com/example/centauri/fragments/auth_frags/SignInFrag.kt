@@ -33,10 +33,6 @@ class SignInFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        Glide.with(view.context)
-//            .load(R.drawable.stars_pattern)
-//            .into(binding.imgStarBackground)
-
         video = binding.videoBg
         video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
         video.start()

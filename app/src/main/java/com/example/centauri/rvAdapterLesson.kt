@@ -97,17 +97,17 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
             rvItemType.LESSON -> {
                 Log.i(TAG, "onBindViewHolder() this Item is LESSON")
                 holder.icon!!.setImageResource(item.icon)
-                holder.number!!.text = holder.itemView.context.getString(R.string.lesson) + item.number.toString()
+                holder.number!!.text = holder.itemView.context.getString(R.string.lesson) + " " + item.number.toString()
                 holder.title!!.text = item.title
             }
             rvItemType.TEST -> {
                 Log.i(TAG, "onBindViewHolder() this Item is TEST")
                 holder.icon!!.setImageResource(item.icon)
-                holder.number!!.text =  holder.itemView.context.getString(R.string.test) + item.number.toString()
+                holder.number!!.text =  holder.itemView.context.getString(R.string.test) + " " + item.number.toString()
             }
             else -> {
                 Log.i(TAG, "onBindViewHolder() this Item is PART")
-                holder.number!!.text = holder.itemView.context.getString(R.string.part) + item.number.toString()
+                holder.number!!.text = holder.itemView.context.getString(R.string.part) + " " + item.number.toString()
                 holder.title!!.text = item.title
             }
         }
