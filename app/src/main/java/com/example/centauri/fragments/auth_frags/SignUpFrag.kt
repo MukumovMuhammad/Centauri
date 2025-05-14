@@ -52,6 +52,10 @@ class SignUpFrag : Fragment() {
             video.start()
         }
 
+        binding.icClose.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpFrag_to_mainActivity)
+        }
+
         authViewModel.authState.observe(viewLifecycleOwner){
             when(it){
                 is AuthState.Authenticated-> {

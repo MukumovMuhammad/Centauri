@@ -41,6 +41,11 @@ class SignInFrag : Fragment() {
         }
 
 
+        binding.icClose.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFrag_to_mainActivity)
+        }
+
+
         authViewModel.authState.observe(viewLifecycleOwner){
             when(it){
                 is AuthState.Authenticated -> {

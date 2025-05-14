@@ -1,8 +1,10 @@
 package com.example.centauri
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -46,5 +48,10 @@ class AuthActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         navController = findNavController(R.id.fragmentContainerView)
         return navController.navigateUp()|| super.onSupportNavigateUp()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleHelper.setLocale(newBase!!, LocaleHelper.getSavedLanguage(newBase)))
+        Log.v("MainActivity_TAG", "language that is used is ${LocaleHelper.getSavedLanguage(newBase)}")
     }
 }

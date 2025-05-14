@@ -4,6 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+
     <!-- Background video -->
     <VideoView
         android:id="@+id/video_bg"
@@ -13,7 +16,21 @@
         android:background="@raw/video_bg_ai_generated" />
 
 
-
+    <!-- Close icon in top-right corner -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ic_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="Close"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_close"/>
 
     <!-- Frosted Glass Card -->
     <LinearLayout
