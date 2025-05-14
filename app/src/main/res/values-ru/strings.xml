@@ -24,11 +24,20 @@
 
     <string name="unauthenticated">Гость</string>
     <string name="sign_in">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_out">Выйти</string>
     <string name="language_settings">Настройки языка</string>
     <string name="lang_change_expl">Изменить язык приложения</string>
     <string name="you_are_not_authenticated">Вы не авторизованы</string>
     <string name="have_to_create_account">Вам нужно создать аккаунт для этого!</string>
+
+    <string name="password">Пароль</string>
+
+    <string name="need_to_sign_up">У вас еще нет учетной записи? Зарегистрироваться</string>
+    <string name="need_to_sign_in">У вас уже есть аккаунт? Войти</string>
+
+    <string name="username">имя пользователя</string>
+    <string name="confirm_password">Подтвердите пароль</string>
 
     <!--//////////   MESSAGES     //////////-->
 

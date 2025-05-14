@@ -35,6 +35,8 @@ android {
 
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -49,6 +51,7 @@ android {
 
 
 }
+
 
 dependencies {
     implementation(libs.firebase.auth)
@@ -101,5 +104,7 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:2.3.12") // For JSON parsing
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12") // For kotlinx.serialization
     implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
+
+    implementation("com.airbnb.android:lottie:6.4.0")
 
 }

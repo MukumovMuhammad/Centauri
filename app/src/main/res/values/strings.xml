@@ -20,11 +20,19 @@
 
     <string name="unauthenticated">Guest</string>
     <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign out</string>
     <string name="language_settings">Language Settings</string>
     <string name="lang_change_expl">Change the language of the app</string>
     <string name="you_are_not_authenticated">You are not authenticated</string>
     <string name="have_to_create_account">You have to create an account for this!</string>
+    <string name="password">password</string>
+
+    <string name="need_to_sign_up">Don\'t have an account yet? Sign Up</string>
+    <string name="need_to_sign_in">Already have an account? Sign In</string>
+
+    <string name="username">username</string>
+    <string name="confirm_password">Confirm Password</string>
 
 
     <!--//////////   MESSAGES     //////////-->

@@ -90,29 +90,29 @@ class DialogWindows(var context: Context) {
 
     }
 
-    fun showSpaceDialog(title: String, message: String, callback: DialogCallback, showCancel: Boolean = true) {
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_space_alert, null)
+        fun showSpaceDialog(title: String, message: String, callback: DialogCallback, showCancel: Boolean = true) {
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_space_alert, null)
 
-        val dialog = AlertDialog.Builder(context)
-            .setView(dialogView)
-            .create()
+            val dialog = AlertDialog.Builder(context)
+                .setView(dialogView)
+                .create()
 
-        // Optional: transparent background
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialogView.findViewById<TextView>(R.id.titleTextView).text = title
-        dialogView.findViewById<TextView>(R.id.messageTextView).text = message
-        if (!showCancel) dialogView.findViewById<Button>(R.id.btnCancel).visibility = View.GONE
+            // Optional: transparent background
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            dialogView.findViewById<TextView>(R.id.titleTextView).text = title
+            dialogView.findViewById<TextView>(R.id.messageTextView).text = message
+            if (!showCancel) dialogView.findViewById<Button>(R.id.btnCancel).visibility = View.GONE
 
-        dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
-            dialog.dismiss()
+            dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialogView.findViewById<Button>(R.id.btnConfirm).setOnClickListener {
+                callback.onOkCLicked()
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
-
-        dialogView.findViewById<Button>(R.id.btnConfirm).setOnClickListener {
-            callback.onOkCLicked()
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
 
 }

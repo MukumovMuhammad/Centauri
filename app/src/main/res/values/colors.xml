@@ -25,4 +25,11 @@
     <color name="tool_bar_dark_blue">#0f0f1a</color>
     <color name="rv_text_color">#FFD700</color>
 
+
+    <color name="blue_gradient_start">#1E88E5</color>
+    <color name="blue_gradient_end">#1565C0</color>
+
+
+
+
 </resources>

@@ -22,11 +22,20 @@
 
     <string name="unauthenticated">Меҳмон</string>
     <string name="sign_in">Воридшавӣ</string>
+    <string name="sign_up">Бақайд гирифтан</string>
     <string name="sign_out">Баромадан</string>
     <string name="language_settings">Танзимоти забон</string>
     <string name="lang_change_expl">Забони барномаро тағир диҳед</string>
     <string name = "you_are_not_authenticated">Шумо тасдиқ карда нашудааст</string>
     <string name="have_to_create_account">Барои ин шумо бояд ҳисоб эҷод кунед!</string>
+
+    <string name="password">рамз</string>
+
+    <string name="need_to_sign_up">Оё шумо номнавис нашудаенд? Ба қайд гирифтан</string>
+    <string name="need_to_sign_in">Оё шумо аллакай номнавис ҳастед? Даромадан</string>
+
+    <string name="username">номи истифодабаранда</string>
+    <string name="confirm_password">Тасдиқи рамз</string>
 
     <!--//////////   MESSAGES     //////////-->
 
