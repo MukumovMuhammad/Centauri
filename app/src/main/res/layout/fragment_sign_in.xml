@@ -12,11 +12,7 @@
         android:scaleType="centerCrop"
         android:background="@raw/video_bg_ai_generated" />
 
-    <!-- Dim overlay to improve contrast -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80000000"/>
+
 
 
     <!-- Frosted Glass Card -->
