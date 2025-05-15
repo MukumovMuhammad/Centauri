@@ -7,17 +7,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.centauri.MainActivity
 import com.example.centauri.models.ApodNewsData
 import com.example.centauri.models.UserData
-
 import com.google.firebase.firestore.FirebaseFirestore
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType.Application.Json
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
@@ -222,36 +219,6 @@ class DbViewModel: ViewModel() {
 
         return newArrayList
     }
-
-
-
-
-//    fun changeCurentUser(email: String, onComplete: (Boolean) -> Unit) {
-//        Log.i(TAG, "changeCurrentUser is on work!")
-//        db.collection("users").document(email).get()
-//            .addOnSuccessListener { document ->
-//                if (document.exists()) {
-//                    val testCompleted = document.get("testCompleted").toString().toInt()
-//                    val username = document.getString("username").toString()
-//                    val email = document.getString("email").toString()
-//                    val rating = document.get("rating").toString().toInt()
-//                    val password = document.getString("password").toString()
-//
-//                    _user.value = UserData(username, email, rating, password, testCompleted)
-//                    Log.i(TAG, "the user new value is ${curentUser.value}")
-//                    onComplete(true)
-//                } else {
-//                    onComplete(false)
-//                }
-//            }
-//            .addOnFailureListener {
-//                Log.e(TAG, "Error getting user data from Firestore", it)
-//                _user.value = UserData("null", "null", 0, "null", 0)
-//                onComplete(false)
-//            }
-//    }
-
-
 
     fun isUserExist(email: String): Boolean{
         var isExist = false
