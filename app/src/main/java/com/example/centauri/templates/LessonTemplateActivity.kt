@@ -25,7 +25,6 @@ class LessonTemplateActivity : AppCompatActivity() {
     private lateinit  var binding : ActivityLessonTemplateBinding
 
     private lateinit var dbViewModel: DbViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,16 +38,9 @@ class LessonTemplateActivity : AppCompatActivity() {
 
         hide_statusbar()
 
-
         val lesson_number = intent.getIntExtra("lesson_number", 1)
         val partsNumber = intent.getIntExtra("partsNumber", 1)
-
-
         dbViewModel = DbViewModel()
-
-        var imgs = ArrayList<String>()
-
-
         var lesson_img_preview = ImageView(this, null, 0, R.style.CircleImageView)
 
         //                The Solutation to the heights problem
@@ -62,11 +54,7 @@ class LessonTemplateActivity : AppCompatActivity() {
 
         binding.customTitle.text = resources.getString(resources.getIdentifier("lesson${lesson_number}", "string", packageName))
 
-//        binding.imgPreview.setImageResource(resources.getIdentifier("lesson1_img_preview", "drawable", packageName))
 
-
-//        binding.llmain.addView(lesson_img_preview)б
-//
         for (i in 1..partsNumber){
             var lesson_title = TextView(this)
             var lesson_text = TextView(this)
@@ -127,10 +115,7 @@ class LessonTemplateActivity : AppCompatActivity() {
         }
 
 
-
        var arrowBack: ImageView =  findViewById<ImageView>(R.id.arrow_back)
-
-
 
 
 //        Arrow back

@@ -4,19 +4,15 @@
     <item
         android:id="@+id/learn"
         android:title="@string/learn"
-        android:icon="@drawable/ic_book"
-
-        />
+        android:icon="@drawable/ic_book" />
     <item
         android:id="@+id/news"
         android:title="@string/news"
-        android:icon="@drawable/ic_research"
-        android:enabled="true"
-        />
+        android:icon="@drawable/ic_moon_rover"
+        android:enabled="true" />
     <item
-        android:id="@+id/profile"
-        android:title="@string/profile"
-        android:icon="@drawable/ic_astronaut"
-        android:enabled="true"
-        />
+        android:id="@+id/extra"
+        android:title="@string/extra_mat"
+        android:icon="@drawable/ic_research"
+        android:enabled="true" />
 </menu>

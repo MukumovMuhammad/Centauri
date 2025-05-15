@@ -20,15 +20,10 @@ import com.example.firebasetodoapp.DbViewModel
 import kotlinx.coroutines.launch
 
 class StudyLessonsListFragment : Fragment() {
-
     private lateinit var binding: FragmentStudyLessonsListBinding
     private lateinit var lessonAdapter: rvAdapterLesson
     private lateinit var lessonList: Array<rvItemsData>
-
     private var testPast: Int = 0;
-
-
-    
     companion object{
         const val TAG = "StudyLessonsListFragment_TAG"
     }
@@ -44,17 +39,6 @@ class StudyLessonsListFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-//        Log.i(TAG, "Gliding img")
-//        Glide.with(view.context)
-//            .load(R.drawable.stars_pattern)
-//            .into(binding.imgStarBackground)
-
-
-
-
-
-
         updatingLessonList()
         Log.i(TAG, "assigning values to the adapter")
         lessonAdapter = rvAdapterLesson(lessonList)
@@ -63,12 +47,6 @@ class StudyLessonsListFragment : Fragment() {
 
         Log.i(TAG, "notifying the adapter")
         lessonAdapter.notifyDataSetChanged()
-
-
-
-
-
-
 
 
         super.onViewCreated(view, savedInstanceState)
@@ -84,7 +62,6 @@ class StudyLessonsListFragment : Fragment() {
             rvItemsData(rvItemType.LESSON, 3, getString(R.string.lesson3), R.drawable.ic_explore,3),
             rvItemsData(rvItemType.LESSON, 4, getString(R.string.lesson4), R.drawable.ic_telescope,3),
             rvItemsData(rvItemType.TEST, 1, "Test of Part 1", R.drawable.ic_test,4),
-
 
             rvItemsData(rvItemType.PART, 2, getString(R.string.part_2), R.drawable.ic_test,2),
             rvItemsData(rvItemType.LESSON, 5, getString(R.string.lesson5), R.drawable.ic_astronaut3,2),
@@ -107,9 +84,9 @@ class StudyLessonsListFragment : Fragment() {
             rvItemsData(rvItemType.LESSON, 15, getString(R.string.lesson16), R.drawable.ic_space,2),
             rvItemsData(rvItemType.TEST, 4, "Test of Part 4", R.drawable.ic_space,2)
         )
-
         if (doUpdate){
             lessonAdapter.notifyDataSetChanged()
         }
     }
 }
+

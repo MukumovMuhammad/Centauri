@@ -104,29 +104,17 @@ class TestActivity : AppCompatActivity() {
                        }
                     }
 
-
                 }
             }
             }
 
-
-
-
 //////// Btn option on CLick listeners! ////////
-
         binding.optionA.setOnClickListener {checkTest(0)}
         binding.optionB.setOnClickListener {checkTest(1)}
         binding.optionC.setOnClickListener {checkTest(2)}
         binding.optionD.setOnClickListener {checkTest(3)}
 
-
-
-
     }
-
-
-
-
 
     private fun setUpTest(state: testState){
         when (state){
@@ -212,7 +200,6 @@ class TestActivity : AppCompatActivity() {
         }
 
     }
-
     private fun checkTest(selected: Int){
 
 
@@ -243,7 +230,6 @@ class TestActivity : AppCompatActivity() {
         }
 
     }
-
     private fun resetBtns(){
         binding.optionAImage.setBackgroundResource(R.drawable.shape_unselected_circle)
         binding.optionBImage.setBackgroundResource(R.drawable.shape_unselected_circle)
@@ -256,8 +242,6 @@ class TestActivity : AppCompatActivity() {
         binding.textOptionC.setTextColor(ContextCompat.getColor(this, R.color.starry_white))
         binding.textOptionD.setTextColor(ContextCompat.getColor(this, R.color.starry_white))
     }
-
-
 
     private fun correctAnswer(){
         correctAnswered++;
@@ -285,13 +269,6 @@ class TestActivity : AppCompatActivity() {
             3 -> binding.textOptionD.setTextColor(ContextCompat.getColor(this, R.color.bright_red))
         }
     }
-
-
-
-
-
-
-
 
     @SuppressLint("ResourceAsColor")
     fun hide_statusbar(){

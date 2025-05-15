@@ -22,15 +22,11 @@ import com.example.firebasetodoapp.AuthViewModel
 import com.example.firebasetodoapp.DbViewModel
 
 class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
-
     private lateinit var dialogWindows: DialogWindows
-
     private val authViewModel = AuthViewModel()
     private val dbViewModel = DbViewModel()
-
     private val isAuthenticated = authViewModel.authState.value == AuthState.Authenticated
     private var testCompleted: Int = 0
-    
     companion object{
         const val TAG = "rvAdapterLesson_TAG"
     }
@@ -51,7 +47,6 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         dialogWindows = DialogWindows(parent.context)
@@ -65,14 +60,10 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
         return ViewHolder(view, viewType)
 
     }
-
     override fun getItemViewType(position: Int): Int {
         return lessonList[position].itemType.ordinal
     }
-
-
     override fun getItemCount(): Int = lessonList.size
-
     @SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -85,11 +76,6 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
                 )
         val item = lessonList[position]
-        Log.i(TAG, "onBindViewHolder() called with: holder = $holder, position = $position")
-        Log.i(TAG, "onBindViewHolder() called with: position = $position")
-        Log.i(TAG, "onBindViewHolder() called with: item = $item")
-        Log.i(TAG, "onBindViewHolder() called with: item is close ?  = $isClosed")
-
         val itemType: rvItemType = lessonList[position].itemType
         Log.i(TAG, "onBindViewHolder() called with: itemType = $itemType")
 
@@ -121,8 +107,6 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 holder.lockIcon!!.visibility = View.GONE
             }
         }
-
-
 
         holder.itemView.setOnClickListener {
             if (isClosed){
@@ -183,12 +167,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
             }
         }
-
-
-
-
     }
-
 
     inner class ViewHolder(itemView: View, itemType: Int) : RecyclerView.ViewHolder(itemView) {
 
