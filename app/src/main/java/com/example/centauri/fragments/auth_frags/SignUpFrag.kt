@@ -1,5 +1,6 @@
 package com.example.centauri.fragments.auth_frags
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -41,16 +42,18 @@ class SignUpFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        Glide.with(view.context)
-//            .load(R.drawable.stars_pattern)
-//            .into(binding.imgStarBackground)
 
+
+        //        Video Settings
         video = binding.videoBg
         video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
-        video.start()
-        binding.videoBg.setOnCompletionListener {
-            video.start()
+
+        // Adjust size to fill the
+        video.setOnPreparedListener { mp ->
+            mp.isLooping = true
         }
+        video.start()
+
 
         binding.icClose.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFrag_to_mainActivity)

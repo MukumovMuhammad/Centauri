@@ -18,18 +18,10 @@ class GeminiViewModel: ViewModel() {
         const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
     val generativeModel = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = API_KEY)
-
-
     val chat = generativeModel.startChat()
-
-
-
-
-
 
     suspend fun startNewTest(context: Context, Lessons: ArrayList<String> = arrayListOf()): TestQuestion {
         clearChatHistory()
-
 
         var Lesson: String = """
             Lesson 1
@@ -140,7 +132,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
     suspend fun nextTest(context: Context, userAnswer: Int, isCorrect: Boolean): TestQuestion {
         var correct: String = "is not correct"
         if (isCorrect) correct = "is a correct"
-        val prompt = "the student chosed $userAnswer! which is $correct answer! Give a concise feedback on that and next question in the same Json format!"
+        val prompt = "the student chose $userAnswer! which is $correct answer! Give a concise feedback on that and next question in the same Json format!"
 
         return try {
             val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)
@@ -212,8 +204,4 @@ Return only the JSON object — no extra text, no formatting, no explanations.
             false
         }
     }
-
-
-
-
 }

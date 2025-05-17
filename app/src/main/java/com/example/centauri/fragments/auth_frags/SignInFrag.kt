@@ -1,10 +1,14 @@
 package com.example.centauri.fragments.auth_frags
 
+import android.content.res.Resources
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.VideoView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -33,12 +37,17 @@ class SignInFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+//        Video Settings
         video = binding.videoBg
         video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
-        video.start()
-        binding.videoBg.setOnCompletionListener {
-            video.start()
+
+        // Adjust size to fill the
+        video.setOnPreparedListener { mp ->
+            mp.isLooping = true
         }
+        video.start()
 
 
         binding.icClose.setOnClickListener {
