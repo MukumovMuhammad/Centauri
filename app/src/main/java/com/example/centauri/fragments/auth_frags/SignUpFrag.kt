@@ -43,6 +43,8 @@ class SignUpFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.darkOverlay.visibility = View.GONE
+        binding.loading.visibility = View.GONE
 
         //        Video Settings
         video = binding.videoBg
@@ -65,7 +67,21 @@ class SignUpFrag : Fragment() {
                     findNavController().navigate(R.id.action_signUpFrag_to_mainActivity)
                 }
                 is AuthState.Error -> {
+                    binding.darkOverlay.visibility = View.GONE
+                    binding.loading.visibility = View.GONE
+
+                    binding.signCard.visibility = View.VISIBLE
+                    binding.icClose.visibility = View.VISIBLE
                     binding.tvError.text = it.message
+                }
+                is AuthState.Loading -> {
+                    binding.darkOverlay.visibility = View.VISIBLE
+                    binding.loading.visibility = View.VISIBLE
+
+                    binding.signCard.visibility = View.GONE
+                    binding.icClose.visibility = View.GONE
+
+                    binding.tvError.text = ""
                 }
 
                 else -> {

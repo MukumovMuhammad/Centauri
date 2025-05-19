@@ -22,11 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@raw/video_bg_ai_generated" />
 
-
-
-
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/sign_card"
         android:layout_width="match_parent"
