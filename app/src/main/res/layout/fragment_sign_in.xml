@@ -6,11 +6,16 @@
 
 
 
+
+
+
+
     <!-- Background video -->
     <VideoView
         android:id="@+id/video_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +23,12 @@
         android:background="@raw/video_bg_ai_generated" />
 
 
+
+
+
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/sign_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp"
@@ -191,5 +201,27 @@
         </ScrollView>
 
     </androidx.cardview.widget.CardView>
+
+
+    <View
+        android:id="@+id/darkOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BF000000" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center"
+        app:lottie_rawRes="@raw/loading_turquoise"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginBottom="5dp"/>
 
 </FrameLayout>
