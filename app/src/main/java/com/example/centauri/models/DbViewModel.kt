@@ -245,11 +245,15 @@ class DbViewModel: ViewModel() {
             val json = Json { ignoreUnknownKeys = true }
             return json.decodeFromString<ApodNewsData>(response.bodyAsText())
         } catch (e: IOException) {
+            Log.e(TAG, "Network error: ${e.message}")
             return ApodNewsData("Network Error", "Please check your internet connection", "","")
         } catch (e: SerializationException) {
 
+            Log.e(TAG, "Error parsing JSON: ${e.message}")
             return ApodNewsData("Data Error", "Failed to parse data", "","")
         } catch (e: Exception) {
+
+            Log.e(TAG, "Error: ${e.message}")
             return ApodNewsData("Unknown Error", "Something went wrong", "","")
         }
     }

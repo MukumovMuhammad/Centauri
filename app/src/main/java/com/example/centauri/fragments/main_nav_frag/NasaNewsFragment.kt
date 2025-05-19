@@ -32,9 +32,13 @@ class NasaNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         lifecycleScope.launch {
             var nasaApod : ApodNewsData = DbViewModel().getNasaApod()
             withContext(Dispatchers.Main){
+                binding.darkOverlay.visibility = View.GONE
+                binding.loading.visibility = View.GONE
 
                 Glide.with(requireContext())
                     .load(nasaApod.url)
