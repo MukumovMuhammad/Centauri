@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +49,8 @@ class TestActivity : AppCompatActivity() {
         LOADING,
         CHECKING,
         READY,
-        ANSWERED,
+        USERANSWERED,
+        AIFEEDBACK,
         ERROR,
         FINISHED
     }
@@ -119,6 +121,10 @@ class TestActivity : AppCompatActivity() {
     private fun setUpTest(state: testState){
         when (state){
             testState.READY -> {
+                binding.loading.visibility = View.GONE
+                binding.loadingText.visibility = View.GONE
+                binding.darkOverlay.visibility = View.GONE
+
                 binding.questionText.text = theTest.question
                 binding.textOptionA.text = theTest.A
                 binding.textOptionB.text = theTest.B
@@ -127,7 +133,10 @@ class TestActivity : AppCompatActivity() {
             }
             testState.LOADING ->{
                 resetBtns()
-                binding.questionText.text = getString(R.string.loading_question)
+                binding.loading.visibility = View.VISIBLE
+                binding.loadingText.visibility = View.VISIBLE
+                binding.darkOverlay.visibility = View.VISIBLE
+                binding.loadingText.text = getString(R.string.loading_question)
                 binding.textOptionA.text = "A"
                 binding.textOptionB.text = "B"
                 binding.textOptionC.text = "C"
@@ -135,10 +144,19 @@ class TestActivity : AppCompatActivity() {
 
             }
             testState.CHECKING ->{
-                binding.questionText.text = getString(R.string.checking_ai)
+                binding.loading.visibility = View.VISIBLE
+                binding.loadingText.visibility = View.VISIBLE
+                binding.darkOverlay.visibility = View.VISIBLE
+                binding.loadingText.text = getString(R.string.checking_ai)
             }
-            testState.ANSWERED ->{
-
+            testState.USERANSWERED -> {
+                binding.loading.visibility = View.VISIBLE
+                binding.loadingText.visibility = View.VISIBLE
+                binding.darkOverlay.visibility = View.VISIBLE
+                binding.loadingText.text = getString(R.string.checking_asnwer)
+            }
+            testState.AIFEEDBACK ->{
+                binding.darkOverlay.visibility = View.VISIBLE
                 dialog.testResult(wasLastAnswerCorrect,theTest.feedback, object : DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
 
@@ -163,8 +181,9 @@ class TestActivity : AppCompatActivity() {
             }
 
             testState.FINISHED -> {
+                binding.loading.visibility = View.GONE
+                binding.darkOverlay.visibility = View.GONE
                 lifecycleScope.launch {
-
                     var result: String = geminiModel.testResult(this@TestActivity,correctAnswered )
                     withContext(Dispatchers.Main){
                         dialog.testResult(correctAnswered >= 8, result, object : DialogWindows.DialogCallback{
@@ -208,6 +227,7 @@ class TestActivity : AppCompatActivity() {
         userAnswer = selected
         wasLastAnswerCorrect = userAnswer == theTest.answer
         currentTest++;
+        setUpTest(testState.USERANSWERED)
         lifecycleScope.launch {
 //            setUpTest(testState.LOADING)
             theTest = geminiModel.nextTest(this@TestActivity, userAnswer, wasLastAnswerCorrect)
@@ -216,7 +236,7 @@ class TestActivity : AppCompatActivity() {
                     setUpTest(testState.ERROR)
                 }
                 else{
-                    setUpTest(testState.ANSWERED)
+                    setUpTest(testState.AIFEEDBACK)
                 }
             }
 

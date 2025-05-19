@@ -52,9 +52,10 @@
     <string name="sth_went_wrong">Something went wrong</string>
 
     <!-- Lesson Messages   -->
-    <string name="loading_question">Loading question...</string>
-    <string name="checking_ai">Checking is AI working...</string>
-    <string name="ai_not_working">Sorry the AI assistence is not working Try later</string>
+    <string name="loading_question">Loading question…</string>
+    <string name="checking_ai">Checking is AI working…</string>
+    <string name="ai_not_working">Sorry the AI assistance is not working Try later</string>
+    <string name="checking_asnwer">Checking user\'s answer…</string>
 
 
     <!--//////////    The lesson structure ////////// -->

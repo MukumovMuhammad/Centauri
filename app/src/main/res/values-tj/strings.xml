@@ -55,9 +55,10 @@
     <string name = "sth_went_wrong">Чизе хато рафт</string>
 
     <!-- Lesson Messages -->
-    <string name="loading_question">Савол бор карда мешавад...</string>
-    <string name = "checking_ai">Тафтиши амалиёти AI...</string>
+    <string name="loading_question">Савол бор карда мешавад…</string>
+    <string name = "checking_ai">Тафтиши амалиёти AI…</string>
     <string name="ai_not_working">Бубахшед, ёрдамчии AI дар айни замон кор намекунад. Лутфан, баъдтар бори дигар кӯшиш кунед</string>
+    <string name="checking_asnwer">Тафтиши ҷавоби истифодабаранда…</string>
 
 
     <!--//////////    The lesson structure ////////// -->

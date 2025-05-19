@@ -60,6 +60,7 @@
     <string name="loading_question">Загрузка вопроса...</string>
     <string name="checking_ai">Проверка работы ИИ...</string>
     <string name="ai_not_working">Извините, ИИ-помощник сейчас не работает. Попробуйте позже</string>
+    <string name="checking_asnwer">Проверка ответа пользователя…</string>
 
 
     <!--//////////    The lesson structure ////////// -->
