@@ -19,7 +19,7 @@ import com.example.centauri.DialogWindows
 import com.example.centauri.R
 import com.example.centauri.databinding.ActivityTestBinding
 import com.example.centauri.models.GeminiViewModel
-import com.example.firebasetodoapp.DbViewModel
+import com.example.centauri.models.DbViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -66,6 +66,14 @@ class TestActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+//        Setting up the progressbar
+        binding.progressBar.max = TEST_NUMBER
+        binding.progressBar.progress = 0;
+        binding.textViewProgress.text = "0/$TEST_NUMBER"
+        binding.incorrectCountTxt.text = "0"
+        binding.correctCountTxt.text = "0"
 
         test_number = intent.getIntExtra("lesson_number", 1)
         userEmail = intent.getStringExtra("userEmail").toString()
@@ -154,13 +162,20 @@ class TestActivity : AppCompatActivity() {
                 binding.loadingText.visibility = View.VISIBLE
                 binding.darkOverlay.visibility = View.VISIBLE
                 binding.loadingText.text = getString(R.string.checking_asnwer)
+
+                binding.progressBar.progress = currentTest - 1
+                binding.textViewProgress.text = (currentTest - 1).toString() + "/$TEST_NUMBER"
+
+                binding.incorrectCountTxt.text = ((currentTest - 1) - correctAnswered).toString()
+                binding.correctCountTxt.text = correctAnswered.toString()
+
             }
             testState.AIFEEDBACK ->{
                 binding.darkOverlay.visibility = View.VISIBLE
                 dialog.testResult(wasLastAnswerCorrect,theTest.feedback, object : DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
 
-                        if (currentTest != TEST_NUMBER){
+                        if (currentTest-1 != TEST_NUMBER){
                             setUpTest(testState.READY)
                         }
                         else{
@@ -227,7 +242,17 @@ class TestActivity : AppCompatActivity() {
         userAnswer = selected
         wasLastAnswerCorrect = userAnswer == theTest.answer
         currentTest++;
+
+        circleImg()
+        if (wasLastAnswerCorrect){
+            correctAnswer()
+        }
+        else{
+            wrongAnswer()
+        }
+
         setUpTest(testState.USERANSWERED)
+
         lifecycleScope.launch {
 //            setUpTest(testState.LOADING)
             theTest = geminiModel.nextTest(this@TestActivity, userAnswer, wasLastAnswerCorrect)
@@ -241,13 +266,7 @@ class TestActivity : AppCompatActivity() {
             }
 
         }
-        circleImg()
-        if (wasLastAnswerCorrect){
-            correctAnswer()
-        }
-        else{
-            wrongAnswer()
-        }
+
 
     }
     private fun resetBtns(){

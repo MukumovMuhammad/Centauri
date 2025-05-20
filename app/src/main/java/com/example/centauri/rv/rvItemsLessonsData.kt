@@ -1,8 +1,6 @@
-package com.example.centauri
+package com.example.centauri.rv
 
-import com.example.centauri.models.rvItemType
-
-data class rvItemsData(
+data class rvItemsLessonsData(
     val itemType: rvItemType,
     val number: Int,
     val title: String,

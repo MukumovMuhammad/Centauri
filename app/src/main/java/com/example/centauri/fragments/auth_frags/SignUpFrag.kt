@@ -15,8 +15,8 @@ import com.bumptech.glide.Glide
 import com.example.centauri.R
 import com.example.centauri.databinding.FragmentSignUpBinding
 import com.example.centauri.models.UserData
-import com.example.firebasetodoapp.AuthState
-import com.example.firebasetodoapp.AuthViewModel
+import com.example.centauri.models.AuthState
+import com.example.centauri.models.AuthViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

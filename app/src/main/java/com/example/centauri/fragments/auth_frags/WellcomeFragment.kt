@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.centauri.R
 import com.example.centauri.databinding.FragmentWellcomeBinding
-import com.example.firebasetodoapp.AuthState
-import com.example.firebasetodoapp.AuthViewModel
+import com.example.centauri.models.AuthState
+import com.example.centauri.models.AuthViewModel
 
 
 class WellcomeFragment : Fragment() {

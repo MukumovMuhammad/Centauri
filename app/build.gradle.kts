@@ -104,6 +104,7 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:2.3.12") // For JSON parsing
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12") // For kotlinx.serialization
     implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
+    implementation("com.google.gms:google-services:4.3.15")
 
     implementation("com.airbnb.android:lottie:6.4.0")
 

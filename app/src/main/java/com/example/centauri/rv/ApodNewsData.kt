@@ -1,4 +1,4 @@
-package com.example.centauri.models
+package com.example.centauri.rv
 
 import kotlinx.serialization.Serializable
 

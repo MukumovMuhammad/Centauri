@@ -1,13 +1,11 @@
-package com.example.firebasetodoapp
+package com.example.centauri.models
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.centauri.models.UserData
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.coroutines.flow.MutableStateFlow
+
 
 class  AuthViewModel: ViewModel() {
     companion object {

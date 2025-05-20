@@ -1,4 +1,4 @@
-package com.example.centauri.models
+package com.example.centauri.rv
 
 enum class rvItemType {
     PART,

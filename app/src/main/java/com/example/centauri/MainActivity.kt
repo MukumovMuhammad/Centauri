@@ -21,9 +21,9 @@ import androidx.fragment.app.Fragment
 import com.example.centauri.databinding.ActivityMainBinding
 import com.example.centauri.fragments.main_nav_frag.NasaNewsFragment
 import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
-import com.example.firebasetodoapp.AuthState
-import com.example.firebasetodoapp.AuthViewModel
-import com.example.firebasetodoapp.DbViewModel
+import com.example.centauri.models.AuthState
+import com.example.centauri.models.AuthViewModel
+import com.example.centauri.models.DbViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

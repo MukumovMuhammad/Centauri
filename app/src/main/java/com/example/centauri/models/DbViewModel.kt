@@ -1,14 +1,12 @@
-package com.example.firebasetodoapp
+package com.example.centauri.models
 
 import LocaleHelper
 import android.content.Context
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.centauri.models.ApodNewsData
-import com.example.centauri.models.UserData
+import com.example.centauri.rv.ApodNewsData
 import com.google.firebase.firestore.FirebaseFirestore
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -255,6 +253,37 @@ class DbViewModel: ViewModel() {
 
             Log.e(TAG, "Error: ${e.message}")
             return ApodNewsData("Unknown Error", "Something went wrong", "","")
+        }
+    }
+
+
+    suspend fun getNasa10News(): List<ApodNewsData> {
+
+        Log.i(TAG, "getNasa10News fun is on work")
+        var client = HttpClient(Android){
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+        try {
+            Log.i(TAG,"getNasa10News fun is Succeed")
+            val response = client.get("https://api.nasa.gov/planetary/apod?count=10&api_key=DEMO_KEY")
+            val json = Json { ignoreUnknownKeys = true }
+            Log.i(TAG,"got the response ${response.bodyAsText()}")
+            return json.decodeFromString(response.bodyAsText())
+        } catch (e: IOException) {
+            Log.e(TAG, "Network error: ${e.message}")
+            return  listOf<ApodNewsData>(
+                ApodNewsData("Network Error", "Please check your internet connection", "","")
+            )
+        } catch (e: SerializationException) {
+
+            Log.e(TAG, "Error parsing JSON: ${e.message}")
+            return  listOf<ApodNewsData> (ApodNewsData( "Data Error", "Failed to parse data", "",""))
+        } catch (e: Exception) {
+
+            Log.e(TAG, "Error: ${e.message}")
+            return  listOf<ApodNewsData> (ApodNewsData("Unknown Error", "Something went wrong", "",""))
         }
     }
 }

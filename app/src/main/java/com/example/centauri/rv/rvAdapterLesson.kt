@@ -1,4 +1,4 @@
-package com.example.centauri
+package com.example.centauri.rv
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,19 +9,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getContextForLanguage
 import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centauri.models.GeminiViewModel
-import com.example.centauri.models.rvItemType
+import com.example.centauri.AuthActivity
+import com.example.centauri.DialogWindows
+import com.example.centauri.R
 import com.example.centauri.templates.LessonTemplateActivity
 import com.example.centauri.templates.TestActivity
-import com.example.firebasetodoapp.AuthState
-import com.example.firebasetodoapp.AuthViewModel
-import com.example.firebasetodoapp.DbViewModel
+import com.example.centauri.models.AuthState
+import com.example.centauri.models.AuthViewModel
+import com.example.centauri.models.DbViewModel
 
-class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
+class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
     private lateinit var dialogWindows: DialogWindows
     private val authViewModel = AuthViewModel()
     private val dbViewModel = DbViewModel()
@@ -110,7 +110,9 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
 
         holder.itemView.setOnClickListener {
             if (isClosed){
-                Toast.makeText(holder.itemView.context, getString(holder.itemView.context,R.string.lesson_closed), Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context, getString(holder.itemView.context,
+                    R.string.lesson_closed
+                ), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             when (itemType){
@@ -122,7 +124,10 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                 }
 
                 rvItemType.TEST ->{
-                    dialogWindows.showSpaceDialog(getString(holder.itemView.context,R.string.start_test) , getString(holder.itemView.context,R.string.take_test_description),object : DialogWindows.DialogCallback{
+                    dialogWindows.showSpaceDialog(getString(holder.itemView.context,
+                        R.string.start_test
+                    ) , getString(holder.itemView.context, R.string.take_test_description),object :
+                        DialogWindows.DialogCallback {
                         override fun onOkCLicked() {
                             var intent: Intent
                             if (isAuthenticated){
@@ -141,14 +146,16 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsData>) : RecyclerView
                                         )
                                         dialogWindows.testResult(
                                             false,
-                                            getString(holder.itemView.context,R.string.fail_to_get_data),
+                                            getString(holder.itemView.context,
+                                                R.string.fail_to_get_data
+                                            ),
                                             object : DialogWindows.DialogCallback {
                                                 override fun onOkCLicked() {
                                                     return
                                                 }
 
                                             },
-                                            getString(holder.itemView.context,R.string.error)
+                                            getString(holder.itemView.context, R.string.error)
                                         )
                                     }
                                 }

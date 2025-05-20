@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.bumptech.glide.Glide
 import com.example.centauri.R
 import com.example.centauri.databinding.ActivityLessonTemplateBinding
-import com.example.firebasetodoapp.DbViewModel
+import com.example.centauri.models.DbViewModel
 
 class LessonTemplateActivity : AppCompatActivity() {
     private lateinit  var binding : ActivityLessonTemplateBinding
