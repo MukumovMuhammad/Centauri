@@ -35,4 +35,11 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+
+    <!-- Custom circle progressbar style   -->
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false </item>
+        <item name="android:progressDrawable">@drawable/circle</item>
+    </style>
+
 </resources>
