@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.VideoView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.centauri.R
 
 import com.example.centauri.databinding.FragmentNasaNewsBinding
 import com.example.centauri.rv.ApodNewsData
@@ -25,6 +27,7 @@ class NasaNewsFragment : Fragment() {
     }
 
     private lateinit var newsAdapter: rvAdapterNasaNews
+    private lateinit var video: VideoView
     private val nasaNewsList = mutableListOf<ApodNewsData>()
 
 
@@ -44,6 +47,16 @@ class NasaNewsFragment : Fragment() {
         newsAdapter = rvAdapterNasaNews(nasaNewsList)
         binding.rvNasaNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNasaNews.adapter = newsAdapter
+
+        //        Video Settings
+        video = binding.videoBg
+        video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
+
+        // Adjust size to fill the
+        video.setOnPreparedListener { mp ->
+            mp.isLooping = true
+        }
+        video.start()
 
         lifecycleScope.launch {
             var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News()

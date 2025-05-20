@@ -4,13 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Video Background -->
-    <VideoView
-        android:id="@+id/video_bg"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:background="@raw/video_bg_ai_generated" />
+        android:layout_height="match_parent">
+        <!-- Video Background -->
+        <VideoView
+            android:id="@+id/video_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@raw/video_bg_ai_generated"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <!-- Centered Frosted Glass Card -->
