@@ -49,28 +49,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        setSupportActionBar(binding.toolbar)
-        val toggle = ActionBarDrawerToggle(
-            this, binding.main, binding.toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-
-        binding.main.addDrawerListener(toggle)
-//        toggle.syncState() // I comment this because it appears on the left side
-
-        if (savedInstanceState == null) {
-            replaceFragment(StudyLessonsListFragment())
-        }
-
-
-        binding.hamburgerButton.setOnClickListener{
-            if (binding.main.isDrawerOpen(GravityCompat.END)) {
-             binding.main.closeDrawer(GravityCompat.END)
-            } else {
-                binding.main.openDrawer(GravityCompat.END)
-            }
-        }
-
         if (authViewModel.authState.value == AuthState.Authenticated){
             db.getUserData(authViewModel.getCurrentUser()?.email.toString()){ user->
                 binding.navView.getHeaderView(0).findViewById<TextView>(R.id.username_text).text = user.username
@@ -81,6 +59,31 @@ class MainActivity : AppCompatActivity() {
 //            binding.navView.(0).findViewById<TextView>(R.id.nav_logout).text = getString(R.string.test)
             binding.navView.menu.findItem(R.id.nav_logout).title = getString(R.string.sign_up)
         }
+
+        setSupportActionBar(binding.toolbar)
+        val toggle = ActionBarDrawerToggle(
+            this, binding.main, binding.toolbar,
+          R.string.navigation_drawer_close, R.string.navigation_drawer_open
+        )
+
+        binding.main.addDrawerListener(toggle)
+//        toggle.syncState() // I comment this because it appears on the left side
+
+        if (savedInstanceState == null) {
+            replaceFragment(StudyLessonsListFragment())
+        }
+
+
+//        Click listening to open/close the side bar
+        binding.hamburgerButton.setOnClickListener{
+            if (binding.main.isDrawerOpen(GravityCompat.END)) {
+             binding.main.closeDrawer(GravityCompat.END)
+            } else {
+                binding.main.openDrawer(GravityCompat.END)
+            }
+        }
+
+
 
 
 //        These are for making icons colored

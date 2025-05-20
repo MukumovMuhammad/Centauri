@@ -78,12 +78,11 @@
 
     <!-- SIDEBAR -->
     <com.google.android.material.navigation.NavigationView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:visibility="gone"
+        android:visibility="visible"
         app:menu="@menu/drawer_menu"
         app:itemIconTint="@null"
         app:headerLayout="@layout/drawer_header" />
