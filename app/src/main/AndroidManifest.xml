@@ -15,16 +15,16 @@
         android:theme="@style/Theme.Centauri"
         tools:targetApi="31">
         <activity
-            android:name=".templates.TestActivity"
+            android:name=".activities.templates.TestActivity"
             android:exported="false"
             android:theme="@style/Theme.Centauri"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".templates.LessonTemplateActivity"
+            android:name=".activities.templates.LessonTemplateActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Centauri" >
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AuthActivity"
+            android:name=".activities.AuthActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
 

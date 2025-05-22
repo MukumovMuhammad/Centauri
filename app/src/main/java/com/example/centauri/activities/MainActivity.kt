@@ -1,4 +1,4 @@
-package com.example.centauri
+package com.example.centauri.activities
 
 import LocaleHelper
 import android.annotation.SuppressLint
@@ -18,6 +18,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
+import com.example.centauri.DialogWindows
+import com.example.centauri.R
 import com.example.centauri.databinding.ActivityMainBinding
 import com.example.centauri.fragments.main_nav_frag.NasaNewsFragment
 import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         val toggle = ActionBarDrawerToggle(
             this, binding.main, binding.toolbar,
-          R.string.navigation_drawer_close, R.string.navigation_drawer_open
+            R.string.navigation_drawer_close, R.string.navigation_drawer_open
         )
 
         binding.main.addDrawerListener(toggle)

@@ -1,4 +1,4 @@
-package com.example.centauri
+package com.example.centauri.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.centauri.R
 
 class AuthActivity : AppCompatActivity() {
 

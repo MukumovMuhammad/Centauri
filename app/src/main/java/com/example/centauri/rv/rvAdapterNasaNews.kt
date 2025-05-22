@@ -41,10 +41,18 @@ class rvAdapterNasaNews(private val newsList: List<ApodNewsData>): RecyclerView.
 
         holder.dateTextView.text = item.date
         holder.titleTextView.text = item.title
+        holder.contentTextView.text = item.explanation
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "NASA news ${item.title} clicked", Toast.LENGTH_SHORT).show()
-            dialogWindows.nasaItemNews(item)
+//            Toast.makeText(holder.itemView.context, "NASA news ${item.title} clicked", Toast.LENGTH_SHORT).show()
+//            dialogWindows.nasaItemNews(item)
+            if (holder.contentTextView.maxLines == 1) {
+                holder.contentTextView.maxLines = Int.MAX_VALUE
+            }
+            else{
+                holder.contentTextView.maxLines = 1
+            }
+
         }
     }
 
@@ -52,5 +60,6 @@ class rvAdapterNasaNews(private val newsList: List<ApodNewsData>): RecyclerView.
         val imageView = itemView.findViewById<ImageView>(R.id.image_apod)
         val dateTextView = itemView.findViewById<TextView>(R.id.text_date)
         val titleTextView = itemView.findViewById<TextView>(R.id.text_title)
+        val contentTextView = itemView.findViewById<TextView>(R.id.text_content)
     }
 }

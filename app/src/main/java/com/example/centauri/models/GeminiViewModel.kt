@@ -6,7 +6,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.centauri.R
-import com.example.centauri.templates.TestQuestion
+import com.example.centauri.TestQuestionData
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.GenerateContentResponse
 import kotlinx.serialization.json.Json
@@ -20,7 +20,7 @@ class GeminiViewModel: ViewModel() {
     val generativeModel = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = API_KEY)
     val chat = generativeModel.startChat()
 
-    suspend fun startNewTest(context: Context, Lessons: ArrayList<String> = arrayListOf()): TestQuestion {
+    suspend fun startNewTest(context: Context, Lessons: ArrayList<String> = arrayListOf()): TestQuestionData {
         clearChatHistory()
 
         var Lesson: String = """
@@ -120,16 +120,16 @@ Return only the JSON object — no extra text, no formatting, no explanations.
             val jsonString = match?.value ?: ""
 
             Log.i(TAG, "startNewTest jsonString : $jsonString")
-            json.decodeFromString<TestQuestion>(jsonString)
+            json.decodeFromString<TestQuestionData>(jsonString)
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion(context.getString(R.string.error),context.getString(R.string.sth_went_wrong),"","","","",1)
+            TestQuestionData(context.getString(R.string.error),context.getString(R.string.sth_went_wrong),"","","","",1)
         }
     }
 
 
-    suspend fun nextTest(context: Context, userAnswer: Int, isCorrect: Boolean): TestQuestion {
+    suspend fun nextTest(context: Context, userAnswer: Int, isCorrect: Boolean): TestQuestionData {
         var correct: String = "is not correct"
         if (isCorrect) correct = "is a correct"
         val prompt = "the student chose $userAnswer! which is $correct answer! Give a concise feedback on that and next question in the same Json format!"
@@ -143,11 +143,11 @@ Return only the JSON object — no extra text, no formatting, no explanations.
             val jsonString = match?.value ?: ""
 
             Log.i(TAG, "next test  jsonString : $jsonString")
-            json.decodeFromString<TestQuestion>(jsonString)
+            json.decodeFromString<TestQuestionData>(jsonString)
         } catch (e: Exception){
             Log.e(TAG,"Chat error:  ${e.message}")
 
-            TestQuestion(context.getString(R.string.error), context.getString(R.string.sth_went_wrong),"","","","",1)
+            TestQuestionData(context.getString(R.string.error), context.getString(R.string.sth_went_wrong),"","","","",1)
         }
     }
 

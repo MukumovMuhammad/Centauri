@@ -1,4 +1,4 @@
-package com.example.centauri.templates
+package com.example.centauri.activities.templates
 
 import android.annotation.SuppressLint
 import android.content.Context

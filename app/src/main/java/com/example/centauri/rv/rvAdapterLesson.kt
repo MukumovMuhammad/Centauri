@@ -12,11 +12,11 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.centauri.AuthActivity
+import com.example.centauri.activities.AuthActivity
 import com.example.centauri.DialogWindows
 import com.example.centauri.R
-import com.example.centauri.templates.LessonTemplateActivity
-import com.example.centauri.templates.TestActivity
+import com.example.centauri.activities.templates.LessonTemplateActivity
+import com.example.centauri.activities.templates.TestActivity
 import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
 import com.example.centauri.models.DbViewModel

@@ -1,4 +1,4 @@
-package com.example.centauri.templates
+package com.example.centauri.activities.templates
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.centauri.DialogWindows
 import com.example.centauri.R
+import com.example.centauri.TestQuestionData
 import com.example.centauri.databinding.ActivityTestBinding
 import com.example.centauri.models.GeminiViewModel
 import com.example.centauri.models.DbViewModel
@@ -29,7 +30,7 @@ import java.util.ArrayList
 class TestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTestBinding;
     private lateinit var geminiModel: GeminiViewModel;
-    private lateinit var theTest : TestQuestion;
+    private lateinit var theTest : TestQuestionData;
     private lateinit var userEmail: String
     private  var  test_number: Int = 1;
 
