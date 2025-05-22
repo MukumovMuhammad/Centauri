@@ -28,6 +28,9 @@
 
     <color name="blue_gradient_start">#1E88E5</color>
     <color name="blue_gradient_end">#1565C0</color>
+    
+    
+    <color name="transparent">#00FFFFFF</color>
 
 
 

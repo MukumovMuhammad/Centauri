@@ -3,11 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="8dp"
     android:clickable="true"
-    android:layout_margin="10dp"
+    android:layout_marginVertical="10dp"
     android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/cosmos_background">
+
 
     <!-- Image container with date overlay -->
     <FrameLayout
@@ -36,19 +43,21 @@
             android:textSize="12sp"
             android:padding="6dp"
             android:textStyle="bold" />
-        <!-- Title -->
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_gravity="bottom"
-            android:text="Cosmic Nebula Formation"
-            android:textSize="16sp"
-            android:textColor="@color/rv_text_color"
-            android:background="@drawable/shape_transparent_black"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:ellipsize="end" />
+
     </FrameLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_gravity="bottom"
+        android:text="Cosmic Nebula Formation"
+        android:textSize="16sp"
+        android:textColor="@color/rv_text_color"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end" />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -48,15 +48,7 @@ class NasaNewsFragment : Fragment() {
         binding.rvNasaNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNasaNews.adapter = newsAdapter
 
-        //        Video Settings
-        video = binding.videoBg
-        video.setVideoPath("android.resource://" + requireContext().packageName + "/" + R.raw.video_bg_ai_generated)
 
-        // Adjust size to fill the
-        video.setOnPreparedListener { mp ->
-            mp.isLooping = true
-        }
-        video.start()
 
         lifecycleScope.launch {
             var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News()
