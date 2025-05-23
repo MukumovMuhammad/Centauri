@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.centauri.rv.ApodNewsData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -38,19 +39,22 @@ class DbViewModel: ViewModel() {
             "email" to user.email,
             "rating" to user.rating,
             "password" to user.password,
-            "testCompleted" to user.testCompleted
+            "testCompleted" to user.testCompleted,
+            "apodNasaNews" to user.apodNasaNews
         )
 
         Log.i(TAG, "the user data ${user.email} , ${user.username}, will be added in collection named users")
         db.collection("users").document(user.email).set(userHash)
             .addOnSuccessListener {
                 Log.i(TAG, "User added successfully to Firestore!")
-
+                callback(true)
             }
             .addOnFailureListener { e ->
                 Log.e(TAG, "Error adding user to Firestore", e)
                 callback(false)
             }
+
+
 
     }
 
@@ -61,14 +65,10 @@ class DbViewModel: ViewModel() {
             .addOnSuccessListener { document ->
                 Log.i(TAG, "getUserData fun is Succeed")
                 if(document.exists()){
-                    Log.i(TAG, "document ${document.data} is exist")
-                    val testCompleted = document.get("testCompleted").toString().toInt()
-                    val username = document.getString("username").toString()
-                    val email = document.getString("email").toString()
-                    val rating = document.get("rating").toString().toInt()
-                    val password = document.getString("password").toString()
+                    Log.i(TAG, "The document exist: ${document.data} ")
 
-                    user = UserData(username, email, rating, password, testCompleted)
+
+                    user = document.toObject(UserData::class.java)!!
                     onResult(user)
                 }
             }
@@ -286,6 +286,29 @@ class DbViewModel: ViewModel() {
             return  listOf<ApodNewsData> (ApodNewsData("Unknown Error", "Something went wrong", "",""))
         }
     }
+
+    fun saveNasaNews(userEmail: String, apodNewsData: ApodNewsData, callback: (Boolean) -> Unit){
+        db.collection("users").document(userEmail).update("apodNasaNews", FieldValue.arrayUnion(apodNewsData))
+            .addOnSuccessListener {
+                callback(true)
+            }
+            .addOnFailureListener{
+                callback(false)
+            }
+    }
+
+    fun removeNasaNews(userEmail: String, apodNewsData: ApodNewsData, callback: (Boolean) -> Unit){
+        db.collection("users").document(userEmail).update("apodNasaNews", FieldValue.arrayRemove(apodNewsData))
+            .addOnSuccessListener {
+                callback(true)
+            }
+            .addOnFailureListener{
+                callback(false)
+
+            }
+    }
+
+
 }
 
 

@@ -22,26 +22,6 @@ class DialogWindows(var context: Context) {
     }
 
 
-    fun nasaItemNews(apodNewsData: ApodNewsData){
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_nasa_news, null)
-        val dialog = AlertDialog.Builder(context)
-            .setView(dialogView)
-            .create()
-        dialogView.findViewById<TextView>(R.id.nasa_dialog_title)!!.text = apodNewsData.title
-        dialogView.findViewById<TextView>(R.id.nasa_dialog_content)!!.text = apodNewsData.explanation
-
-        Glide.with(context)
-            .load(apodNewsData.url)
-            .thumbnail(Glide.with(context).load(R.drawable.loading_gif))
-            .error(R.drawable.ic_img_default)
-            .into(dialogView.findViewById<ImageView>(R.id.nasa_dialog_img)!!)
-
-        dialogView.findViewById<ImageButton>(R.id.nasa_dialog_close_btn)!!.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
 
     fun langChoosing(onItemClicked: (String) -> Unit){
 

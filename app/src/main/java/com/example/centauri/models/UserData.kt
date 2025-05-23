@@ -1,9 +1,14 @@
 package com.example.centauri.models
 
+import com.example.centauri.rv.ApodNewsData
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class UserData(
-    val username: String,
-    val email: String,
-    val rating: Int = 0,
-    val password: String,
-    var testCompleted: Int = 0
+    var username: String = "",
+    var email: String = "",
+    var rating: Int = 0,
+    var password: String = "",
+    var testCompleted: Int = 0,
+    var apodNasaNews: ArrayList<ApodNewsData> = arrayListOf()
 )
