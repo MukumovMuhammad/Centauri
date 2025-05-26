@@ -34,9 +34,7 @@ class NasaNewsFragment : Fragment() {
     }
 
     private lateinit var newsAdapter: rvAdapterNasaNews
-    private lateinit var video: VideoView
-    private val nasaNewsList = mutableListOf<ApodNewsData>()
-    private var userData: UserData = UserData(null.toString(), null.toString(), 0, null.toString(), 0)
+    private val nasaNewsList = ArrayList<ApodNewsData>()
 
 
     private lateinit var binding : FragmentNasaNewsBinding
@@ -55,7 +53,6 @@ class NasaNewsFragment : Fragment() {
         newsAdapter = rvAdapterNasaNews(nasaNewsList)
         binding.rvNasaNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNasaNews.adapter = newsAdapter
-        userData = getArguments()?.getSerializable("userData") as UserData
         chipBtnClicked(ChipBtnState.TODAY)
         getNews(ChipBtnState.TODAY)
 
@@ -135,14 +132,15 @@ class NasaNewsFragment : Fragment() {
 
             }
             ChipBtnState.SAVES -> {
-                DbViewModel().getUserData(userData.email){ user->
-                    userData = user
-                    nasaNewsList.clear()
-                    nasaNewsList.addAll(userData.apodNasaNews)
-                    newsAdapter.notifyDataSetChanged()
+                newsAdapter.showSavedOnce(context = requireContext(), {success->
                     binding.darkOverlay.visibility = View.GONE
                     binding.loading.visibility = View.GONE
-                }
+
+                    if (!success){
+                        nasaNewsList.clear()
+                        nasaNewsList.add(ApodNewsData("Something went wrong", "error","null", "null" ))
+                    }
+                })
             }
         }
     }
