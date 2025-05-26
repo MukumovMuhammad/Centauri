@@ -22,6 +22,10 @@
     <string name="navigation_drawer_open">открыть</string>
     <string name="navigation_drawer_close">закрыть</string>
 
+    <string name="all">🌌 Все</string>
+    <string name="today">📅 Сегодняшный</string>
+    <string name="saves">💾 Сахранёные</string>
+
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Гость</string>

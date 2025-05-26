@@ -232,7 +232,7 @@ class DbViewModel: ViewModel() {
         return isExist;
     }
 
-    suspend fun getNasaApod(): ApodNewsData {
+    suspend fun getNasaApod(): List<ApodNewsData> {
        var client = HttpClient(Android){
             install(ContentNegotiation) {
                 json()
@@ -241,18 +241,21 @@ class DbViewModel: ViewModel() {
         try {
             val response = client.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
             val json = Json { ignoreUnknownKeys = true }
-            return json.decodeFromString<ApodNewsData>(response.bodyAsText())
+            var NasaTodayNews : ApodNewsData = json.decodeFromString<ApodNewsData>(response.bodyAsText())
+            return arrayListOf(NasaTodayNews)
         } catch (e: IOException) {
             Log.e(TAG, "Network error: ${e.message}")
-            return ApodNewsData("Network Error", "Please check your internet connection", "","")
+            return  listOf<ApodNewsData>(
+                ApodNewsData("Network Error", "Please check your internet connection", "","")
+            )
         } catch (e: SerializationException) {
 
             Log.e(TAG, "Error parsing JSON: ${e.message}")
-            return ApodNewsData("Data Error", "Failed to parse data", "","")
+            return  listOf<ApodNewsData> (ApodNewsData( "Data Error", "Failed to parse data", "",""))
         } catch (e: Exception) {
 
             Log.e(TAG, "Error: ${e.message}")
-            return ApodNewsData("Unknown Error", "Something went wrong", "","")
+            return  listOf<ApodNewsData> (ApodNewsData("Unknown Error", "Something went wrong", "",""))
         }
     }
 

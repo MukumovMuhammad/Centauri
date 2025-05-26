@@ -45,7 +45,7 @@ class rvAdapterNasaNews(private val newsList: List<ApodNewsData>): RecyclerView.
                 Log.i(TAG, "rvAdapterNasaNews() nasanews value: ${nasanews}")
                 for (i in 0.. nasanews.size - 1) {
 //                    Log.i(TAG, "rvAdapterNasaNews() trying to add  value: ${nasanews[i].date}")
-                    savedNewsDatas.add(nasanews[i].date)
+                    savedNewsDatas.add(nasanews[i].date)    
                     notifyDataSetChanged()
                 }
 

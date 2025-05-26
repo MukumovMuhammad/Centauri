@@ -10,25 +10,24 @@
     <string name="learn">Омӯзиш</string>
     <string name="news">Ахбор</string>
     <string name="profile">Профиль</string>
-
     <string name="extra_mat">Маводҳои иловагӣ</string>
-
     <string name="part">Қисми</string>
     <string name="lesson">Дарси</string>
     <string name="test">Санҷиш</string>
-
     <string name="navigation_drawer_open">кушо</string>
-    <string name = "navigation_drawer_close">пӯшед</string>
+    <string name="navigation_drawer_close">пӯшед</string>
+    <string name="all">🌌 Хама</string>
+    <string name="today">📅 Имруза</string>
+    <string name="saves">💾 Сабт шуда</string>
 
     <!--    BASIC SETTING STRINGS    -->
-
     <string name="unauthenticated">Меҳмон</string>
     <string name="sign_in">Воридшавӣ</string>
     <string name="sign_up">Бақайд гирифтан</string>
     <string name="sign_out">Баромадан</string>
     <string name="language_settings">Танзимоти забон</string>
     <string name="lang_change_expl">Забони барномаро тағир диҳед</string>
-    <string name = "you_are_not_authenticated">Шумо тасдиқ карда нашудааст</string>
+    <string name="you_are_not_authenticated">Шумо тасдиқ карда нашудааст</string>
     <string name="have_to_create_account">Барои ин шумо бояд ҳисоб эҷод кунед!</string>
 
     <string name="password">рамз</string>
@@ -38,6 +37,8 @@
 
     <string name="username">номи истифодабаранда</string>
     <string name="confirm_password">Тасдиқи рамз</string>
+
+
 
     <!--//////////   MESSAGES     //////////-->
 

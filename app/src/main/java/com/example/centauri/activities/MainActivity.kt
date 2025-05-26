@@ -26,6 +26,7 @@ import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
 import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
 import com.example.centauri.models.DbViewModel
+import com.example.centauri.models.UserData
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  authViewModel: AuthViewModel
     private lateinit var  db: DbViewModel
     private lateinit var  dialogWindows: DialogWindows
+
+    private  var userData: UserData = UserData(null.toString(), null.toString(), 0, null.toString(), 0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -54,7 +57,9 @@ class MainActivity : AppCompatActivity() {
         if (authViewModel.authState.value == AuthState.Authenticated){
             db.getUserData(authViewModel.getCurrentUser()?.email.toString()){ user->
                 binding.navView.getHeaderView(0).findViewById<TextView>(R.id.username_text).text = user.username
+                userData = user
             }
+
         }
         else{
 
@@ -151,6 +156,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(frag: Fragment) {
         Log.i("MainActivityTAG", "replaceFragment() called with: frag = $frag")
+        var bundle: Bundle = Bundle()
+        bundle.putSerializable("userData", userData)
+        frag.arguments = bundle
         val FragManager = supportFragmentManager;
         val FragTransition = FragManager.beginTransaction()
         FragTransition.replace(R.id.fr_Container, frag)

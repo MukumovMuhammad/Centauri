@@ -17,6 +17,10 @@
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 
+    <string name="all">🌌 All</string>
+    <string name="today">📅 Today</string>
+    <string name="saves">💾 Saves</string>
+
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Guest</string>

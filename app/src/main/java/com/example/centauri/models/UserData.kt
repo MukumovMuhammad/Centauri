@@ -11,4 +11,4 @@ data class UserData(
     var password: String = "",
     var testCompleted: Int = 0,
     var apodNasaNews: ArrayList<ApodNewsData> = arrayListOf()
-)
+) : java.io.Serializable
