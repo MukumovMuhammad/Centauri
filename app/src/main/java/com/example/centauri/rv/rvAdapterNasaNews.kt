@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.centauri.DialogWindows
+import com.example.centauri.FullImageDialogFragment
 import com.example.centauri.R
 import com.example.centauri.activities.AuthActivity
 import com.example.centauri.activities.templates.TestActivity
@@ -32,6 +34,8 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
     private val authViewModel = AuthViewModel()
     private val dbViewModel = DbViewModel()
     private val isAuthenticated = authViewModel.authState.value == AuthState.Authenticated
+
+    private var isUserDataRefreshed : Boolean = false
     private var savedNewsDatas: ArrayList<String> = arrayListOf()
     private var userData: UserData = UserData(null.toString(), null.toString(), 0, null.toString(), 0)
     companion object{
@@ -42,6 +46,7 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
         Log.i(TAG, "rvAdapterLesson() called")
         if (isAuthenticated){
             refreshUserData(onSuccess = { success ->
+                isUserDataRefreshed = success
             if (success){
                 Log.i(TAG, "rvAdapterNasaNews() currentUser of db is not nul -> currentUser value: ${userData}")
             }
@@ -75,7 +80,7 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
         holder.titleTextView.text = item.title
         holder.contentTextView.text = item.explanation
 
-        if (savedNewsDatas.contains(item.date)){
+        if (isUserDataRefreshed && savedNewsDatas.contains(item.date)){
             holder.save_icon.setImageResource(R.drawable.ic_bookmark_filled)
         }
 
@@ -117,7 +122,7 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
             }
         }
 
-        holder.itemView.setOnClickListener {
+        holder.contentTextView.setOnClickListener {
 //            Toast.makeText(holder.itemView.context, "NASA news ${item.title} clicked", Toast.LENGTH_SHORT).show()
 //            dialogWindows.nasaItemNews(item)
             if (holder.contentTextView.maxLines == 1) {
@@ -127,6 +132,11 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
                 holder.contentTextView.maxLines = 1
             }
 
+        }
+
+        holder.imageView.setOnClickListener {
+            val imgDialog = FullImageDialogFragment(item.url)
+            imgDialog.show((holder.imageView.context as AppCompatActivity).supportFragmentManager, "FullImageDialog")
         }
     }
 
@@ -142,6 +152,7 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
         if (isAuthenticated){
             newsList.clear()
             refreshUserData(onSuccess = {success ->
+                isUserDataRefreshed = success
                 onSuccess(success)
                 if (success){
                     newsList.addAll(userData.apodNasaNews)

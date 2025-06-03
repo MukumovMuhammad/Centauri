@@ -1,6 +1,8 @@
 package com.example.centauri
 
+import android.app.Dialog
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -11,6 +13,7 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.centauri.rv.ApodNewsData
 
@@ -96,7 +99,7 @@ class DialogWindows(var context: Context) {
 
     }
 
-        fun showSpaceDialog(title: String, message: String, callback: DialogCallback, showCancel: Boolean = true) {
+    fun showSpaceDialog(title: String, message: String, callback: DialogCallback, showCancel: Boolean = true) {
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_space_alert, null)
 
             val dialog = AlertDialog.Builder(context)
@@ -120,5 +123,6 @@ class DialogWindows(var context: Context) {
 
             dialog.show()
         }
+
 
 }
