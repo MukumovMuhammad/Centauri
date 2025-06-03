@@ -89,10 +89,11 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
             if (isAuthenticated) {
                 if (savedNewsDatas.contains(item.date)) {
                     savedNewsDatas.remove(item.date)
-                    holder.save_icon.setImageResource(R.drawable.ic_bookmark)
+
 
                     dbViewModel.removeNasaNews(authViewModel.getCurrentUser()?.email.toString(), item){success ->
                         if (success){
+                            holder.save_icon.setImageResource(R.drawable.ic_bookmark)
                             Toast.makeText(holder.itemView.context, "News was removed", Toast.LENGTH_SHORT).show()
                         }
                         else{
@@ -103,9 +104,10 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
                 }
                 else{
                     savedNewsDatas.add(item.date)
-                    holder.save_icon.setImageResource(R.drawable.ic_bookmark_filled)
+
                     dbViewModel.saveNasaNews(authViewModel.getCurrentUser()?.email.toString(), item){success ->
                         if (success){
+                            holder.save_icon.setImageResource(R.drawable.ic_bookmark_filled)
                             Toast.makeText(holder.itemView.context, "News saved", Toast.LENGTH_SHORT).show()
                         }
                         else{
@@ -135,8 +137,7 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
         }
 
         holder.imageView.setOnClickListener {
-            val imgDialog = FullImageDialogFragment(item.url)
-            imgDialog.show((holder.imageView.context as AppCompatActivity).supportFragmentManager, "FullImageDialog")
+            dialogWindows.fullImageFragment(item.url)
         }
     }
 

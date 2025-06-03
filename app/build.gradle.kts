@@ -109,4 +109,9 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
 
 
+    // Pinch zoom for ImgView
+    implementation("com.github.MikeOrtiz:TouchImageView:3.7")
+
+
+
 }
