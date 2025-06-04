@@ -20,6 +20,10 @@
     <string name="today">📅 Имруза</string>
     <string name="saves">💾 Сабт шуда</string>
 
+    <string name="planets">Планеты</string>
+    <string name="scientists">Ученные</string>
+    <string name="about_centauri">Про Centauri</string>
+
     <!--    BASIC SETTING STRINGS    -->
     <string name="unauthenticated">Меҳмон</string>
     <string name="sign_in">Воридшавӣ</string>

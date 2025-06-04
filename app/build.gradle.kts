@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.recyclerview)
     val nav_version = "2.8.5"
 
     implementation("androidx.navigation:navigation-fragment:$nav_version")

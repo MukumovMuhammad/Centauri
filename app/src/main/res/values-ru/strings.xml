@@ -26,6 +26,10 @@
     <string name="today">📅 Сегодняшный</string>
     <string name="saves">💾 Сахранёные</string>
 
+    <string name="planets">Планеты</string>
+    <string name="scientists">Ученные</string>
+    <string name="about_centauri">Про Centauri</string>
+
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Гость</string>

@@ -22,15 +22,16 @@ class FullImageDialogFragment(private val imageUrl: String): DialogFragment(){
 
         val closeIcon = dialog.findViewById<ImageView>(R.id.ic_close)
 
-//        Glide.with(requireContext()).load(imageUrl).into(imageView)
 
+
+//        Loading url image into TouchView (through)
         Glide.with(requireContext())
             .load(imageUrl)
             .thumbnail(Glide.with(requireContext()).load(R.drawable.loading_gif))
             .error(R.drawable.ic_img_default)
             .into(object : CustomTarget<Drawable>() {
                 override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                    imageView.setImageDrawable(resource) // ✅ this works with TouchImageView
+                    imageView.setImageDrawable(resource)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {

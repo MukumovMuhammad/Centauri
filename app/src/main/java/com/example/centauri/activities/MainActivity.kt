@@ -22,6 +22,7 @@ import com.example.centauri.DialogWindows
 import com.example.centauri.R
 import com.example.centauri.databinding.ActivityMainBinding
 import com.example.centauri.fragments.main_nav_frag.NasaNewsFragment
+import com.example.centauri.fragments.main_nav_frag.OtherMaterials
 import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
 import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
@@ -104,6 +105,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.learn -> replaceFragment(StudyLessonsListFragment())
                 R.id.news -> replaceFragment(NasaNewsFragment())
+                R.id.extra -> replaceFragment(OtherMaterials())
                 else -> {
                 }
             }

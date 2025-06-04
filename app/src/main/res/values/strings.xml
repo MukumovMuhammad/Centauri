@@ -21,6 +21,10 @@
     <string name="today">📅 Today</string>
     <string name="saves">💾 Saves</string>
 
+    <string name="planets">Planets</string>
+    <string name="scientists">Scientists</string>
+    <string name="about_centauri">About Centauri</string>
+
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Guest</string>
