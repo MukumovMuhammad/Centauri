@@ -36,7 +36,7 @@
             android:id="@+id/radio_languages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="16dp">
 
             <!--       EN    -->
@@ -44,34 +44,36 @@
                 android:id="@+id/radio_en"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EN"
+                android:text="🇬🇧 EN"
                 android:textColor="@color/black"
                 android:buttonTint="@color/nebula_blue"
                 android:padding="10dp"
                 android:background="@drawable/shape_radio_button_style"
-                android:layout_marginEnd="16dp"/>
+                android:layout_margin="6dp"/>
 
             <!--      RU     -->
             <RadioButton
                 android:id="@+id/radio_ru"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RU"
+                android:text="🇷🇺 RU"
                 android:textColor="@color/black"
                 android:buttonTint="@color/nebula_blue"
                 android:padding="10dp"
-                android:background="@drawable/shape_radio_button_style"/>
+                android:background="@drawable/shape_radio_button_style"
+                android:layout_margin="6dp"/>
 
             <!--       TJ     -->
             <RadioButton
                 android:id="@+id/radio_tj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TJ"
+                android:text="🇹🇯 TJ"
                 android:textColor="@color/black"
                 android:buttonTint="@color/nebula_blue"
                 android:padding="10dp"
-                android:background="@drawable/shape_radio_button_style"/>
+                android:background="@drawable/shape_radio_button_style"
+                android:layout_margin="6dp"/>
         </RadioGroup>
 
 

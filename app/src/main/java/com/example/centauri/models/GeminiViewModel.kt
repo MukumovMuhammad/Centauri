@@ -7,9 +7,11 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.centauri.R
 import com.example.centauri.TestQuestionData
+import com.example.centauri.rv.ApodNewsData
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.GenerateContentResponse
 import kotlinx.serialization.json.Json
+
 
 
 class GeminiViewModel: ViewModel() {
@@ -70,6 +72,7 @@ class GeminiViewModel: ViewModel() {
                 Lesson += Lessons[i]
             }
         }
+
 
         var langToUse = LocaleHelper.getSavedLanguage(context)
         val startPromptExplonation = """
@@ -190,6 +193,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
     }
 
 
+
     fun clearChatHistory(){
         chat.history.clear()
     }
@@ -203,5 +207,36 @@ Return only the JSON object — no extra text, no formatting, no explanations.
             Log.e(TAG, "isGemeniWorking exception : ${e}")
             false
         }
+    }
+
+    suspend fun translateFromEglish(context: Context, apodNewsData: ApodNewsData): ApodNewsData{
+        var langToUse = LocaleHelper.getSavedLanguage(context)
+        if (langToUse == "en" || langToUse == null){
+            return apodNewsData;
+        }
+
+        val prompt = """This is the APOD Nasa News in English
+            |Here how it looks: 
+            |{ title: ${apodNewsData.title}, date: ${apodNewsData.date}, user: ${apodNewsData.url}, explanation: ${apodNewsData.explanation}}
+            |So given this ApodNewsData just translate the texts from English to $langToUse!
+            |And strongly follow the given structure of this ApodNewsData
+        """.trimMargin()
+
+
+        return try {
+            val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)
+            Log.i(TAG, "the response from translating : ${response.text}")
+            val json = Json{ignoreUnknownKeys = true}
+            val jsonRegex = "\\{[\\s\\S]*\\}".toRegex()
+            val match = jsonRegex.find(response.text.toString())
+            val jsonString = match?.value ?: ""
+
+            Log.i(TAG, "after filtering the Json: $jsonString")
+            json.decodeFromString<ApodNewsData>(jsonString)
+        } catch (e: Exception){
+            Log.e(TAG,"Translation:  ${e.message}")
+
+            ApodNewsData(context.getString(R.string.error),context.getString(R.string.sth_went_wrong),"","Could not translate the text")
+         }
     }
 }

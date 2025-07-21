@@ -102,7 +102,7 @@ class NasaNewsFragment : Fragment() {
         when(chipBtnState){
             ChipBtnState.ALL -> {
                 lifecycleScope.launch {
-                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News()
+                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News(requireContext())
                     withContext(Dispatchers.Main){
                         Log.i(TAG, "nasaApod got datas: datas =  $nasaApod")
                         binding.rvNasaNews.visibility = View.VISIBLE
@@ -117,7 +117,7 @@ class NasaNewsFragment : Fragment() {
             }
             ChipBtnState.TODAY -> {
                 lifecycleScope.launch {
-                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasaApod()
+                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasaApod(requireContext())
                     withContext(Dispatchers.Main){
                         Log.i(TAG, "nasaApod got datas: datas =  $nasaApod")
                         binding.rvNasaNews.visibility = View.VISIBLE

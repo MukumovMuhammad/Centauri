@@ -6,25 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.main_nav_frag.OtherMaterials">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!-- Video Background -->
-        <VideoView
-            android:id="@+id/video_bg"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@raw/video_bg_ai_generated"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/darkOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#74000000" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +36,8 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ic_solar_planets"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:background="@drawable/ic_some_planets" />
 
                 <TextView
@@ -55,7 +46,7 @@
                     android:text="@string/planets"
                     android:textAlignment="center"
                     android:textColor="@color/rv_text_color"
-                    android:textSize="32dp" />
+                    android:textSize="24dp" />
             </LinearLayout>
 
             <!--      Scientist-->
@@ -67,8 +58,8 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ic_scientist"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:background="@drawable/ic_scientist" />
 
                 <TextView
@@ -77,7 +68,7 @@
                     android:text="@string/scientists"
                     android:textAlignment="center"
                     android:textColor="@color/rv_text_color"
-                    android:textSize="32dp" />
+                    android:textSize="24dp" />
             </LinearLayout>
 
 
@@ -85,21 +76,23 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginRight="10dp">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ic_about_centauri"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/ic_logo_centauri" />
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/ic_logo_centauri"
+                    android:layout_gravity="center"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/about_centauri"
                     android:textAlignment="center"
                     android:textColor="@color/rv_text_color"
-                    android:textSize="32dp" />
+                    android:textSize="22dp" />
             </LinearLayout>
         </LinearLayout>
 

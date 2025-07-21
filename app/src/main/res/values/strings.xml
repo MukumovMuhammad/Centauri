@@ -46,6 +46,9 @@
 
     <!--//////////   MESSAGES     //////////-->
 
+    <string name="coming_soon">Coming soon</string>
+    <string name="coming_soon_text">This part of the application is still under development. We will inform you whenever there\'s an update.</string>
+
     <string name="start_test">Start a test? 🚀</string>
     <string name="take_test_description">Take a test based on what you’ve learned and check your understanding of the material.
     If you pass, the next section will be unlocked for you to study.</string>
@@ -64,6 +67,19 @@
     <string name="checking_ai">Checking is AI working…</string>
     <string name="ai_not_working">Sorry the AI assistance is not working Try later</string>
     <string name="checking_asnwer">Checking user\'s answer…</string>
+
+
+    <!--    About Centauri    -->
+    <string name="about_centauri_text">What is Centauri?
+    Centauri refers to the Alpha Centauri star system, which is the closest star system to
+        our Sun. It\'s not just one star, but a system of three stars that are our nearest cosmic neighbors.
+        Because of its proximity, Alpha Centauri is often the first place we think of when we talk about exploring
+        other star systems beyond our own.\n\
+    Why is this application named Centauri?\n\
+    We named our application Centauri because it represents discovery, connection, and new horizons.
+        Just like the Alpha Centauri system is a beacon for future exploration, our app aims to help you
+        We want this app to be your reliable guide and closest companion as you opening up new possibilities right at your fingertips.\n\
+    </string>
 
 
     <!--//////////    The lesson structure ////////// -->
