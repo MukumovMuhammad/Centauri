@@ -62,6 +62,7 @@
     <string name="lesson_closed">Этот урок закрыт</string>
     <string name="fail_to_get_data">Извините, но похоже, что не удалось получить ваши данные из базы данных. Пожалуйста, попробуйте позже</string>
     <string name="error">ОШИБКА</string>
+    <string name="failed_to_translate">Приносим извинения, но онлайн-перевод может испытывать проблемы сейчас. Поэтому новости доступны только на английском языке. Вы можете попробовать позже, чтобы увидеть их на других языках.</string>
 
     <string name="correct">Правильно!</string>
     <string name="incorrect">Неправильно!</string>

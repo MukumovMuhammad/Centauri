@@ -215,6 +215,8 @@ Return only the JSON object — no extra text, no formatting, no explanations.
             return apodNewsData;
         }
 
+        if (langToUse == "tj") langToUse = "Tajikistan"
+
         val prompt = """This is the APOD Nasa News in English
             |Here how it looks: 
             |{ title: ${apodNewsData.title}, date: ${apodNewsData.date}, user: ${apodNewsData.url}, explanation: ${apodNewsData.explanation}}
@@ -238,5 +240,5 @@ Return only the JSON object — no extra text, no formatting, no explanations.
 
             ApodNewsData(context.getString(R.string.error),context.getString(R.string.sth_went_wrong),"","Could not translate the text")
          }
-    }
+    } 
 }

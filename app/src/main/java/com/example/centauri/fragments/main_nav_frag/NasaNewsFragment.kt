@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.VideoView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.centauri.DialogWindows
 import com.example.centauri.R
 
 import com.example.centauri.databinding.FragmentNasaNewsBinding
 import com.example.centauri.rv.ApodNewsData
 import com.example.centauri.rv.rvAdapterNasaNews
 import com.example.centauri.models.DbViewModel
+import com.example.centauri.models.GeminiViewModel
 import com.example.centauri.models.UserData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,6 +37,8 @@ class NasaNewsFragment : Fragment() {
 
     private lateinit var newsAdapter: rvAdapterNasaNews
     private val nasaNewsList = ArrayList<ApodNewsData>()
+    private  var isGeminiWorking: Boolean = false
+    private lateinit var dialogWindows: DialogWindows
 
 
     private lateinit var binding : FragmentNasaNewsBinding
@@ -53,8 +57,30 @@ class NasaNewsFragment : Fragment() {
         newsAdapter = rvAdapterNasaNews(nasaNewsList)
         binding.rvNasaNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNasaNews.adapter = newsAdapter
-        chipBtnClicked(ChipBtnState.TODAY)
-        getNews(ChipBtnState.TODAY)
+        dialogWindows = DialogWindows(requireContext())
+
+
+        lifecycleScope.launch {
+            Log.i(TAG, "trying to see is Gemini working")
+            isGeminiWorking = GeminiViewModel().isGemeniWorking()
+            Log.i(TAG, "checked and Gemini working is $isGeminiWorking")
+
+            withContext(Dispatchers.Main){
+                if (isGeminiWorking){
+                    chipBtnClicked(ChipBtnState.TODAY)
+                    getNews(ChipBtnState.TODAY)
+                }
+                else{
+                    dialogWindows.showSpaceDialog(getString(R.string.error), getString(R.string.failed_to_translate),object :
+                        DialogWindows.DialogCallback {
+                        override fun onOkCLicked() {
+
+                        }
+                    }, showCancel = false)
+                }
+            }
+        }
+
 
 
 
@@ -102,7 +128,7 @@ class NasaNewsFragment : Fragment() {
         when(chipBtnState){
             ChipBtnState.ALL -> {
                 lifecycleScope.launch {
-                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News(requireContext())
+                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News(requireContext(), isGeminiWorking)
                     withContext(Dispatchers.Main){
                         Log.i(TAG, "nasaApod got datas: datas =  $nasaApod")
                         binding.rvNasaNews.visibility = View.VISIBLE
@@ -117,7 +143,7 @@ class NasaNewsFragment : Fragment() {
             }
             ChipBtnState.TODAY -> {
                 lifecycleScope.launch {
-                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasaApod(requireContext())
+                    var nasaApod : List<ApodNewsData> = DbViewModel().getNasaApod(requireContext(), isGeminiWorking)
                     withContext(Dispatchers.Main){
                         Log.i(TAG, "nasaApod got datas: datas =  $nasaApod")
                         binding.rvNasaNews.visibility = View.VISIBLE

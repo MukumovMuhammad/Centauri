@@ -56,6 +56,7 @@
     <string name="lesson_closed">This lesson is closed</string>
     <string name="fail_to_get_data">Sorry but it seems the app failed to get your data from Database Please try later</string>
     <string name="error">ERROR</string>
+    <string name="failed_to_translate">Apologies, but the online translation service may be experiencing issues at the moment. Therefore, the news is only available in English. Please try again later to view it in other languages.</string>
 
     <string name="correct">Correct!</string>
     <string name="incorrect">Incorrect!</string>

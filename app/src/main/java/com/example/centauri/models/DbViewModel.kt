@@ -232,7 +232,7 @@ class DbViewModel: ViewModel() {
         return isExist;
     }
 
-    suspend fun getNasaApod(context: Context): List<ApodNewsData> {
+    suspend fun getNasaApod(context: Context, isGeminiWork: Boolean): List<ApodNewsData> {
        var client = HttpClient(Android){
             install(ContentNegotiation) {
                 json()
@@ -242,8 +242,12 @@ class DbViewModel: ViewModel() {
             val response = client.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
             val json = Json { ignoreUnknownKeys = true }
             var NasaTodayNews : ApodNewsData = json.decodeFromString<ApodNewsData>(response.bodyAsText())
-            var translatedNasaNews = GeminiViewModel().translateFromEglish(context, NasaTodayNews)
-            return arrayListOf(translatedNasaNews)
+            if (isGeminiWork){
+                var translatedNasaNews = GeminiViewModel().translateFromEglish(context, NasaTodayNews)
+                return arrayListOf(translatedNasaNews)
+            }
+            return arrayListOf(NasaTodayNews)
+
         } catch (e: IOException) {
             Log.e(TAG, "Network error: ${e.message}")
             return  listOf<ApodNewsData>(
@@ -261,7 +265,7 @@ class DbViewModel: ViewModel() {
     }
 
 
-    suspend fun getNasa10News(context: Context): List<ApodNewsData> {
+    suspend fun getNasa10News(context: Context, isGeminiWork: Boolean): List<ApodNewsData> {
 
         Log.i(TAG, "getNasa10News fun is on work")
         var client = HttpClient(Android){
@@ -274,13 +278,22 @@ class DbViewModel: ViewModel() {
             val response = client.get("https://api.nasa.gov/planetary/apod?count=10&api_key=DEMO_KEY")
             val json = Json { ignoreUnknownKeys = true }
             Log.i(TAG,"got the response ${response.bodyAsText()}")
-            var nasaNews: List<ApodNewsData> = json.decodeFromString(response.bodyAsText())
+            var nasaNews: ArrayList<ApodNewsData> = json.decodeFromString(response.bodyAsText())
             var translatedNasaNewsList : ArrayList<ApodNewsData> = arrayListOf()
-            nasaNews.forEach { item ->
-                translatedNasaNewsList.add(GeminiViewModel().translateFromEglish(context, item))
+
+            if(isGeminiWork){
+                translatedNasaNewsList.clear()
+                nasaNews.forEach { item ->
+                    translatedNasaNewsList.add(GeminiViewModel().translateFromEglish(context, item))
+                }
+
+                return translatedNasaNewsList
             }
 
-            return translatedNasaNewsList
+            return nasaNews
+
+
+
         } catch (e: IOException) {
             Log.e(TAG, "Network error: ${e.message}")
             return  listOf<ApodNewsData>(
