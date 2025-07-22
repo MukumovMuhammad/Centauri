@@ -19,7 +19,7 @@ class GeminiViewModel: ViewModel() {
         const val API_KEY = ""
         const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
-    val generativeModel = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = API_KEY)
+    val generativeModel = GenerativeModel(modelName = "gemini-2.5-flash-lite", apiKey = API_KEY)
     val chat = generativeModel.startChat()
 
     suspend fun startNewTest(context: Context, Lessons: ArrayList<String> = arrayListOf()): TestQuestionData {

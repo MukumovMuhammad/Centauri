@@ -110,6 +110,7 @@ class TestActivity : AppCompatActivity() {
                            }
                            else{
                                setUpTest(testState.READY)
+                               binding.loading.loop(false)
                            }
 
                        }
@@ -159,10 +160,22 @@ class TestActivity : AppCompatActivity() {
                 binding.loadingText.text = getString(R.string.checking_ai)
             }
             testState.USERANSWERED -> {
+                // this was put here so as the correct and incorrect anim could start from the beggining when they are sat
+                binding.loading.setAnimation(R.raw.loading_turquoise)
+                if (wasLastAnswerCorrect){
+                    binding.loading.setAnimation(R.raw.correct_anim)
+                    binding.loadingText.text = getString(R.string.correct)
+                    correctAnswer()
+                }
+                else{
+                    binding.loading.setAnimation(R.raw.incorrect_anim)
+                    binding.loadingText.text = getString(R.string.incorrect)
+                    wrongAnswer()
+                }
                 binding.loading.visibility = View.VISIBLE
                 binding.loadingText.visibility = View.VISIBLE
                 binding.darkOverlay.visibility = View.VISIBLE
-                binding.loadingText.text = getString(R.string.checking_asnwer)
+
 
                 binding.progressBar.progress = currentTest - 1
                 binding.textViewProgress.text = (currentTest - 1).toString() + "/$TEST_NUMBER"
@@ -172,7 +185,6 @@ class TestActivity : AppCompatActivity() {
 
             }
             testState.AIFEEDBACK ->{
-                binding.loading.setAnimation(R.raw.loading_turquoise)
                 binding.darkOverlay.visibility = View.VISIBLE
                 dialog.testResult(wasLastAnswerCorrect,theTest.feedback, object : DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
@@ -246,15 +258,7 @@ class TestActivity : AppCompatActivity() {
         currentTest++;
 
         circleImg()
-        binding.loading.loop(false)
-        if (wasLastAnswerCorrect){
-            binding.loading.setAnimation(R.raw.correct_anim)
-            correctAnswer()
-        }
-        else{
-            binding.loading.setAnimation(R.raw.incorrect_anim)
-            wrongAnswer()
-        }
+
 
         setUpTest(testState.USERANSWERED)
 
