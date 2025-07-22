@@ -257,8 +257,9 @@ class TestActivity : AppCompatActivity() {
         lifecycleScope.launch {
 //            setUpTest(testState.LOADING)
             theTest = geminiModel.nextTest(this@TestActivity, userAnswer, wasLastAnswerCorrect)
+            Log.i(TAG, "Got the next question and feedback ${theTest}")
             withContext(Dispatchers.Main){
-                if (theTest.feedback == "ERROR"){
+                if (theTest.feedback == getString(R.string.error)){
                     setUpTest(testState.ERROR)
                 }
                 else{
