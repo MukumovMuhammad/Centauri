@@ -269,21 +269,38 @@
         android:background="#BF000000"
         android:visibility="gone"/>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/test_correctness_anim"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/correct_anim" />
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"
-        app:lottie_rawRes="@raw/loading_turquoise"
+
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        android:layout_marginBottom="5dp"
-        android:visibility="gone"/>
+        app:lottie_rawRes="@raw/loading_turquoise" />
+
+
+
 
     <TextView
         android:id="@+id/loading_text"

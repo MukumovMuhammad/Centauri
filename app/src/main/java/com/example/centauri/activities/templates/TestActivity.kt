@@ -172,6 +172,7 @@ class TestActivity : AppCompatActivity() {
 
             }
             testState.AIFEEDBACK ->{
+                binding.loading.setAnimation(R.raw.loading_turquoise)
                 binding.darkOverlay.visibility = View.VISIBLE
                 dialog.testResult(wasLastAnswerCorrect,theTest.feedback, object : DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
@@ -245,10 +246,13 @@ class TestActivity : AppCompatActivity() {
         currentTest++;
 
         circleImg()
+        binding.loading.loop(false)
         if (wasLastAnswerCorrect){
+            binding.loading.setAnimation(R.raw.correct_anim)
             correctAnswer()
         }
         else{
+            binding.loading.setAnimation(R.raw.incorrect_anim)
             wrongAnswer()
         }
 
