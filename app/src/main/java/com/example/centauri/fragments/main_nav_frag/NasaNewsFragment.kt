@@ -59,27 +59,30 @@ class NasaNewsFragment : Fragment() {
         binding.rvNasaNews.adapter = newsAdapter
         dialogWindows = DialogWindows(requireContext())
 
+        newsAdapter.refreshUserData { success->
+            lifecycleScope.launch {
+                Log.i(TAG, "trying to see is Gemini working")
+                isGeminiWorking = GeminiViewModel().isGemeniWorking()
+                Log.i(TAG, "checked and Gemini working is $isGeminiWorking")
 
-        lifecycleScope.launch {
-            Log.i(TAG, "trying to see is Gemini working")
-            isGeminiWorking = GeminiViewModel().isGemeniWorking()
-            Log.i(TAG, "checked and Gemini working is $isGeminiWorking")
+                withContext(Dispatchers.Main){
+                    if (isGeminiWorking){
+                        chipBtnClicked(ChipBtnState.TODAY)
+                        getNews(ChipBtnState.TODAY)
+                    }
+                    else{
+                        dialogWindows.showSpaceDialog(getString(R.string.error), getString(R.string.failed_to_translate),object :
+                            DialogWindows.DialogCallback {
+                            override fun onOkCLicked() {
 
-            withContext(Dispatchers.Main){
-                if (isGeminiWorking){
-                    chipBtnClicked(ChipBtnState.TODAY)
-                    getNews(ChipBtnState.TODAY)
-                }
-                else{
-                    dialogWindows.showSpaceDialog(getString(R.string.error), getString(R.string.failed_to_translate),object :
-                        DialogWindows.DialogCallback {
-                        override fun onOkCLicked() {
-
-                        }
-                    }, showCancel = false)
+                            }
+                        }, showCancel = false)
+                    }
                 }
             }
         }
+
+
 
 
 
@@ -127,6 +130,7 @@ class NasaNewsFragment : Fragment() {
         binding.loading.visibility = View.VISIBLE
         when(chipBtnState){
             ChipBtnState.ALL -> {
+
                 lifecycleScope.launch {
                     var nasaApod : List<ApodNewsData> = DbViewModel().getNasa10News(requireContext(), isGeminiWorking)
                     withContext(Dispatchers.Main){

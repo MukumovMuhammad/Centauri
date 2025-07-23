@@ -93,7 +93,7 @@ class TestActivity : AppCompatActivity() {
         setUpTest(testState.ADDLOADING)
         InterstitialAd.load(
             this,
-            "ca-app-pub-3940256099942544/1033173712",
+            "ca-app-pub-3136316188176835/3654625155",
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {

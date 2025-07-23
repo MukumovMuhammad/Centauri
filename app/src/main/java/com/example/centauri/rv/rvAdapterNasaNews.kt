@@ -42,17 +42,17 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
         const val TAG = "rvNasaNewsAdapter_TAG"
     }
 
-    init {
-        Log.i(TAG, "rvAdapterLesson() called")
-        if (isAuthenticated){
-            refreshUserData(onSuccess = { success ->
-                isUserDataRefreshed = success
-            if (success){
-                Log.i(TAG, "rvAdapterNasaNews() currentUser of db is not nul -> currentUser value: ${userData}")
-            }
-            })
-        }
-    }
+//    init {
+//        Log.i(TAG, "rvAdapterLesson() called")
+//        if (isAuthenticated){
+//            refreshUserData(onSuccess = { success ->
+//                isUserDataRefreshed = success
+//            if (success){
+//                Log.i(TAG, "rvAdapterNasaNews() currentUser of db is not nul -> currentUser value: ${userData}")
+//            }
+//            })
+//        }
+//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         dialogWindows = DialogWindows(parent.context)
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -80,8 +80,12 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
         holder.titleTextView.text = item.title
         holder.contentTextView.text = item.explanation
 
-        if (isUserDataRefreshed && savedNewsDatas.contains(item.date)){
+        if (savedNewsDatas.contains(item.date)){
+            Log.i(TAG, "the item with the date ${item.date} is in savedNewsDatas")
             holder.save_icon.setImageResource(R.drawable.ic_bookmark_filled)
+        }else{
+            Log.i(TAG, "the item with the date ${item.date} is NOT in savedNewsDatas")
+            holder.save_icon.setImageResource(R.drawable.ic_bookmark)
         }
 
 

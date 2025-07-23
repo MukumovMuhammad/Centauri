@@ -219,10 +219,11 @@ Return only the JSON object — no extra text, no formatting, no explanations.
 
         val prompt = """This is the APOD Nasa News in English
             |Here how it looks: 
-            |{ title: ${apodNewsData.title}, date: ${apodNewsData.date}, user: ${apodNewsData.url}, explanation: ${apodNewsData.explanation}}
+            |{ "title": "${apodNewsData.title}", "date": "${apodNewsData.date}", "user": "${apodNewsData.url}", "explanation": "${apodNewsData.explanation}"}
             |So given this ApodNewsData just translate the texts from English to $langToUse!
             |And strongly follow the given structure of this ApodNewsData
         """.trimMargin()
+
 
 
         return try {
