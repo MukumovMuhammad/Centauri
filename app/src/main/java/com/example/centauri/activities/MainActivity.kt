@@ -28,6 +28,10 @@ import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
 import com.example.centauri.models.DbViewModel
 import com.example.centauri.models.UserData
+import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -42,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+
+
         authViewModel = AuthViewModel()
         db = DbViewModel()
         dialogWindows = DialogWindows(this)
@@ -53,6 +59,10 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            // Initialize the Google Mobile Ads SDK on a background thread.
+            MobileAds.initialize(this@MainActivity) {}
         }
 
         if (authViewModel.authState.value == AuthState.Authenticated){

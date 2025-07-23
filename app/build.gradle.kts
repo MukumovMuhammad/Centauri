@@ -115,5 +115,9 @@ dependencies {
     implementation("com.github.MikeOrtiz:TouchImageView:3.7")
 
 
+//    Google adMob
+    implementation("com.google.android.gms:play-services-ads:24.4.0")
+
+
 
 }

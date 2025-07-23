@@ -21,7 +21,7 @@ import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
 import com.example.centauri.models.DbViewModel
 
-class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>) : RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
+class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>, private val onTestClicked:(Intent) -> Unit): RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
     private lateinit var dialogWindows: DialogWindows
     private val authViewModel = AuthViewModel()
     private val dbViewModel = DbViewModel()
@@ -30,7 +30,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>) : Recyc
     companion object{
         const val TAG = "rvAdapterLesson_TAG"
     }
-    
+
     init {
         Log.i(TAG, "rvAdapterLesson() called")
 
@@ -131,14 +131,14 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>) : Recyc
                         override fun onOkCLicked() {
                             var intent: Intent
                             if (isAuthenticated){
-
                                 dbViewModel.getUserData(authViewModel.getCurrentUser()?.email.toString()) { userData ->
                                     if (userData.username != null) {
                                         intent = Intent(holder.itemView.context, TestActivity::class.java)
                                         intent.putExtra("lesson_number", item.number)
                                         intent.putExtra("partsNumber", item.numberOfParts)
                                         intent.putExtra("userEmail", AuthViewModel().getCurrentUser()!!.email.toString())
-                                        startActivity(holder.itemView.context, intent, null)
+                                        onTestClicked.invoke(intent)
+//                                        startActivity(holder.itemView.context, intent, null)
                                     } else {
                                         Log.i(
                                             TAG,
