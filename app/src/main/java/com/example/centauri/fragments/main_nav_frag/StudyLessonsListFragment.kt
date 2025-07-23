@@ -1,6 +1,6 @@
 package com.example.centauri.fragments.main_nav_frag
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,23 +9,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.centauri.R
+
 import com.example.centauri.databinding.FragmentStudyLessonsListBinding
 import com.example.centauri.rv.rvItemType
 import com.example.centauri.rv.rvAdapterLesson
 import com.example.centauri.rv.rvItemsLessonsData
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.OnUserEarnedRewardListener
-import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+
 
 class StudyLessonsListFragment : Fragment() {
     private lateinit var binding: FragmentStudyLessonsListBinding
     private lateinit var lessonAdapter: rvAdapterLesson
     private lateinit var lessonList: Array<rvItemsLessonsData>
-    private  var rewardedAd: RewardedAd? = null
     private var testPast: Int = 0;
     companion object{
         const val TAG = "StudyLessonsListFragment_TAG"
@@ -44,7 +38,7 @@ class StudyLessonsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         updatingLessonList()
         Log.i(TAG, "assigning values to the adapter")
-        lessonAdapter = rvAdapterLesson(lessonList, ::OnTestClicked)
+        lessonAdapter = rvAdapterLesson(lessonList)
         binding.rvLessons.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLessons.adapter = lessonAdapter
 
@@ -53,70 +47,9 @@ class StudyLessonsListFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
-        RewardedAd.load(
-            requireContext(),
-            "ca-app-pub-3940256099942544/5224354917",
-            AdRequest.Builder().build(),
-            object : RewardedAdLoadCallback() {
-                override fun onAdLoaded(ad: RewardedAd) {
-                    Log.d(TAG, "Ad was loaded.")
-                    rewardedAd = ad
-                }
 
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d(TAG, adError.message)
-                    rewardedAd = null
-                }
-            },
-        )
-
-        rewardedAd?.fullScreenContentCallback =
-            object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    // Called when fullscreen content is dismissed.
-                    Log.d(TAG, "Ad was dismissed.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    rewardedAd = null
-                }
-
-                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                    // Called when fullscreen content failed to show.
-                    Log.d(TAG, "Ad failed to show.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    rewardedAd = null
-                }
-
-                override fun onAdShowedFullScreenContent() {
-                    // Called when fullscreen content is shown.
-                    Log.d(TAG, "Ad showed fullscreen content.")
-                }
-
-                override fun onAdImpression() {
-                    // Called when an impression is recorded for an ad.
-                    Log.d(TAG, "Ad recorded an impression.")
-                }
-
-                override fun onAdClicked() {
-                    // Called when an ad is clicked.
-                    Log.d(TAG, "Ad was clicked.")
-                }
-            }
     }
 
-    fun OnTestClicked(intent: Intent){
-        rewardedAd?.show(
-            requireActivity(),
-            OnUserEarnedRewardListener { rewardItem ->
-                Log.d(TAG, "User earned the reward.")
-                // Handle the reward.
-                val rewardAmount = rewardItem.amount
-                val rewardType = rewardItem.type
-                startActivity(intent)
-            },
-        )
-    }
 
     fun updatingLessonList(doUpdate: Boolean = false){
         Log.i(TAG, "assigning values to the list")

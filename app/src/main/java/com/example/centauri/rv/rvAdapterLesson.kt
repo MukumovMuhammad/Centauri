@@ -21,7 +21,7 @@ import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
 import com.example.centauri.models.DbViewModel
 
-class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>, private val onTestClicked:(Intent) -> Unit): RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
+class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>): RecyclerView.Adapter<rvAdapterLesson.ViewHolder>() {
     private lateinit var dialogWindows: DialogWindows
     private val authViewModel = AuthViewModel()
     private val dbViewModel = DbViewModel()
@@ -137,8 +137,8 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>, private
                                         intent.putExtra("lesson_number", item.number)
                                         intent.putExtra("partsNumber", item.numberOfParts)
                                         intent.putExtra("userEmail", AuthViewModel().getCurrentUser()!!.email.toString())
-                                        onTestClicked.invoke(intent)
-//                                        startActivity(holder.itemView.context, intent, null)
+
+                                        startActivity(holder.itemView.context, intent, null)
                                     } else {
                                         Log.i(
                                             TAG,

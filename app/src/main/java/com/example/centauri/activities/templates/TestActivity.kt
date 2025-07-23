@@ -19,8 +19,16 @@ import com.example.centauri.DialogWindows
 import com.example.centauri.R
 import com.example.centauri.TestQuestionData
 import com.example.centauri.databinding.ActivityTestBinding
+import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment
+import com.example.centauri.fragments.main_nav_frag.StudyLessonsListFragment.Companion
 import com.example.centauri.models.GeminiViewModel
 import com.example.centauri.models.DbViewModel
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -40,6 +48,7 @@ class TestActivity : AppCompatActivity() {
     private var correctAnswered: Int = 0
     private var dialog: DialogWindows = DialogWindows(this)
     private var dbViewModel: DbViewModel = DbViewModel()
+    private var interstitialAd: InterstitialAd? = null
 
 
     companion object {
@@ -48,6 +57,7 @@ class TestActivity : AppCompatActivity() {
     }
     enum class testState{
         LOADING,
+        ADDLOADING,
         CHECKING,
         READY,
         USERANSWERED,
@@ -68,6 +78,8 @@ class TestActivity : AppCompatActivity() {
             insets
         }
 
+        binding.loadingText.text = getString(R.string.loading_add)
+
 
 //        Setting up the progressbar
         binding.progressBar.max = TEST_NUMBER
@@ -78,47 +90,72 @@ class TestActivity : AppCompatActivity() {
 
         test_number = intent.getIntExtra("lesson_number", 1)
         userEmail = intent.getStringExtra("userEmail").toString()
+        setUpTest(testState.ADDLOADING)
+        InterstitialAd.load(
+            this,
+            "ca-app-pub-3940256099942544/1033173712",
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    Log.d(StudyLessonsListFragment.TAG, "Ad was loaded.")
+                    interstitialAd = ad
+                    interstitialAd?.show(this@TestActivity)
+                    lifecycleScope.launch {
+                        setUpTest(testState.CHECKING)
+                        var isWorking = geminiModel.isGemeniWorking()
+                        withContext(Dispatchers.Main){
+                            if (!isWorking){
+                                setUpTest(testState.ERROR)
+                            }else{
+                                setUpTest(testState.LOADING)
+                                delay(500)
+                                var lessonsRange: ArrayList<Int> = arrayListOf()
+                                when (test_number){
+                                    2 -> lessonsRange = arrayListOf(5,6,7)
+                                    3 -> lessonsRange = arrayListOf(8,9,10,11)
+                                    4 -> lessonsRange = arrayListOf(12,13,14,15)
+                                }
+                                dbViewModel.getLessonTitlesAndContext(lessonsRange){text ->
+                                    lifecycleScope.launch {
+                                        theTest = geminiModel.startNewTest(this@TestActivity, text)
+
+                                        Log.i(TAG, "theTest is $theTest")
+
+                                        if (theTest.feedback == "ERROR"){
+                                            setUpTest(testState.ERROR)
+                                        }
+                                        else{
+                                            setUpTest(testState.READY)
+                                            binding.loading.loop(false)
+                                        }
+
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(StudyLessonsListFragment.TAG, adError.message)
+                    interstitialAd = null
+                    dialog.testResult(false,getString(R.string.add_not_working), object: DialogWindows.DialogCallback{
+                        override fun onOkCLicked() {
+                            finish()
+                        }
+                    }, getString(R.string.error))
+
+                }
+            },
+        )
 
 
         hide_statusbar()
 
         resetBtns()
 
-        lifecycleScope.launch {
-            setUpTest(testState.CHECKING)
-            var isWorking = geminiModel.isGemeniWorking()
-            withContext(Dispatchers.Main){
-                if (!isWorking){
-                    setUpTest(testState.ERROR)
-                }else{
-                    setUpTest(testState.LOADING)
-                    delay(500)
-                    var lessonsRange: ArrayList<Int> = arrayListOf()
-                    when (test_number){
-                        2 -> lessonsRange = arrayListOf(5,6,7)
-                        3 -> lessonsRange = arrayListOf(8,9,10,11)
-                        4 -> lessonsRange = arrayListOf(12,13,14,15)
-                    }
-                    dbViewModel.getLessonTitlesAndContext(lessonsRange){text ->
-                       lifecycleScope.launch {
-                           theTest = geminiModel.startNewTest(this@TestActivity, text)
 
-                           Log.i(TAG, "theTest is $theTest")
-
-                           if (theTest.feedback == "ERROR"){
-                               setUpTest(testState.ERROR)
-                           }
-                           else{
-                               setUpTest(testState.READY)
-                               binding.loading.loop(false)
-                           }
-
-                       }
-                    }
-
-                }
-            }
-            }
 
 //////// Btn option on CLick listeners! ////////
         binding.optionA.setOnClickListener {checkTest(0)}
@@ -130,6 +167,17 @@ class TestActivity : AppCompatActivity() {
 
     private fun setUpTest(state: testState){
         when (state){
+
+            testState.ADDLOADING ->{
+                binding.loading.visibility = View.VISIBLE
+                binding.loadingText.visibility = View.VISIBLE
+                binding.darkOverlay.visibility = View.VISIBLE
+                binding.loadingText.text = getString(R.string.loading_add)
+                binding.textOptionA.text = "A"
+                binding.textOptionB.text = "B"
+                binding.textOptionC.text = "C"
+                binding.textOptionD.text = "D"
+            }
             testState.READY -> {
                 binding.loading.visibility = View.GONE
                 binding.loadingText.visibility = View.GONE
@@ -347,4 +395,7 @@ class TestActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(LocaleHelper.setLocale(newBase!!, LocaleHelper.getSavedLanguage(newBase)))
     }
+
+
+
 }

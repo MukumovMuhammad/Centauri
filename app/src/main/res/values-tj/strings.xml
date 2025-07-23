@@ -79,9 +79,11 @@
 
 
     <!-- Lesson Messages -->
-    <string name="loading_question">Савол бор карда мешавад…</string>
+    <string name="loading_question">Савол бор карда мешавад...</string>
+    <string name="loading_add">реклама бор карда мешавад...</string>
     <string name = "checking_ai">Тафтиши амалиёти AI…</string>
     <string name="ai_not_working">Бубахшед, ёрдамчии AI дар айни замон кор намекунад. Лутфан, баъдтар бори дигар кӯшиш кунед</string>
+    <string name="add_not_working">Бубахшед, рекламаро кабул карда натавонистем. Лутфан, баъдтар бори дигар кӯшиш кунед</string>
     <string name="checking_asnwer">Тафтиши ҷавоби истифодабаранда…</string>
 
 

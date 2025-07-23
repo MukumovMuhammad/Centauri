@@ -71,8 +71,10 @@
 
     <!-- Lesson Messages -->
     <string name="loading_question">Загрузка вопроса...</string>
+    <string name="loading_add">Загрузка рекламы...</string>
     <string name="checking_ai">Проверка работы ИИ...</string>
     <string name="ai_not_working">Извините, ИИ-помощник сейчас не работает. Попробуйте позже</string>
+    <string name="add_not_working">Извините, не получилось загрузить рекламу. Попробуйте позже</string>
     <string name="checking_asnwer">Проверка ответа пользователя…</string>
 
 
