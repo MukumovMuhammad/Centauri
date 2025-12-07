@@ -50,9 +50,9 @@ class AuthActivity : AppCompatActivity() {
         // Obtain the WindowInsetsController from the window
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
         // Hide both the status bar and the navigation bar
-        windowInsetsController?.hide(WindowInsetsCompat.Type.systemBars())
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         // Set the behavior to allow the bars to reappear with a swipe
-        windowInsetsController?.systemBarsBehavior =
+        windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
 

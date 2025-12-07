@@ -45,7 +45,7 @@ class NasaNewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentNasaNewsBinding.inflate(inflater, container, false)
         return binding.root
@@ -75,7 +75,12 @@ class NasaNewsFragment : Fragment() {
                         dialogWindows.showSpaceDialog(getString(R.string.error), getString(R.string.failed_to_translate),object :
                             DialogWindows.DialogCallback {
                             override fun onOkCLicked() {
+                                chipBtnClicked(ChipBtnState.TODAY)
+                                getNews(ChipBtnState.TODAY)
+                            }
 
+                            override fun onCancelClicked() {
+//
                             }
                         }, showCancel = false)
                     }

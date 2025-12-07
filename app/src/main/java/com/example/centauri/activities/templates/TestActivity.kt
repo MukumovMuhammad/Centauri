@@ -215,7 +215,7 @@ class TestActivity : AppCompatActivity() {
                 binding.loadingText.text = getString(R.string.checking_ai)
             }
             testState.USERANSWERED -> {
-                // this was put here so as the correct and incorrect anim could start from the beggining when they are sat
+                // this was put here so as the correct and incorrect anim could start from the begining when they are sat
                 binding.loading.setAnimation(R.raw.loading_turquoise)
                 if (wasLastAnswerCorrect){
                     binding.loading.setAnimation(R.raw.correct_anim)
@@ -419,9 +419,9 @@ class TestActivity : AppCompatActivity() {
         // Obtain the WindowInsetsController from the window
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
         // Hide both the status bar and the navigation bar
-        windowInsetsController?.hide(WindowInsetsCompat.Type.systemBars())
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         // Set the behavior to allow the bars to reappear with a swipe
-        windowInsetsController?.systemBarsBehavior =
+        windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
 

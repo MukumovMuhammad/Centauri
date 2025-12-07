@@ -124,7 +124,13 @@ class DialogWindows(var context: Context) {
                 dialog.dismiss()
             }
 
-            dialog.show()
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.setCancelable(false) //also prevent the back button from closing the dialog
+
+
+        dialog.show()
+
+
         }
 
 
