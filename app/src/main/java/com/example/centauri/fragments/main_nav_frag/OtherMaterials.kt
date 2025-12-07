@@ -25,7 +25,7 @@ class OtherMaterials : Fragment() {
 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentOtherMaterialsBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,6 +42,10 @@ class OtherMaterials : Fragment() {
                 override fun onOkCLicked() {
 
                 }
+
+                override fun onCancelClicked() {
+//
+                }
             }, showCancel = false)
         }
 
@@ -51,6 +55,10 @@ class OtherMaterials : Fragment() {
                 override fun onOkCLicked() {
 
                 }
+
+                override fun onCancelClicked() {
+
+                }
             },showCancel = false)
         }
 
@@ -58,6 +66,10 @@ class OtherMaterials : Fragment() {
             dialogWindows.showSpaceDialog(getString(R.string.coming_soon), getString(R.string.coming_soon_text),object :
                 DialogWindows.DialogCallback {
                 override fun onOkCLicked() {
+
+                }
+
+                override fun onCancelClicked() {
 
                 }
             },showCancel = false)

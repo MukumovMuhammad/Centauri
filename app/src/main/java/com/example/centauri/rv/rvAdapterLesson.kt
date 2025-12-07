@@ -154,6 +154,10 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>): Recycl
                                                     return
                                                 }
 
+                                                override fun onCancelClicked() {
+//                                                    Later!!!!!!! Maybe :)
+                                                }
+
                                             },
                                             getString(holder.itemView.context, R.string.error)
                                         )
@@ -165,6 +169,10 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>): Recycl
                                 intent = Intent(holder.itemView.context, AuthActivity::class.java)
                                 startActivity(holder.itemView.context, intent, null)
                             }
+                        }
+
+                        override fun onCancelClicked() {
+//                           Later!!!
                         }
                     })
 

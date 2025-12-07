@@ -175,16 +175,13 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-
     override fun onBackPressed() {
         when (binding.bottomNavigationView.selectedItemId){
             R.id.learn ->{
                 if (isBackPressedOnce) {
                     Log.e("ObBackPressed_TAG", "The user pressed Back now we exit! ")
                     super.onBackPressed()
-                    // Optional: finish() is usually handled by super.onBackPressed() in this context
-                    return // Exit early
+                    return
                 }
 
 
@@ -204,7 +201,7 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(frag: Fragment) {
         Log.i("MainActivityTAG", "replaceFragment() called with: frag = $frag")
         var bundle: Bundle = Bundle()
-        bundle.putSerializable("userData", userData)
+        bundle.putParcelable("userData", userData)
         frag.arguments = bundle
         val FragManager = supportFragmentManager;
         val FragTransition = FragManager.beginTransaction()

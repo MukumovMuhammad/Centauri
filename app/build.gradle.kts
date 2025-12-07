@@ -4,7 +4,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.serialization)
+
+    alias(libs.plugins.kotlin.parcelize)
+
 }
 
 android {

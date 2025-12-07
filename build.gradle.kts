@@ -3,7 +3,10 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.google.gms.google.services) apply false
-    kotlin("plugin.serialization") version "2.0.20"
+
+
+    alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
 
 
 }
