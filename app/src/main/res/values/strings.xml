@@ -28,6 +28,7 @@
     <string name="closeTestTitle">The test will be cancelled!</string>
     <string name="closeTestWarning">Are you sure you want to close the test? Your progress will not be saved!</string>
 
+    <string name="PressToExit">Press back again to exit</string>
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Guest</string>

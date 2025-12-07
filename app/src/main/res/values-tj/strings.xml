@@ -26,7 +26,7 @@
 
     <string name="closeTestTitle">Санҷиш бекор карда мешавад!</string>
     <string name="closeTestWarning">Шумо мутмаин ҳастед, ки мехоҳед санҷишро пӯшед? Пешрафти шумо нигоҳ дошта намешавад!</string>
-
+    <string name="PressToExit">Барои баромад кардан, тугмаи "бозгашт"-ро такрор пахш кунед</string>
 
     <!--    BASIC SETTING STRINGS    -->
     <string name="unauthenticated">Меҳмон</string>

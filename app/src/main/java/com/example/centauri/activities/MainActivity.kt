@@ -6,9 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +47,13 @@ class MainActivity : AppCompatActivity() {
 
     private  var userData: UserData = UserData(null.toString(), null.toString(), 0, null.toString(), 0)
 
+
+    private var isBackPressedOnce = false
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val resetBackPressed = Runnable {
+        isBackPressedOnce = false
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -111,6 +121,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.selectedItemId = R.id.learn
 
+
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.learn -> replaceFragment(StudyLessonsListFragment())
@@ -162,6 +174,30 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    override fun onBackPressed() {
+        when (binding.bottomNavigationView.selectedItemId){
+            R.id.learn ->{
+                if (isBackPressedOnce) {
+                    Log.e("ObBackPressed_TAG", "The user pressed Back now we exit! ")
+                    super.onBackPressed()
+                    // Optional: finish() is usually handled by super.onBackPressed() in this context
+                    return // Exit early
+                }
+
+
+                isBackPressedOnce = true
+                Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
+
+                // 2. Schedule the reset immediately
+                handler.postDelayed(resetBackPressed, 2000) // 2000 ms (2 seconds)
+            }
+            else -> {
+                replaceFragment(StudyLessonsListFragment())
+            }
+        }
     }
 
 

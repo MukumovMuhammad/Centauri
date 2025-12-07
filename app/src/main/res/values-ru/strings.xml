@@ -33,7 +33,7 @@
 
     <string name="closeTestTitle">Тест будет отменён!</string>
     <string name="closeTestWarning">Вы уверены, что хотите закрыть тест? Ваш прогресс не будет сохранён!</string>
-
+    <string name="PressToExit">	Нажмите "назад" еще раз для выхода</string>
 
     <!--    BASIC SETTING STRINGS    -->
 
