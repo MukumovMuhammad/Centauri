@@ -112,7 +112,7 @@ dependencies {
 
 
     // Pinch zoom for ImgView
-    implementation("com.github.MikeOrtiz:TouchImageView:3.7")
+    implementation("com.github.MikeOrtiz:TouchImageView:3.3")
 
 
 //    Google adMob

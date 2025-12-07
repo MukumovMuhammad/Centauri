@@ -58,9 +58,10 @@ class NasaNewsFragment : Fragment() {
         binding.rvNasaNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNasaNews.adapter = newsAdapter
         dialogWindows = DialogWindows(requireContext())
-
+        binding.loadingText.text = getString(R.string.loading_data)
         newsAdapter.refreshUserData { success->
             lifecycleScope.launch {
+                binding.loadingText.text = getString(R.string.checking_ai)
                 Log.i(TAG, "trying to see is Gemini working")
                 isGeminiWorking = GeminiViewModel().isGemeniWorking()
                 Log.i(TAG, "checked and Gemini working is $isGeminiWorking")
@@ -128,6 +129,9 @@ class NasaNewsFragment : Fragment() {
     private fun getNews(chipBtnState: ChipBtnState){
         binding.darkOverlay.visibility = View.VISIBLE
         binding.loading.visibility = View.VISIBLE
+        binding.loadingText.visibility = View.VISIBLE
+        binding.loadingText.text = getString(R.string.loading_data)
+
         when(chipBtnState){
             ChipBtnState.ALL -> {
 
@@ -142,6 +146,7 @@ class NasaNewsFragment : Fragment() {
                         newsAdapter.notifyDataSetChanged()
                         binding.darkOverlay.visibility = View.GONE
                         binding.loading.visibility = View.GONE
+                        binding.loadingText.visibility = View.GONE
                     }
                 }
             }
@@ -157,6 +162,7 @@ class NasaNewsFragment : Fragment() {
                         newsAdapter.notifyDataSetChanged()
                         binding.darkOverlay.visibility = View.GONE
                         binding.loading.visibility = View.GONE
+                        binding.loadingText.visibility = View.GONE
                     }
                 }
 
@@ -165,6 +171,7 @@ class NasaNewsFragment : Fragment() {
                 newsAdapter.showSavedOnce(context = requireContext(), {success->
                     binding.darkOverlay.visibility = View.GONE
                     binding.loading.visibility = View.GONE
+                    binding.loadingText.visibility = View.GONE
 
                     if (!success){
                         nasaNewsList.clear()

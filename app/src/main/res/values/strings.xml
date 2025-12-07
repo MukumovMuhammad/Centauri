@@ -25,6 +25,9 @@
     <string name="scientists">Scientists</string>
     <string name="about_centauri">About Centauri</string>
 
+    <string name="closeTestTitle">The test will be cancelled!</string>
+    <string name="closeTestWarning">Are you sure you want to close the test? Your progress will not be saved!</string>
+
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Guest</string>
@@ -66,6 +69,7 @@
     <!-- Lesson Messages   -->
     <string name="loading_question">Loading question…</string>
     <string name="loading_add">Loading Add…</string>
+    <string name="loading_data">Loading Data…</string>
     <string name="checking_ai">Checking is AI working…</string>
     <string name="ai_not_working">Sorry the AI assistance is not working Try later</string>
     <string name="add_not_working">Sorry! could not receive the add Try later</string>

@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 
 class GeminiViewModel: ViewModel() {
     companion object {
-        const val API_KEY = ""
+        const val API_KEY = "AIzaSyAkNt2DITi1T3Ofurp7yWNjwFVF1I4k58o"
         const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
     val generativeModel = GenerativeModel(modelName = "gemini-2.5-flash-lite", apiKey = API_KEY)
@@ -75,7 +75,7 @@ class GeminiViewModel: ViewModel() {
 
 
         var langToUse = LocaleHelper.getSavedLanguage(context)
-        val startPromptExplonation = """
+        val startPromptExplanation = """
 You are an expert in Astronomy and Astrophysics, and your role is to test your student’s understanding of the following lessons:
 ${Lesson}
 Create a multiple-choice question based strictly on the content of the above lessons. You will generate one question at a time.
@@ -115,7 +115,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         """.trimIndent()
 
         return try {
-            val response : GenerateContentResponse = chat.sendMessage(prompt = startPromptExplonation)
+            val response : GenerateContentResponse = chat.sendMessage(prompt = startPromptExplanation)
             Log.i(TAG, "startNewTest response : ${response.text}")
             val json = Json{ignoreUnknownKeys = true}
             val jsonRegex = "\\{[\\s\\S]*\\}".toRegex()
@@ -209,7 +209,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
         }
     }
 
-    suspend fun translateFromEglish(context: Context, apodNewsData: ApodNewsData): ApodNewsData{
+    suspend fun translateFromEnglish(context: Context, apodNewsData: ApodNewsData): ApodNewsData{
         var langToUse = LocaleHelper.getSavedLanguage(context)
         if (langToUse == "en" || langToUse == null){
             return apodNewsData;

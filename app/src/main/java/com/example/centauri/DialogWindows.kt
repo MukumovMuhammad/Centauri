@@ -23,6 +23,7 @@ class DialogWindows(var context: Context) {
 
     interface DialogCallback{
         fun onOkCLicked()
+        fun onCancelClicked()
     }
 
 
@@ -114,6 +115,7 @@ class DialogWindows(var context: Context) {
             if (!showCancel) dialogView.findViewById<Button>(R.id.btnCancel).visibility = View.GONE
 
             dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
+                callback.onCancelClicked()
                 dialog.dismiss()
             }
 

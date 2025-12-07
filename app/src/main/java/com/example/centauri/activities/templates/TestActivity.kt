@@ -49,6 +49,7 @@ class TestActivity : AppCompatActivity() {
     private var dialog: DialogWindows = DialogWindows(this)
     private var dbViewModel: DbViewModel = DbViewModel()
     private var interstitialAd: InterstitialAd? = null
+    private var closingTest : Boolean = false
 
 
     companion object {
@@ -144,11 +145,17 @@ class TestActivity : AppCompatActivity() {
                         override fun onOkCLicked() {
                             finish()
                         }
+
+                        override fun onCancelClicked() {
+//                            TODO("Not yet implemented")
+                        }
                     }, getString(R.string.error))
 
                 }
             },
         )
+
+
 
 
         hide_statusbar()
@@ -246,6 +253,10 @@ class TestActivity : AppCompatActivity() {
                         }
                         resetBtns()
                     }
+
+                    override fun onCancelClicked() {
+//                        TODO("Not yet implemented")
+                    }
                 })
             }
 
@@ -253,6 +264,10 @@ class TestActivity : AppCompatActivity() {
                 dialog.testResult(false,getString(R.string.ai_not_working), object: DialogWindows.DialogCallback{
                     override fun onOkCLicked() {
                         finish()
+                    }
+
+                    override fun onCancelClicked() {
+//                        TODO("Not yet implemented")
                     }
                 }, getString(R.string.error))
             }
@@ -278,12 +293,20 @@ class TestActivity : AppCompatActivity() {
                                                 override fun onOkCLicked() {
                                                     finish()
                                                 }
+
+                                                override fun onCancelClicked() {
+//                                                    TODO("Not yet implemented")
+                                                }
                                             }, "ERROR!")
                                         }
                                     })
                                 }
 
 
+                            }
+
+                            override fun onCancelClicked() {
+//                                TODO("Not yet implemented")
                             }
                         }, "Results")
                     }
@@ -367,6 +390,30 @@ class TestActivity : AppCompatActivity() {
         }
     }
 
+
+    override fun onBackPressed() {
+        closingTest = !closingTest
+
+        if (closingTest){
+
+            dialog.showSpaceDialog(
+                getString(R.string.closeTestTitle),
+                getString(R.string.closeTestWarning),
+                object : DialogWindows.DialogCallback{
+                    override fun onOkCLicked() {
+                        finish()
+                    }
+
+                    override fun onCancelClicked() {
+                        closingTest = false
+                    }
+
+                },
+                showCancel = true
+            )
+        }
+//        super.onBackPressed()
+    }
     @SuppressLint("ResourceAsColor")
     fun hide_statusbar(){
         // Obtain the WindowInsetsController from the window

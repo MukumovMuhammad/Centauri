@@ -243,7 +243,7 @@ class DbViewModel: ViewModel() {
             val json = Json { ignoreUnknownKeys = true }
             var NasaTodayNews : ApodNewsData = json.decodeFromString<ApodNewsData>(response.bodyAsText())
             if (isGeminiWork){
-                var translatedNasaNews = GeminiViewModel().translateFromEglish(context, NasaTodayNews)
+                var translatedNasaNews = GeminiViewModel().translateFromEnglish(context, NasaTodayNews)
                 return arrayListOf(translatedNasaNews)
             }
             return arrayListOf(NasaTodayNews)
@@ -284,7 +284,7 @@ class DbViewModel: ViewModel() {
             if(isGeminiWork){
                 translatedNasaNewsList.clear()
                 nasaNews.forEach { item ->
-                    translatedNasaNewsList.add(GeminiViewModel().translateFromEglish(context, item))
+                    translatedNasaNewsList.add(GeminiViewModel().translateFromEnglish(context, item))
                 }
 
                 return translatedNasaNewsList

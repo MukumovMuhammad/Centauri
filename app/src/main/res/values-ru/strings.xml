@@ -30,6 +30,11 @@
     <string name="scientists">Ученные</string>
     <string name="about_centauri">Про Centauri</string>
 
+
+    <string name="closeTestTitle">Тест будет отменён!</string>
+    <string name="closeTestWarning">Вы уверены, что хотите закрыть тест? Ваш прогресс не будет сохранён!</string>
+
+
     <!--    BASIC SETTING STRINGS    -->
 
     <string name="unauthenticated">Гость</string>
@@ -72,6 +77,7 @@
     <!-- Lesson Messages -->
     <string name="loading_question">Загрузка вопроса...</string>
     <string name="loading_add">Загрузка рекламы...</string>
+    <string name="loading_data">Загрузка данных...</string>
     <string name="checking_ai">Проверка работы ИИ...</string>
     <string name="ai_not_working">Извините, ИИ-помощник сейчас не работает. Попробуйте позже</string>
     <string name="add_not_working">Извините, не получилось загрузить рекламу. Попробуйте позже</string>

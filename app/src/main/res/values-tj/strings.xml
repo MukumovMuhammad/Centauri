@@ -24,6 +24,10 @@
     <string name="scientists">Олимон</string>
     <string name="about_centauri">Centauri чист?</string>
 
+    <string name="closeTestTitle">Санҷиш бекор карда мешавад!</string>
+    <string name="closeTestWarning">Шумо мутмаин ҳастед, ки мехоҳед санҷишро пӯшед? Пешрафти шумо нигоҳ дошта намешавад!</string>
+
+
     <!--    BASIC SETTING STRINGS    -->
     <string name="unauthenticated">Меҳмон</string>
     <string name="sign_in">Воридшавӣ</string>
@@ -81,6 +85,7 @@
     <!-- Lesson Messages -->
     <string name="loading_question">Савол бор карда мешавад...</string>
     <string name="loading_add">реклама бор карда мешавад...</string>
+    <string name="loading_data">Боркунии маълумот...</string>
     <string name = "checking_ai">Тафтиши амалиёти AI…</string>
     <string name="ai_not_working">Бубахшед, ёрдамчии AI дар айни замон кор намекунад. Лутфан, баъдтар бори дигар кӯшиш кунед</string>
     <string name="add_not_working">Бубахшед, рекламаро кабул карда натавонистем. Лутфан, баъдтар бори дигар кӯшиш кунед</string>
