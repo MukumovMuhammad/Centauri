@@ -69,17 +69,17 @@ class StudyLessonsListFragment : Fragment() {
             rvItemsLessonsData(rvItemType.TEST, 2, "Test of Part 2", R.drawable.ic_test,2),
 
             rvItemsLessonsData(rvItemType.PART, 3, getString(R.string.part_3), R.drawable.ic_test,2),
-            rvItemsLessonsData(rvItemType.LESSON, 8, getString(R.string.lesson9), R.drawable.ic_sun2,2),
-            rvItemsLessonsData(rvItemType.LESSON, 9, getString(R.string.lesson10), R.drawable.ic_astrophysics,2),
-            rvItemsLessonsData(rvItemType.LESSON, 10, getString(R.string.lesson11), R.drawable.ic_falling_star,2),
-            rvItemsLessonsData(rvItemType.LESSON, 11, getString(R.string.lesson12), R.drawable.ic_black_hole,2),
+            rvItemsLessonsData(rvItemType.LESSON, 8, getString(R.string.lesson8), R.drawable.ic_sun2,2),
+            rvItemsLessonsData(rvItemType.LESSON, 9, getString(R.string.lesson9), R.drawable.ic_astrophysics,2),
+            rvItemsLessonsData(rvItemType.LESSON, 10, getString(R.string.lesson10), R.drawable.ic_falling_star,2),
+            rvItemsLessonsData(rvItemType.LESSON, 11, getString(R.string.lesson11), R.drawable.ic_black_hole,2),
             rvItemsLessonsData(rvItemType.TEST,  3, "Test of Part 3", R.drawable.ic_test,2),
 
             rvItemsLessonsData(rvItemType.PART, 4, getString(R.string.part_4), R.drawable.ic_test,2),
-            rvItemsLessonsData(rvItemType.LESSON, 12, getString(R.string.lesson13), R.drawable.ic_milky_way,2),
-            rvItemsLessonsData(rvItemType.LESSON, 13,getString(R.string.lesson14), R.drawable.ic_galaxy2,2),
-            rvItemsLessonsData(rvItemType.LESSON, 14, getString(R.string.lesson15), R.drawable.ic_galaxy,2),
-            rvItemsLessonsData(rvItemType.LESSON, 15, getString(R.string.lesson16), R.drawable.ic_space,2),
+            rvItemsLessonsData(rvItemType.LESSON, 12, getString(R.string.lesson12), R.drawable.ic_milky_way,2),
+            rvItemsLessonsData(rvItemType.LESSON, 13,getString(R.string.lesson13), R.drawable.ic_galaxy2,2),
+            rvItemsLessonsData(rvItemType.LESSON, 14, getString(R.string.lesson14), R.drawable.ic_galaxy,2),
+            rvItemsLessonsData(rvItemType.LESSON, 15, getString(R.string.lesson15), R.drawable.ic_space,2),
             rvItemsLessonsData(rvItemType.TEST, 4, "Test of Part 4", R.drawable.ic_space,2)
         )
         if (doUpdate){

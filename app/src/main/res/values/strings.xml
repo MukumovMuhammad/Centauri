@@ -102,20 +102,21 @@
     <string name="lesson6">The Earth-Moon System</string>
     <!--    <string name="lesson7">The Inner Planets (Mercury, Venus, Earth, Mars)</string>-->
     <string name="lesson7">The Planets (inner, outer, exo)</string>
-    <string name="lesson8">The Outer Planets &amp; Beyond</string>
+
 
 
     <string name="part_3"> The Sun &amp; Stars</string>
-    <string name="lesson9">The Sun as a Star</string>
-    <string name="lesson10">Stellar Classification &amp; Spectroscopy</string>
-    <string name="lesson11"> Life Cycles of Stars</string>
-    <string name="lesson12">Supernovae, Neutron Stars &amp; Black Holes</string>
+<!--    <string name="lesson9">The Sun as a Star</string>-->
+    <string name="lesson8">The Sun as a Star</string>
+    <string name="lesson9">Stellar Classification &amp; Spectroscopy</string>
+    <string name="lesson10"> Life Cycles of Stars</string>
+    <string name="lesson11">Supernovae, Neutron Stars &amp; Black Holes</string>
 
     <string name="part_4">  Galaxies &amp; Cosmology</string>
-    <string name="lesson13">The Milky Way Galaxy</string>"
-    <string name="lesson14">Types of Galaxies &amp; Their Evolution</string>
-    <string name="lesson15"> Dark Matter &amp; The Expanding Universe</string>
-    <string name="lesson16">The Big Bang &amp; The Fate of the Universe</string>
+    <string name="lesson12">The Milky Way Galaxy</string>"
+    <string name="lesson13">Types of Galaxies &amp; Their Evolution</string>
+    <string name="lesson14"> Dark Matter &amp; The Expanding Universe</string>
+    <string name="lesson15">The Big Bang &amp; The Fate of the Universe</string>
 
 
     <!--===============   LESSONS STARTS HERE  =============== -->

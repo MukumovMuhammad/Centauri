@@ -105,19 +105,19 @@
 
     <!--    <string name="lesson7">The Inner Planets (Mercury, Venus, Earth, Mars)</string>-->
     <string name="lesson7">Сайёраҳо (сайёраҳои дарунӣ, берунӣ, экзопланетаҳо)</string>
-    <string name="lesson8">Сайёраҳои берунӣ ва берун аз он</string>
+<!--    <string name="lesson8">Сайёраҳои берунӣ ва берун аз он</string>-->
 
     <string name="part_3">Офтоб ва ситораҳо</string>
-    <string name="lesson9">Офтоб ҳамчун ситора</string>
-    <string name = "lesson10" >Таснифи ситораҳо ва спектроскопия</string>
-    <string name="lesson11">Сиклҳои зиндагии ситораҳо</string>
-    <string name="lesson12">Суперновавияҳо, Ситораҳои нейтронӣ ва сӯрохиҳои сиёҳ</string>
+    <string name="lesson8">Офтоб ҳамчун ситора</string>
+    <string name = "lesson9" >Таснифи ситораҳо ва спектроскопия</string>
+    <string name="lesson10">Сиклҳои зиндагии ситораҳо</string>
+    <string name="lesson11">Суперновавияҳо, Ситораҳои нейтронӣ ва сӯрохиҳои сиёҳ</string>
 
     <string name="part_4">Галактикаҳо ва космология</string>
-    <string name="lesson13">Галактикаи Роҳи Каҳкашон</string>
-    <string name="lesson14">Намудҳои галактикаҳо ва эволютсияи онҳо</string>
-    <string name="lesson15">Материяи торик ва ҷаҳони васеъшаванда</string>
-    <string name="lesson16">Тарфи бузург ва сарнавишти коинот</string>
+    <string name="lesson12">Галактикаи Роҳи Каҳкашон</string>
+    <string name="lesson13">Намудҳои галактикаҳо ва эволютсияи онҳо</string>
+    <string name="lesson14">Материяи торик ва ҷаҳони васеъшаванда</string>
+    <string name="lesson15">Тарфи бузург ва сарнавишти коинот</string>
 
 
     <!--===============   LESSONS STARTS HERE  =============== -->

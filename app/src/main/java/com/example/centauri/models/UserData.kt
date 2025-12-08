@@ -18,11 +18,9 @@ data class UserData(
     var email: String = "",
     var rating: Int = 0,
 
-    // This field will be ignored by Kotlinx.serialization (JSON)
-    // but WILL be included in the Android Parcel
+
     @Transient
     var password: String = "",
-
     var testCompleted: Int = 0,
     var apodNasaNews: ArrayList<ApodNewsData> = arrayListOf()
 ) : Parcelable

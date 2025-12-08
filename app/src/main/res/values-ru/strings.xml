@@ -109,19 +109,18 @@
     <string name="lesson6">Система Земля — Луна</string>
     <!--    <string name="lesson7">The Inner Planets (Mercury, Venus, Earth, Mars)</string>-->
     <string name="lesson7">Планеты (внутренние, внешние, экзопланеты)</string>
-    <string name="lesson8">Внешние планеты и за их пределами</string>
 
     <string name="part_3">Солнце и звёзды</string>
-    <string name="lesson9">Солнце как звезда</string>
-    <string name="lesson10">Классификация звёзд и спектроскопия</string>
-    <string name="lesson11">Жизненные циклы звёзд</string>
-    <string name="lesson12">Сверхновые, нейтронные звёзды и чёрные дыры</string>
+    <string name="lesson8">Солнце как звезда</string>
+    <string name="lesson9">Классификация звёзд и спектроскопия</string>
+    <string name="lesson10">Жизненные циклы звёзд</string>
+    <string name="lesson11">Сверхновые, нейтронные звёзды и чёрные дыры</string>
 
     <string name="part_4">Галактики и космология</string>
-    <string name="lesson13">Галактика Млечный Путь</string>
-    <string name="lesson14">Типы галактик и их эволюция</string>
-    <string name="lesson15">Тёмная материя и расширяющаяся Вселенная</string>
-    <string name="lesson16">Большой взрыв и судьба Вселенной</string>
+    <string name="lesson12">Галактика Млечный Путь</string>
+    <string name="lesson13">Типы галактик и их эволюция</string>
+    <string name="lesson14">Тёмная материя и расширяющаяся Вселенная</string>
+    <string name="lesson15">Большой взрыв и судьба Вселенной</string>
 
 
     <!--===============   LESSONS STARTS HERE  =============== -->
