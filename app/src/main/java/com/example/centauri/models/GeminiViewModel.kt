@@ -5,6 +5,7 @@ import LocaleHelper
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.centauri.BuildConfig
 import com.example.centauri.R
 import com.example.centauri.TestQuestionData
 import com.example.centauri.rv.ApodNewsData
@@ -16,11 +17,14 @@ import kotlinx.serialization.json.Json
 
 class GeminiViewModel: ViewModel() {
     companion object {
-        const val API_KEY = "AIzaSyAkNt2DITi1T3Ofurp7yWNjwFVF1I4k58o"
+        const val AI_API = BuildConfig.AI_API_TESTER
+        const val AI_API_TRANSLATE = BuildConfig.AI_API_TRANSLATE
         const val TAG = "GEMINI_VIEW_MODEL_TAG"
     }
-    val generativeModel = GenerativeModel(modelName = "gemini-2.5-flash-lite", apiKey = API_KEY)
+    val generativeModel = GenerativeModel(modelName = "gemini-2.5-flash-lite", apiKey = AI_API)
+    val translatorModel = GenerativeModel(modelName = "gemini-2.5-flash-lite", apiKey = AI_API_TRANSLATE)
     val chat = generativeModel.startChat()
+    val translatingChat = translatorModel.startChat()
 
     suspend fun startNewTest(context: Context, Lessons: ArrayList<String> = arrayListOf()): TestQuestionData {
         clearChatHistory()
@@ -211,7 +215,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
 
     suspend fun translateFromEnglish(context: Context, apodNewsData: ApodNewsData): ApodNewsData{
         var langToUse = LocaleHelper.getSavedLanguage(context)
-        if (langToUse == "en" || langToUse == null){
+        if (langToUse == "en" || langToUse.isNullOrEmpty()){
             return apodNewsData;
         }
 
@@ -227,7 +231,7 @@ Return only the JSON object — no extra text, no formatting, no explanations.
 
 
         return try {
-            val response : GenerateContentResponse = chat.sendMessage(prompt = prompt)
+            val response : GenerateContentResponse = translatingChat.sendMessage(prompt = prompt)
             Log.i(TAG, "the response from translating : ${response.text}")
             val json = Json{ignoreUnknownKeys = true}
             val jsonRegex = "\\{[\\s\\S]*\\}".toRegex()

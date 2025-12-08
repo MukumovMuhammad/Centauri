@@ -25,7 +25,8 @@ android {
 
         var properties: Properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
-        buildConfigField("String","API_KEY", "\"${properties.getProperty("GEMINI_API_KEY")}\"")
+        buildConfigField("String","AI_API_TESTER", "\"${properties.getProperty("GEMINI_API_KEY")}\"")
+        buildConfigField("String","AI_API_TRANSLATE", "\"${properties.getProperty("GEMENI_API_KEY_TRANSLATOR")}\"")
 
     }
     buildTypes {
