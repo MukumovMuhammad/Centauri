@@ -14,16 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Centauri"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.Profile"
+            android:exported="false"
+            android:theme="@style/Theme.Centauri" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3136316188176835~8522974304"/>
+            android:value="ca-app-pub-3136316188176835~8522974304" />
 
         <activity
             android:name=".activities.templates.TestActivity"
             android:exported="false"
-            android:theme="@style/Theme.Centauri"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Centauri" />
         <activity
             android:name=".activities.templates.LessonTemplateActivity"
             android:exported="false"
@@ -32,7 +36,7 @@
             android:name=".activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Centauri" >
+            android:theme="@style/Theme.Centauri">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,8 +46,7 @@
         <activity
             android:name=".activities.AuthActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

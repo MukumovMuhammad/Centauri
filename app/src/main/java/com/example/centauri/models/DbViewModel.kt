@@ -39,7 +39,7 @@ class DbViewModel: ViewModel() {
             "email" to user.email,
             "rating" to user.rating,
             "password" to user.password,
-            "testCompleted" to user.testCompleted,
+            "testCompleted" to user.PartCompleted,
             "apodNasaNews" to user.apodNasaNews
         )
 
@@ -60,7 +60,7 @@ class DbViewModel: ViewModel() {
 
     fun getUserData(email: String, onResult: (UserData) -> Unit){
         Log.i(TAG, "getUserData fun is on work")
-        var user: UserData = UserData("null", "null", 0, "null", 0)
+        var user: UserData = UserData("null", "null", password = "null")
         db.collection("users").document(email).get()
             .addOnSuccessListener { document ->
                 Log.i(TAG, "getUserData fun is Succeed")
@@ -74,7 +74,7 @@ class DbViewModel: ViewModel() {
             }
             .addOnFailureListener { exception ->
                 Log.e(TAG, "Error getting user data from Firestore", exception)
-                user = UserData("null", "null", 0, "null", 0)
+                user = UserData("null", "null", password = "null")
                 onResult(user)
                 }
     }
@@ -83,7 +83,7 @@ class DbViewModel: ViewModel() {
         Log.i(TAG, "testPastUser fun is on work testNumber $testNumber")
 
         getUserData(userEmail) { userData ->
-            if (userData.testCompleted >= testNumber) {
+            if (userData.PartCompleted >= testNumber) {
                 callback(true)
                 return@getUserData
             }
@@ -309,6 +309,7 @@ class DbViewModel: ViewModel() {
             return  listOf<ApodNewsData> (ApodNewsData("Unknown Error", "Something went wrong", "",""))
         }
     }
+
 
     fun saveNasaNews(userEmail: String, apodNewsData: ApodNewsData, callback: (Boolean) -> Unit){
         db.collection("users").document(userEmail).update("apodNasaNews", FieldValue.arrayUnion(apodNewsData))

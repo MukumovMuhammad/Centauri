@@ -38,7 +38,7 @@ class rvAdapterLesson(private val lessonList: Array<rvItemsLessonsData>): Recycl
 
             if (userData.username != null) {
                 Log.i(TAG, "rvAdapterLesson() currentUser of db is not nul -> currentUser value: ${userData}")
-                testCompleted = userData.testCompleted
+                testCompleted = userData.PartCompleted
                 notifyDataSetChanged()
             } else {
                 Log.i(TAG, "rvAdapterLesson() currentUser of db is nul -> currentUser value: ${userData}")

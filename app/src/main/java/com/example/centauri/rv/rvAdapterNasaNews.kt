@@ -1,7 +1,6 @@
 package com.example.centauri.rv
 
 import android.annotation.SuppressLint
-import android.content.ComponentCallbacks
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -11,22 +10,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.centauri.DialogWindows
-import com.example.centauri.FullImageDialogFragment
 import com.example.centauri.R
 import com.example.centauri.activities.AuthActivity
-import com.example.centauri.activities.templates.TestActivity
 import com.example.centauri.models.AuthState
 import com.example.centauri.models.AuthViewModel
 import com.example.centauri.models.DbViewModel
 import com.example.centauri.models.UserData
-import com.example.centauri.rv.rvAdapterLesson.Companion
-import com.google.android.gms.tasks.OnSuccessListener
 
 class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): RecyclerView.Adapter<rvAdapterNasaNews.ViewHolder>() {
 
@@ -37,7 +30,11 @@ class rvAdapterNasaNews(private val newsList: ArrayList<ApodNewsData>): Recycler
 
     private var isUserDataRefreshed : Boolean = false
     private var savedNewsDatas: ArrayList<String> = arrayListOf()
-    private var userData: UserData = UserData(null.toString(), null.toString(), 0, null.toString(), 0)
+    private var userData: UserData = UserData(
+        null.toString(),
+        null.toString(),
+        password = null.toString()
+    )
     companion object{
         const val TAG = "rvNasaNewsAdapter_TAG"
     }

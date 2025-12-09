@@ -1,6 +1,5 @@
 package com.example.centauri.fragments.auth_frags
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import android.widget.VideoView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.centauri.R
 import com.example.centauri.databinding.FragmentSignUpBinding
 import com.example.centauri.models.UserData
@@ -112,7 +110,11 @@ class SignUpFrag : Fragment() {
             }
 
             Log.i(TAG, "passwords match")
-            val user = UserData(binding.etUsername.text.toString(), binding.etEmail.text.toString(), 0, binding.etPassword.text.toString(), 0)
+            val user = UserData(
+                binding.etUsername.text.toString(),
+                binding.etEmail.text.toString(),
+                password = binding.etPassword.text.toString()
+            )
             authViewModel.signUp(user)
 
         }

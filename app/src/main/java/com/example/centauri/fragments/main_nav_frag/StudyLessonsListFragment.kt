@@ -29,7 +29,7 @@ class StudyLessonsListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentStudyLessonsListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,7 +46,6 @@ class StudyLessonsListFragment : Fragment() {
         lessonAdapter.notifyDataSetChanged()
 
         super.onViewCreated(view, savedInstanceState)
-
 
     }
 

@@ -45,7 +45,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  db: DbViewModel
     private lateinit var  dialogWindows: DialogWindows
 
-    private  var userData: UserData = UserData(null.toString(), null.toString(), 0, null.toString(), 0)
+    private  var userData: UserData = UserData(
+        null.toString(),
+        null.toString(),
+        password = null.toString()
+    )
 
 
     private var isBackPressedOnce = false
@@ -88,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 //            binding.navView.(0).findViewById<TextView>(R.id.nav_logout).text = getString(R.string.test)
             binding.navView.menu.findItem(R.id.nav_logout).title = getString(R.string.sign_up)
         }
+
 
         setSupportActionBar(binding.toolbar)
         val toggle = ActionBarDrawerToggle(
@@ -139,8 +144,15 @@ class MainActivity : AppCompatActivity() {
 //        DRAWER navigation!
         binding.navView.setNavigationItemSelectedListener {menuItem ->
             when (menuItem.itemId) {
-                R.id.profile_settings->{
-
+                R.id.profile->{
+                    if (authViewModel.authState.value == AuthState.Authenticated){
+                        val intent = Intent(this@MainActivity, Profile::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
                 R.id.nav_language -> {
                     dialogWindows.langChoosing(){lang ->
@@ -157,10 +169,9 @@ class MainActivity : AppCompatActivity() {
 
                         val intent = intent
                         finish()
-                        startActivity(intent)
                     }
                     else{
-                        var intent = Intent(this@MainActivity, AuthActivity::class.java)
+                        val intent = Intent(this@MainActivity, AuthActivity::class.java)
                         startActivity(intent)
 
                     }
