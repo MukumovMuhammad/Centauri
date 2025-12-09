@@ -35,7 +35,8 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign out</string>
-    <string name="language_settings">Language Settings</string>
+    <string name="language_settings">Language settings</string>
+    <string name="profile_settings">Profile settings</string>
     <string name="lang_change_expl">Change the language of the app</string>
     <string name="you_are_not_authenticated">You are not authenticated</string>
     <string name="have_to_create_account">You have to create an account for this!</string>

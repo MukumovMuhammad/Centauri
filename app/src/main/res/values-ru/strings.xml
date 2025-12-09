@@ -42,6 +42,7 @@
     <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_out">Выйти</string>
     <string name="language_settings">Настройки языка</string>
+    <string name="profile_settings">Настройки профиля</string>
     <string name="lang_change_expl">Изменить язык приложения</string>
     <string name="you_are_not_authenticated">Вы не авторизованы</string>
     <string name="have_to_create_account">Вам нужно создать аккаунт для этого!</string>

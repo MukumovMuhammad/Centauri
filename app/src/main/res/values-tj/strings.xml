@@ -34,6 +34,7 @@
     <string name="sign_up">Бақайд гирифтан</string>
     <string name="sign_out">Баромадан</string>
     <string name="language_settings">Танзимоти забон</string>
+    <string name="profile_settings">Танзимоти профил</string>
     <string name="lang_change_expl">Забони барномаро тағир диҳед</string>
     <string name="you_are_not_authenticated">Шумо тасдиқ карда нашудааст</string>
     <string name="have_to_create_account">Барои ин шумо бояд ҳисоб эҷод кунед!</string>

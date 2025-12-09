@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         authViewModel = AuthViewModel()
         db = DbViewModel()
         dialogWindows = DialogWindows(this)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -134,8 +135,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+
+//        DRAWER navigation!
         binding.navView.setNavigationItemSelectedListener {menuItem ->
             when (menuItem.itemId) {
+                R.id.profile_settings->{
+
+                }
                 R.id.nav_language -> {
                     dialogWindows.langChoosing(){lang ->
                         val intent = intent
