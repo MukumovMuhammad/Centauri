@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CURRICULUM PROGRESS"
-                android:textColor="@color/dark_matter_blue"
+                android:textColor="@color/blue_gradient_start"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:alpha="0.8"/>
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TEST PERFORMANCE"
-                android:textColor="@color/dark_matter_blue"
+                android:textColor="@color/blue_gradient_start"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:alpha="0.8"/>

@@ -49,12 +49,12 @@ class ProfileFragment : Fragment() {
 
             userData.joined?.let { date ->
                 val format = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-                binding.tvJoinDate.text = format.format(date) // Format the Date object
+                binding.tvJoinDate.text = "Joined: " + format.format(date).toString() // Format the Date object
             } ?: run {
                 binding.tvJoinDate.text = "N/A"
             }
 
-            binding.tvProgressPercent.text = (userData.PartCompleted * 25).toString()
+            binding.tvProgressPercent.text = (userData.PartCompleted * 25).toString() + "%"
             binding.pbLessonProgress.progress = userData.PartCompleted * 25
             binding.tvPassedCount.text = userData.PartCompleted.toString()
             binding.tvAvgMark.text = userData.AvarageMark.toString()
